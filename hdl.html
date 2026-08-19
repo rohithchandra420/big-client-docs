@@ -157,7 +157,6 @@
   }
   @media (max-width: 900px) {
     .layout { grid-template-columns: 1fr; }
-    .toc-desktop { display: none; }
   }
   .toc-desktop {
     position: sticky;
@@ -184,6 +183,14 @@
     margin-left: -1px;
   }
   .toc-desktop a:hover { color: var(--accent); border-left-color: var(--accent); }
+  /* This override must come after the base .toc-desktop rule above —
+     otherwise the later, unconditional `display: flex` there wins the
+     cascade at equal specificity and the sidebar never actually hides
+     on mobile (it did exactly that: a `position: sticky` block stuck
+     over the page on every scroll, on every screen size). */
+  @media (max-width: 900px) {
+    .toc-desktop { display: none; }
+  }
 
   .toc-mobile {
     display: none;
@@ -826,7 +833,7 @@
 
       <footer>
         <span>BiG Event &amp; Ticketing Platform — High-Level Design</span>
-        <span>Prepared by Rohith Chandra · v1.0 Draft · 19 Aug 2026</span>
+        <span>Prepared by [Your Name / Organisation] · v1.0 Draft · 19 Aug 2026</span>
       </footer>
 
     </main>
