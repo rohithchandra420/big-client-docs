@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>BiG Client Documents</title>
+<style>
+  :root {
+    --bg:#f6f7f4; --surface:#ffffff; --ink:#1c2420; --ink-muted:#566058;
+    --line:#dbe1d8; --accent:#2e6b4e; --accent-soft:#e4eee6;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#12180f; --surface:#171f19; --ink:#e9ede7; --ink-muted:#a7b1a2; --line:#2b342c; --accent:#74c297; --accent-soft:#1e332a; }
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; min-height:100vh; display:flex; align-items:center; justify-content:center; background:var(--bg); color:var(--ink);
+    font-family:-apple-system,"Segoe UI",sans-serif; padding:24px; }
+  .card { max-width:520px; width:100%; }
+  .eyebrow { font-family:ui-monospace,monospace; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); margin-bottom:10px; }
+  h1 { font-size:1.6rem; margin:0 0 8px; }
+  p.sub { color:var(--ink-muted); margin:0 0 28px; }
+  a.doc { display:block; background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:18px 20px; margin-bottom:12px; text-decoration:none; color:var(--ink); }
+  a.doc b { display:block; font-size:1.05rem; margin-bottom:4px; }
+  a.doc span { color:var(--ink-muted); font-size:14px; }
+  a.doc:hover { border-color:var(--accent); }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="eyebrow">BiG Event &amp; Ticketing Platform</div>
+    <h1>Client Documents</h1>
+    <p class="sub">Reference documentation prepared for review.</p>
+    <a class="doc" href="hdl.html"><b>High-Level Design</b><span>Architecture, modules, data model, security posture and roadmap.</span></a>
+    <a class="doc" href="user-manual.html"><b>User Manual</b><span>Screen-by-screen guide to using the platform, by role.</span></a>
+  </div>
+</body>
+</html>

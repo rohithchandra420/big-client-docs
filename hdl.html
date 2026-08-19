@@ -1,0 +1,837 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="description" content="BiG Event & Ticketing Platform — High-Level Design document.">
+<title>BiG Platform HDL</title>
+<style>
+  :root {
+    --bg: #f6f7f4;
+    --surface: #ffffff;
+    --surface-2: #eef1ea;
+    --ink: #1c2420;
+    --ink-muted: #566058;
+    --line: #dbe1d8;
+    --accent: #2e6b4e;
+    --accent-ink: #ffffff;
+    --accent-soft: #e4eee6;
+    --gold: #9c6d2e;
+    --gold-soft: #f6ecda;
+    --shadow: 0 1px 2px rgba(28,36,32,0.06), 0 8px 24px rgba(28,36,32,0.05);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #12180f;
+      --surface: #171f19;
+      --surface-2: #1d2620;
+      --ink: #e9ede7;
+      --ink-muted: #a7b1a2;
+      --line: #2b342c;
+      --accent: #74c297;
+      --accent-ink: #0d1712;
+      --accent-soft: #1e332a;
+      --gold: #d9a862;
+      --gold-soft: #2c2213;
+      --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px rgba(0,0,0,0.35);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #12180f;
+    --surface: #171f19;
+    --surface-2: #1d2620;
+    --ink: #e9ede7;
+    --ink-muted: #a7b1a2;
+    --line: #2b342c;
+    --accent: #74c297;
+    --accent-ink: #0d1712;
+    --accent-soft: #1e332a;
+    --gold: #d9a862;
+    --gold-soft: #2c2213;
+    --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px rgba(0,0,0,0.35);
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Public Sans", -apple-system, "Segoe UI", sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  h1, h2, h3, h4 {
+    font-family: "Fraunces", Georgia, "Times New Roman", serif;
+    color: var(--ink);
+    text-wrap: balance;
+    font-weight: 600;
+    line-height: 1.2;
+    margin: 0;
+  }
+  a { color: var(--accent); }
+  .mono {
+    font-family: "IBM Plex Mono", ui-monospace, "SFMono-Regular", monospace;
+  }
+  p { margin: 0 0 1em; color: var(--ink); }
+  p:last-child { margin-bottom: 0; }
+  ul, ol { margin: 0 0 1em; padding-left: 1.25em; color: var(--ink); }
+  li { margin-bottom: 0.4em; }
+  li:last-child { margin-bottom: 0; }
+
+  .shell {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 24px 96px;
+  }
+
+  /* ---------- Cover ---------- */
+  .cover {
+    padding: 72px 0 40px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 40px;
+  }
+  .cover-eyebrow {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 18px;
+  }
+  .cover h1 {
+    font-size: clamp(2.1rem, 4.5vw, 3.2rem);
+    max-width: 16ch;
+  }
+  .cover .sub {
+    font-size: 1.15rem;
+    color: var(--ink-muted);
+    max-width: 52ch;
+    margin-top: 14px;
+    font-family: "Fraunces", Georgia, serif;
+    font-weight: 400;
+    font-style: italic;
+  }
+  .meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 32px;
+  }
+  .chip {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12.5px;
+    padding: 7px 12px;
+    border-radius: 999px;
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+    color: var(--ink-muted);
+    white-space: nowrap;
+  }
+  .chip b { color: var(--ink); font-weight: 600; }
+  .chip.accent { background: var(--accent-soft); color: var(--accent); border-color: transparent; }
+  .confidential {
+    margin-top: 28px;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    padding: 14px 16px;
+    background: var(--gold-soft);
+    border: 1px solid color-mix(in srgb, var(--gold) 35%, transparent);
+    border-radius: 10px;
+    max-width: 62ch;
+  }
+  .confidential p { color: var(--ink); font-size: 13.5px; margin: 0; }
+  .confidential .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--gold); margin-top: 6px; flex: none;
+  }
+
+  /* ---------- Layout: sidebar + content ---------- */
+  .layout {
+    display: grid;
+    grid-template-columns: 220px minmax(0, 1fr);
+    gap: 56px;
+    align-items: start;
+  }
+  @media (max-width: 900px) {
+    .layout { grid-template-columns: 1fr; }
+    .toc-desktop { display: none; }
+  }
+  .toc-desktop {
+    position: sticky;
+    top: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    font-size: 13.5px;
+  }
+  .toc-desktop .toc-label {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 10px;
+  }
+  .toc-desktop a {
+    color: var(--ink-muted);
+    text-decoration: none;
+    padding: 6px 0;
+    border-left: 2px solid transparent;
+    padding-left: 12px;
+    margin-left: -1px;
+  }
+  .toc-desktop a:hover { color: var(--accent); border-left-color: var(--accent); }
+
+  .toc-mobile {
+    display: none;
+    margin-bottom: 32px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--surface);
+  }
+  @media (max-width: 900px) {
+    .toc-mobile { display: block; }
+  }
+  .toc-mobile summary {
+    cursor: pointer;
+    padding: 14px 16px;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .toc-mobile .toc-grid {
+    padding: 0 16px 16px;
+    display: grid;
+    gap: 6px;
+    font-size: 14px;
+  }
+  .toc-mobile a { color: var(--ink-muted); text-decoration: none; }
+
+  /* ---------- Sections ---------- */
+  main { min-width: 0; }
+  section {
+    padding: 44px 0;
+    border-bottom: 1px solid var(--line);
+    scroll-margin-top: 20px;
+  }
+  section:last-child { border-bottom: none; }
+  .sec-head {
+    display: flex;
+    gap: 18px;
+    align-items: baseline;
+    margin-bottom: 20px;
+  }
+  .sec-num {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 14px;
+    color: var(--accent);
+    flex: none;
+    padding-top: 4px;
+  }
+  .sec-head h2 { font-size: 1.55rem; }
+  h3 {
+    font-size: 1.1rem;
+    margin: 28px 0 10px;
+  }
+  h3:first-child { margin-top: 0; }
+  .lede {
+    font-family: "Fraunces", Georgia, serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 1.05rem;
+    color: var(--ink-muted);
+    max-width: 68ch;
+    margin-bottom: 22px;
+  }
+  .prose { max-width: 68ch; }
+
+  /* ---------- Tables ---------- */
+  .table-wrap { overflow-x: auto; margin: 0 0 1.2em; }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 14.5px;
+    min-width: 480px;
+  }
+  th, td {
+    text-align: left;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+  }
+  th {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11.5px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    font-weight: 500;
+    background: var(--surface-2);
+  }
+  td.mono { font-family: "IBM Plex Mono", monospace; font-size: 13px; color: var(--accent); }
+
+  /* ---------- Cards / grids ---------- */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 14px;
+    margin: 20px 0;
+  }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 18px 18px 20px;
+    box-shadow: var(--shadow);
+  }
+  .card h4 { font-size: 1rem; margin-bottom: 6px; }
+  .card p { font-size: 14px; color: var(--ink-muted); margin: 0; }
+  .card .tag {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  /* ---------- Callouts ---------- */
+  .callout {
+    background: var(--surface-2);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 10px 10px 0;
+    padding: 14px 18px;
+    margin: 18px 0;
+    font-size: 14.5px;
+    max-width: 68ch;
+  }
+  .callout p { margin: 0; }
+  .callout b { color: var(--accent); }
+
+  /* ---------- Diagram figures ---------- */
+  figure { margin: 24px 0; }
+  figure svg { height: auto; display: block; }
+  figcaption {
+    font-size: 13px;
+    color: var(--ink-muted);
+    margin-top: 10px;
+    max-width: 68ch;
+  }
+  .diagram-frame {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 20px;
+    box-shadow: var(--shadow);
+    overflow-x: auto;
+  }
+  /* Diagrams hold their drawn size and scroll horizontally on narrow
+     screens instead of shrinking — shrunk labels stop being legible
+     well before the page gets phone-narrow. */
+  .diagram-frame svg { width: 820px; max-width: none; flex: none; }
+  .scroll-hint { display: none; }
+  @media (max-width: 900px) {
+    .scroll-hint { display: block; margin-top: 4px; color: var(--accent); font-weight: 600; }
+  }
+  svg text { fill: var(--ink); font-family: "Public Sans", sans-serif; }
+  svg .lbl { fill: var(--ink-muted); font-family: "IBM Plex Mono", monospace; }
+  svg .box-accent { fill: var(--accent-soft); stroke: var(--accent); }
+  svg .box { fill: var(--surface); stroke: var(--line); }
+  svg .arrow { stroke: var(--ink-muted); fill: none; }
+
+  /* ---------- Roadmap timeline ---------- */
+  .timeline {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin: 20px 0;
+  }
+  @media (max-width: 700px) { .timeline { grid-template-columns: 1fr; } }
+  .stage {
+    border-radius: 12px;
+    padding: 18px;
+    border: 1px solid var(--line);
+    background: var(--surface);
+  }
+  .stage.done { border-color: var(--accent); background: var(--accent-soft); }
+  .stage.planned { border-color: color-mix(in srgb, var(--gold) 45%, transparent); background: var(--gold-soft); }
+  .stage .stage-label {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 10px;
+  }
+  .stage.done .stage-label { color: var(--accent); }
+  .stage.planned .stage-label { color: var(--gold); }
+  .stage ul { margin: 0; padding-left: 1.1em; font-size: 14px; }
+  .stage li { margin-bottom: 6px; }
+
+  /* ---------- Glossary ---------- */
+  .glossary { display: grid; grid-template-columns: 1fr; gap: 10px; }
+  .glossary dt {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 13px;
+    color: var(--accent);
+    display: inline;
+  }
+  .glossary dd { margin: 2px 0 0; font-size: 14.5px; color: var(--ink-muted); display: inline; }
+  .glossary div { padding-bottom: 8px; border-bottom: 1px dashed var(--line); }
+
+  footer {
+    margin-top: 60px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    font-size: 12.5px;
+    color: var(--ink-muted);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+</style>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;1,400&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+</head>
+<body>
+
+
+<div class="shell">
+
+  <div class="cover">
+    <div class="cover-eyebrow">High-Level Design Document</div>
+    <h1>BiG Event &amp; Ticketing Platform</h1>
+    <p class="sub">A single operational system for festival ticketing, admission, accommodation and volunteer management — covering the platform as delivered today and the direction it is heading in.</p>
+    <div class="meta-row">
+      <span class="chip accent"><b>Prepared for</b> — [Client Organisation Name]</span>
+      <span class="chip"><b>Version</b> 1.0 · Draft</span>
+      <span class="chip"><b>Date</b> 19 August 2026</span>
+      <span class="chip"><b>Platform status</b> V1 in production</span>
+    </div>
+    <div class="confidential">
+      <span class="dot"></span>
+      <p>This document describes the architecture and design of the BiG platform at a level suited for review and sign-off. It intentionally omits operational security detail (credentials, thresholds, infrastructure secrets) that is not relevant to a design review.</p>
+    </div>
+  </div>
+
+  <div class="layout">
+    <nav class="toc-desktop" aria-label="Table of contents">
+      <div class="toc-label">Contents</div>
+      <a href="#introduction">1 · Introduction</a>
+      <a href="#overview">2 · System Overview</a>
+      <a href="#architecture">3 · Architecture</a>
+      <a href="#modules">4 · Functional Modules</a>
+      <a href="#data">5 · Data Design</a>
+      <a href="#interfaces">6 · Interfaces &amp; Integration</a>
+      <a href="#security">7 · Security &amp; Access Control</a>
+      <a href="#nfr">8 · Non-Functional Requirements</a>
+      <a href="#deployment">9 · Deployment &amp; Hosting</a>
+      <a href="#assumptions">10 · Assumptions &amp; Constraints</a>
+      <a href="#status">11 · Current Status</a>
+      <a href="#roadmap">12 · Roadmap</a>
+      <a href="#glossary">13 · Glossary</a>
+    </nav>
+
+    <main>
+
+      <details class="toc-mobile">
+        <summary>Contents</summary>
+        <div class="toc-grid">
+          <a href="#introduction">1 · Introduction</a>
+          <a href="#overview">2 · System Overview</a>
+          <a href="#architecture">3 · Architecture</a>
+          <a href="#modules">4 · Functional Modules</a>
+          <a href="#data">5 · Data Design</a>
+          <a href="#interfaces">6 · Interfaces &amp; Integration</a>
+          <a href="#security">7 · Security &amp; Access Control</a>
+          <a href="#nfr">8 · Non-Functional Requirements</a>
+          <a href="#deployment">9 · Deployment &amp; Hosting</a>
+          <a href="#assumptions">10 · Assumptions &amp; Constraints</a>
+          <a href="#status">11 · Current Status</a>
+          <a href="#roadmap">12 · Roadmap</a>
+          <a href="#glossary">13 · Glossary</a>
+        </div>
+      </details>
+
+      <!-- 1. INTRODUCTION -->
+      <section id="introduction">
+        <div class="sec-head"><span class="sec-num">01</span><h2>Introduction</h2></div>
+
+        <h3>1.1 Purpose of this document</h3>
+        <div class="prose">
+          <p>This High-Level Design (HDL) document describes the architecture, functional modules, data model and operating environment of the BiG Event &amp; Ticketing Platform. It is written for review and sign-off before detailed technical work proceeds on any new phase, and as a shared reference for how the system is built and why.</p>
+        </div>
+
+        <h3>1.2 Purpose of the system</h3>
+        <div class="prose">
+          <p>BiG is the operational backbone for running a festival-scale event: selling and tracking tickets, checking attendees in at the gate, allocating tent accommodation, and coordinating the volunteers and departments (Finance, Operations, and others) who run the event on the ground.</p>
+        </div>
+
+        <h3>1.3 Scope</h3>
+        <div class="prose">
+          <p>This document covers the platform as a whole — the production system in current use (referred to as V1) together with the modules delivered since as part of an ongoing V2 programme. It also outlines what is planned next, at the level of intent rather than implementation detail.</p>
+        </div>
+
+        <h3>1.4 Intended audience</h3>
+        <div class="prose">
+          <p>Client stakeholders reviewing platform capability and direction; event operations leads planning how departments will use the system; and technical staff on either side who need a map of the system before going deeper into any one part of it.</p>
+        </div>
+
+        <h3>1.5 Definitions &amp; abbreviations</h3>
+        <div class="table-wrap">
+          <table>
+            <tr><th>Term</th><th>Meaning</th></tr>
+            <tr><td class="mono">HDL</td><td>High-Level Design — this document.</td></tr>
+            <tr><td class="mono">SPA</td><td>Single-Page Application — the browser-based app staff and admins use.</td></tr>
+            <tr><td class="mono">Pass Type</td><td>A category of ticket or add-on sold for an event (e.g. a festival pass, a tent, a merchandise add-on).</td></tr>
+            <tr><td class="mono">RBAC</td><td>Role-Based Access Control — permissions determined by a user's role and department.</td></tr>
+            <tr><td class="mono">V1 / V2</td><td>V1: the original production system. V2: the current programme of enhancements layered on top of it.</td></tr>
+          </table>
+        </div>
+      </section>
+
+      <!-- 2. SYSTEM OVERVIEW -->
+      <section id="overview">
+        <div class="sec-head"><span class="sec-num">02</span><h2>System Overview</h2></div>
+        <p class="lede">One system, used by everyone from a gate volunteer scanning a wristband to a director reviewing department attendance.</p>
+
+        <h3>2.1 Business context</h3>
+        <div class="prose">
+          <p>Running a festival means coordinating several activities that are easy to plan separately and hard to run separately: who has a valid ticket, who has checked in, where they are staying, and who is on duty to make it all happen. BiG brings these into one system so that box office, admissions, accommodation and department management all read from — and write to — the same source of truth.</p>
+        </div>
+
+        <h3>2.2 Who uses it</h3>
+        <div class="prose">
+          <p>Access is scoped by <strong>role</strong> (what a person is allowed to do) and <strong>department</strong> (where they are allowed to do it). Five role tiers cover the organisation:</p>
+        </div>
+        <div class="card-grid">
+          <div class="card"><span class="tag">Full access</span><h4>Administrator</h4><p>Configures the platform: events, departments, users and system-wide settings.</p></div>
+          <div class="card"><span class="tag">Full access</span><h4>Director</h4><p>Organisation-wide oversight across every department, without day-to-day configuration duties.</p></div>
+          <div class="card"><span class="tag">Department-wide</span><h4>Team Lead</h4><p>Runs one or more departments: manages volunteers, records attendance, works bookings.</p></div>
+          <div class="card"><span class="tag">Own record</span><h4>Volunteer</h4><p>Operates within their assigned department — check-in duty, own attendance history.</p></div>
+        </div>
+
+        <h3>2.3 Core capabilities</h3>
+        <ul>
+          <li><strong>Ticketing &amp; Box Office</strong> — sell, look up and manage bookings for an event, including bulk import of pre-sold orders.</li>
+          <li><strong>Admission</strong> — check attendees in at the gate, including on-the-spot registration for walk-ups.</li>
+          <li><strong>Accommodation</strong> — allocate and track tent assignments per attendee.</li>
+          <li><strong>Volunteer &amp; Department Management</strong> — assign staff to departments, track attendance by shift.</li>
+          <li><strong>Reporting</strong> — a live dashboard of ticketing, admission, accommodation and staffing.</li>
+        </ul>
+      </section>
+
+      <!-- 3. ARCHITECTURE -->
+      <section id="architecture">
+        <div class="sec-head"><span class="sec-num">03</span><h2>Architecture Overview</h2></div>
+        <p class="lede">A conventional three-tier web application: a browser-based app, an API server, and a managed database — each hosted independently.</p>
+
+        <h3>3.1 Architecture at a glance</h3>
+        <figure class="diagram-frame">
+          <svg viewBox="0 0 820 330" role="img" aria-label="Browser loads the Angular app once from static hosting, then talks directly to the API server for all data, which in turn reads and writes the database.">
+            <defs>
+              <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M0,0 L10,5 L0,10 z" fill="currentColor" class="lbl" style="fill:var(--ink-muted)"/>
+              </marker>
+            </defs>
+
+            <!-- Browser -->
+            <rect x="310" y="16" width="200" height="56" rx="10" class="box-accent"/>
+            <text x="410" y="40" text-anchor="middle" font-size="13.5" font-weight="600">Browser</text>
+            <text x="410" y="58" text-anchor="middle" font-size="11.5" class="lbl">Angular app (SPA)</text>
+
+            <!-- Static hosting -->
+            <rect x="70" y="160" width="220" height="66" rx="10" class="box"/>
+            <text x="180" y="186" text-anchor="middle" font-size="13.5" font-weight="600">Static Hosting</text>
+            <text x="180" y="204" text-anchor="middle" font-size="11.5" class="lbl">serves the compiled app</text>
+            <text x="180" y="219" text-anchor="middle" font-size="11.5" class="lbl">files only</text>
+
+            <!-- API server -->
+            <rect x="530" y="160" width="220" height="66" rx="10" class="box"/>
+            <text x="640" y="186" text-anchor="middle" font-size="13.5" font-weight="600">API Server</text>
+            <text x="640" y="204" text-anchor="middle" font-size="11.5" class="lbl">application &amp; business</text>
+            <text x="640" y="219" text-anchor="middle" font-size="11.5" class="lbl">logic</text>
+
+            <!-- Database -->
+            <rect x="530" y="272" width="220" height="56" rx="10" class="box-accent"/>
+            <text x="640" y="296" text-anchor="middle" font-size="13.5" font-weight="600">Database</text>
+            <text x="640" y="314" text-anchor="middle" font-size="11.5" class="lbl">managed, cloud-hosted</text>
+
+            <!-- Browser -> Static hosting -->
+            <path d="M355,72 C300,105 240,120 200,160" class="arrow" marker-end="url(#arrow)"/>
+            <text x="200" y="128" font-size="11" class="lbl">loads app once</text>
+
+            <!-- Browser -> API -->
+            <path d="M465,72 C520,105 590,120 630,160" class="arrow" marker-end="url(#arrow)"/>
+            <text x="500" y="128" font-size="11" class="lbl">data requests</text>
+            <text x="500" y="142" font-size="11" class="lbl">(secure session cookie)</text>
+
+            <!-- API -> DB -->
+            <path d="M640,226 L640,272" class="arrow" marker-end="url(#arrow)"/>
+            <text x="655" y="253" font-size="11" class="lbl">reads / writes</text>
+          </svg>
+          <figcaption>The browser loads the application once from static hosting, then talks directly to the API server for every action. The API server is the only component with database access — the browser never reaches the database directly. <span class="scroll-hint">On a narrow screen, swipe sideways within the diagram to see all of it.</span></figcaption>
+        </figure>
+
+        <h3>3.2 Technology stack</h3>
+        <div class="table-wrap">
+          <table>
+            <tr><th>Layer</th><th>Technology</th><th>Notes</th></tr>
+            <tr><td>Frontend</td><td class="mono">Angular 16</td><td>Single-page application, responsive across desktop and mobile.</td></tr>
+            <tr><td>Backend</td><td class="mono">Node.js + Express</td><td>REST API, handles all business logic and validation.</td></tr>
+            <tr><td>Database</td><td class="mono">MongoDB (Atlas)</td><td>Managed, cloud-hosted document database.</td></tr>
+            <tr><td>Authentication</td><td class="mono">Session cookie (JWT-based)</td><td>Secure, httpOnly cookie — not exposed to page scripts.</td></tr>
+          </table>
+        </div>
+
+        <h3>3.3 Request &amp; data flow</h3>
+        <div class="prose">
+          <p>A user's browser downloads the Angular application once from static hosting. From that point on, every action in the app — viewing a dashboard, checking in an attendee, editing a booking — sends a request to the API server, which validates the request, applies the relevant business rules and role checks, and reads or writes the database. The database is never reached directly from the browser.</p>
+        </div>
+      </section>
+
+      <!-- 4. MODULES -->
+      <section id="modules">
+        <div class="sec-head"><span class="sec-num">04</span><h2>Functional Modules</h2></div>
+        <p class="lede">Six modules cover the platform's day-to-day use, from configuring an event through to running it on the ground.</p>
+
+        <h3>4.1 Users, Roles &amp; Departments</h3>
+        <div class="prose">
+          <p>Administrators create user accounts and organise them into departments (Finance, Operations, and others as needed). Each department has one or more Team Leads and a roster of volunteers. Access to every other module is governed by this structure — a Team Lead's actions are automatically scoped to their own department without needing to be configured per feature.</p>
+        </div>
+
+        <h3>4.2 Events &amp; Pass Types</h3>
+        <div class="prose">
+          <p>An event (e.g. a specific festival edition) is configured with its own set of Pass Types — the categories of ticket and add-on being sold (a festival pass, a tent, merchandise). Every booking, every admission check, and every accommodation allocation is tied back to the active event's Pass Types, so a new event can be stood up without re-building the ticketing rules from scratch.</p>
+        </div>
+
+        <h3>4.3 Box Office — Bookings, Registration &amp; Admission</h3>
+        <div class="prose">
+          <p>Box Office covers the full lifecycle of a ticket: pre-sold orders can be bulk-imported from a spreadsheet, staff can look up a booking and manage every attendee on it, walk-ups can be registered on the spot, and attendees can be checked in at the gate — including by QR scan. A single, shared attendee-actions component is used everywhere an attendee is checked in, allocated a tent, or edited, so behaviour is identical whichever screen staff are working from.</p>
+        </div>
+
+        <h3>4.4 Tent / Accommodation Allocation</h3>
+        <div class="prose">
+          <p>Attendees with a tent pass can be allocated a specific tent at check-in, moved if needed, and vacated when they leave. Allocation is tracked per attendee, so occupancy is always known in real time.</p>
+        </div>
+
+        <h3>4.5 Volunteer Attendance</h3>
+        <div class="prose">
+          <p>Each department can mark and review attendance for its volunteers, by date and by shift — supporting volunteers who move between departments mid-event. Directors and administrators get a cross-department view; Team Leads see their own department; volunteers see their own record.</p>
+        </div>
+
+        <h3>4.6 Dashboard &amp; Insights</h3>
+        <div class="prose">
+          <p>A summary view of ticketing, admission, accommodation and (for administrators) volunteer numbers, refreshed from live data — the first screen most users land on after signing in.</p>
+        </div>
+      </section>
+
+      <!-- 5. DATA DESIGN -->
+      <section id="data">
+        <div class="sec-head"><span class="sec-num">05</span><h2>Data Design</h2></div>
+        <p class="lede">Two connected chains of data: what was sold and to whom, and who is on duty to run it.</p>
+
+        <h3>5.1 Conceptual data model</h3>
+        <figure class="diagram-frame">
+          <svg viewBox="0 0 820 300" role="img" aria-label="An Event has Pass Types, which are sold as Bookings, which can be allocated a Tent. Separately, Users belong to Departments and generate Attendance records. Department staff are the ones who operate on Bookings.">
+            <!-- Ticketing chain -->
+            <rect x="20" y="24" width="150" height="52" rx="9" class="box-accent"/>
+            <text x="95" y="55" text-anchor="middle" font-size="13" font-weight="600">Event</text>
+
+            <rect x="215" y="24" width="150" height="52" rx="9" class="box"/>
+            <text x="290" y="55" text-anchor="middle" font-size="13" font-weight="600">Pass Type</text>
+
+            <rect x="410" y="24" width="150" height="52" rx="9" class="box"/>
+            <text x="485" y="55" text-anchor="middle" font-size="13" font-weight="600">Booking</text>
+
+            <rect x="605" y="24" width="150" height="52" rx="9" class="box-accent"/>
+            <text x="680" y="50" text-anchor="middle" font-size="13" font-weight="600">Tent</text>
+            <text x="680" y="66" text-anchor="middle" font-size="10.5" class="lbl">(allocation)</text>
+
+            <path d="M170,50 L215,50" class="arrow" marker-end="url(#arrow)"/>
+            <text x="192" y="42" text-anchor="middle" font-size="10" class="lbl">has</text>
+            <path d="M365,50 L410,50" class="arrow" marker-end="url(#arrow)"/>
+            <text x="387" y="42" text-anchor="middle" font-size="10" class="lbl">sold as</text>
+            <path d="M560,50 L605,50" class="arrow" marker-end="url(#arrow)"/>
+            <text x="582" y="42" text-anchor="middle" font-size="10" class="lbl">allocated</text>
+
+            <!-- Workforce chain -->
+            <rect x="20" y="220" width="150" height="52" rx="9" class="box-accent"/>
+            <text x="95" y="251" text-anchor="middle" font-size="13" font-weight="600">User</text>
+
+            <rect x="215" y="220" width="150" height="52" rx="9" class="box"/>
+            <text x="290" y="251" text-anchor="middle" font-size="13" font-weight="600">Department</text>
+
+            <rect x="410" y="220" width="150" height="52" rx="9" class="box"/>
+            <text x="485" y="245" text-anchor="middle" font-size="13" font-weight="600">Attendance</text>
+            <text x="485" y="261" text-anchor="middle" font-size="10.5" class="lbl">per user / date</text>
+
+            <path d="M170,246 L215,246" class="arrow" marker-end="url(#arrow)"/>
+            <text x="192" y="238" text-anchor="middle" font-size="10" class="lbl">joins</text>
+            <path d="M365,246 L410,246" class="arrow" marker-end="url(#arrow)"/>
+            <text x="387" y="238" text-anchor="middle" font-size="10" class="lbl">records</text>
+
+            <!-- Bridge -->
+            <path d="M290,220 C290,160 485,140 485,76" class="arrow" marker-end="url(#arrow)" stroke-dasharray="4 4"/>
+            <text x="490" y="150" font-size="10.5" class="lbl">department staff process bookings</text>
+          </svg>
+          <figcaption>Ticketing data (Event → Pass Type → Booking → Tent) and workforce data (User → Department → Attendance) are separate chains, joined by the fact that department staff are the ones operating the ticketing side. <span class="scroll-hint">On a narrow screen, swipe sideways within the diagram to see all of it.</span></figcaption>
+        </figure>
+
+        <h3>5.2 Key entities</h3>
+        <div class="table-wrap">
+          <table>
+            <tr><th>Entity</th><th>Represents</th></tr>
+            <tr><td>User</td><td>A person with platform access — has a role and one or more department memberships.</td></tr>
+            <tr><td>Department</td><td>An operational team (e.g. Finance, Operations) with its own Team Lead(s) and volunteers.</td></tr>
+            <tr><td>Event</td><td>A specific festival edition being run through the platform.</td></tr>
+            <tr><td>Pass Type</td><td>A category of ticket or add-on belonging to one event.</td></tr>
+            <tr><td>Booking</td><td>An order — one or more attendees, each holding a Pass Type, with check-in and allocation state.</td></tr>
+            <tr><td>Tent</td><td>A physical accommodation unit that a booked attendee can be allocated to.</td></tr>
+            <tr><td>Attendance</td><td>A record of one user's presence for one department, on one date and shift.</td></tr>
+          </table>
+        </div>
+      </section>
+
+      <!-- 6. INTERFACES -->
+      <section id="interfaces">
+        <div class="sec-head"><span class="sec-num">06</span><h2>Interfaces &amp; Integration</h2></div>
+
+        <h3>6.1 Web application</h3>
+        <p class="prose">The platform is used entirely through a responsive web application — no separate mobile app is required. It works on desktop, tablet and phone, which matters directly for gate and box-office staff who operate from handheld devices.</p>
+
+        <h3>6.2 API layer</h3>
+        <p class="prose">All data operations go through a single REST API, which is the only component that talks to the database. This keeps business rules and access control enforced in one place, regardless of which screen a request comes from.</p>
+
+        <h3>6.3 Bulk data exchange (Excel import/export)</h3>
+        <p class="prose">Pre-sold bookings can be imported in bulk from a spreadsheet — validated row-by-row, with duplicate orders rejected automatically. The current set of bookings can also be exported to a spreadsheet in the same shape, for offline records or as a working backup.</p>
+
+        <h3>6.4 QR-based check-in</h3>
+        <p class="prose">Each booking can be looked up by scanning a QR code, taking gate staff straight to that booking's check-in screen instead of a manual search.</p>
+      </section>
+
+      <!-- 7. SECURITY -->
+      <section id="security">
+        <div class="sec-head"><span class="sec-num">07</span><h2>Security &amp; Access Control</h2></div>
+        <p class="lede">Access is enforced by both role and department, on every request — not just hidden in the interface.</p>
+
+        <ul>
+          <li><strong>Authentication</strong> — sign-in issues a secure, httpOnly session cookie; it cannot be read by page scripts, which mitigates a common class of browser-based attack.</li>
+          <li><strong>Role-based access control</strong> — every user has a role (Administrator, Director, Team Lead, Volunteer) and, where relevant, department memberships with a permission tier (Read / Write / Manage).</li>
+          <li><strong>Enforcement at the API</strong> — access checks run on the server for every request, so the rules hold even if a user finds a way to alter what the browser displays.</li>
+          <li><strong>Transport security</strong> — all traffic is encrypted (HTTPS) in production.</li>
+          <li><strong>Account protection</strong> — passwords are stored using industry-standard one-way hashing (never in plain text), with policy requirements on password strength and automated protection against repeated login attempts.</li>
+          <li><strong>Audit trail</strong> — key security events (sign-ins, failed attempts, permission changes) are logged for review.</li>
+        </ul>
+        <div class="callout">
+          <p><b>Note —</b> this section deliberately stays at a policy level. Implementation-specific detail (algorithms, thresholds, key handling) is withheld from client-facing documents as standard practice, and is available separately under NDA if required for a formal security audit.</p>
+        </div>
+      </section>
+
+      <!-- 8. NFR -->
+      <section id="nfr">
+        <div class="sec-head"><span class="sec-num">08</span><h2>Non-Functional Requirements</h2></div>
+        <div class="card-grid">
+          <div class="card"><span class="tag">Responsiveness</span><h4>Any device, any screen</h4><p>Every screen is designed to work on desktop, tablet and phone — critical for gate and box-office staff.</p></div>
+          <div class="card"><span class="tag">Availability</span><h4>Cloud-hosted, always on</h4><p>Frontend and backend are both hosted on managed cloud infrastructure rather than on-premise hardware.</p></div>
+          <div class="card"><span class="tag">Scalability</span><h4>Managed database</h4><p>MongoDB Atlas scales independently of the application tier as event data grows.</p></div>
+          <div class="card"><span class="tag">Usability</span><h4>Role-appropriate screens</h4><p>Each role sees only what's relevant to it, reducing training time for seasonal/volunteer staff.</p></div>
+          <div class="card"><span class="tag">Maintainability</span><h4>Modular by design</h4><p>Events, pass types and departments are configurable data, not hardcoded — new events don't require code changes.</p></div>
+          <div class="card"><span class="tag">Testability</span><h4>Automated test coverage</h4><p>Backend and frontend both carry automated test suites, run before changes are released.</p></div>
+        </div>
+      </section>
+
+      <!-- 9. DEPLOYMENT -->
+      <section id="deployment">
+        <div class="sec-head"><span class="sec-num">09</span><h2>Deployment &amp; Hosting</h2></div>
+        <div class="table-wrap">
+          <table>
+            <tr><th>Component</th><th>Hosting model</th></tr>
+            <tr><td>Frontend (Angular)</td><td>Static build, served via a CDN-backed static host on a custom domain.</td></tr>
+            <tr><td>Backend (Node/Express)</td><td>Managed application hosting, running the API as a persistent service.</td></tr>
+            <tr><td>Database (MongoDB)</td><td>Managed cloud database service, with production and local-development environments kept separate.</td></tr>
+          </table>
+        </div>
+        <p class="prose">Releases follow a staged path — feature work, then a shared development branch, then a UAT/production release — so client-facing environments only ever receive changes that have already been reviewed and tested.</p>
+      </section>
+
+      <!-- 10. ASSUMPTIONS -->
+      <section id="assumptions">
+        <div class="sec-head"><span class="sec-num">10</span><h2>Assumptions &amp; Constraints</h2></div>
+        <ul>
+          <li>One event is "active" at a time per the platform's event selector; historical events remain in the system as archived records.</li>
+          <li>Departments are organisation-wide, not tied to a specific event — the same Finance or Operations team can operate across multiple events.</li>
+          <li>Internet connectivity is required at point of use (gate, box office) — there is currently no offline mode <em>(a planned Progressive Web App upgrade — see Roadmap — is aimed directly at this constraint)</em>.</li>
+          <li>User accounts are provisioned by an Administrator or Director; there is no public self-registration.</li>
+        </ul>
+      </section>
+
+      <!-- 11. STATUS -->
+      <section id="status">
+        <div class="sec-head"><span class="sec-num">11</span><h2>Current Status</h2></div>
+        <p class="prose">The platform is live in production (V1) and has received a substantial V2 enhancement programme, delivered in stages:</p>
+        <div class="card-grid">
+          <div class="card"><span class="tag">Delivered</span><h4>Roles, Permissions &amp; Profile</h4><p>Tiered role/permission model; redesigned profile and admin user pages.</p></div>
+          <div class="card"><span class="tag">Delivered</span><h4>Department Management</h4><p>Full department CRUD with Team Lead and volunteer assignment.</p></div>
+          <div class="card"><span class="tag">Delivered</span><h4>UI Redesign</h4><p>Platform-wide responsive design system and page layout standard.</p></div>
+          <div class="card"><span class="tag">Delivered</span><h4>Box Office Restructure</h4><p>Bookings, registration, admission, tent allocation and bulk import, unified.</p></div>
+          <div class="card"><span class="tag">Delivered</span><h4>Volunteer Attendance</h4><p>Department-scoped attendance marking, history and calendar view.</p></div>
+          <div class="card"><span class="tag">Delivered</span><h4>Dashboard Revamp &amp; Events</h4><p>Live summary dashboard; Event/Pass Type model replacing hardcoded ticket lists.</p></div>
+        </div>
+      </section>
+
+      <!-- 12. ROADMAP -->
+      <section id="roadmap">
+        <div class="sec-head"><span class="sec-num">12</span><h2>Roadmap</h2></div>
+        <p class="lede">What's shipped, and what's planned next.</p>
+        <div class="timeline">
+          <div class="stage done">
+            <div class="stage-label">Foundation — V1</div>
+            <ul><li>Ticketing</li><li>Admission</li><li>Accommodation allocation</li></ul>
+          </div>
+          <div class="stage done">
+            <div class="stage-label">Delivered — V2</div>
+            <ul><li>Roles, departments &amp; permissions</li><li>Box Office restructure</li><li>Volunteer attendance</li><li>Events &amp; pass types</li></ul>
+          </div>
+          <div class="stage planned">
+            <div class="stage-label">Planned — V2 (next)</div>
+            <ul><li>Progressive Web App (installable, works offline for core screens)</li><li>Audit logs</li><li>Reporting</li><li>Further scope to be defined with client input</li></ul>
+          </div>
+        </div>
+        <div class="callout">
+          <p><b>Progressive Web App —</b> the biggest planned upgrade to the platform's day-to-day usability. It would let staff "install" BiG on a phone or tablet home screen like a native app (no app-store listing needed), open it with one tap, and keep using core screens — such as gate check-in — for a short stretch even if connectivity drops at the venue. Particularly relevant for box office and gate staff on festival grounds, where signal can be unreliable.</p>
+        </div>
+      </section>
+
+      <!-- 13. GLOSSARY -->
+      <section id="glossary">
+        <div class="sec-head"><span class="sec-num">13</span><h2>Glossary</h2></div>
+        <dl class="glossary">
+          <div><dt>Admission</dt> <dd>— the gate check-in process for an attendee.</dd></div>
+          <div><dt>Allocation</dt> <dd>— assigning an attendee to a specific tent.</dd></div>
+          <div><dt>Box Office</dt> <dd>— the module covering bookings, registration and ticket sales.</dd></div>
+          <div><dt>Department</dt> <dd>— an operational team, e.g. Finance or Operations.</dd></div>
+          <div><dt>PWA (Progressive Web App)</dt> <dd>— a web app that can be installed to a device's home screen and used like a native app, including limited offline use.</dd></div>
+          <div><dt>Spot Registration</dt> <dd>— registering a walk-up attendee who was not pre-booked.</dd></div>
+          <div><dt>Team Lead</dt> <dd>— the role that manages one or more departments day-to-day.</dd></div>
+        </dl>
+      </section>
+
+      <footer>
+        <span>BiG Event &amp; Ticketing Platform — High-Level Design</span>
+        <span>Prepared by Rohith Chandra · v1.0 Draft · 19 Aug 2026</span>
+      </footer>
+
+    </main>
+  </div>
+</div>
+
+</body>
+</html>
