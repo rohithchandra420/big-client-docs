@@ -1,0 +1,568 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BiG Platform — Product Guide</title>
+<meta name="description" content="An interactive guide to the BiG festival platform: what it does, how each workflow runs, its strengths, current limitations and roadmap.">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<link rel="stylesheet" href="engine/engine.css">
+<link rel="stylesheet" href="project/project.css">
+<script>
+  // Apply saved theme before paint
+  try { var t = localStorage.getItem("guide-theme"); if (t) document.documentElement.setAttribute("data-theme", t); } catch (e) {}
+</script>
+</head>
+<body>
+
+<header class="topbar">
+  <button class="icon-btn menu-btn" id="menuBtn" aria-label="Open contents" aria-expanded="false">☰</button>
+  <a class="brandmark" href="#top"><span class="brand-badge">BiG</span><span class="full-name">Product Guide</span></a>
+  <div class="spacer"></div>
+  <div class="search-wrap">
+    <input id="search" type="search" placeholder="Search the guide…" aria-label="Search the guide" autocomplete="off">
+    <div class="search-results" id="searchResults" role="listbox"></div>
+  </div>
+  <button class="icon-btn" id="themeBtn" aria-label="Toggle dark mode">◐ <span class="theme-label">Theme</span></button>
+  <button class="icon-btn" id="printBtn" aria-label="Print or save as PDF">⎙ <span class="print-btn-label">Print</span></button>
+</header>
+<div class="progress" id="progress"></div>
+
+<div class="layout">
+  <nav class="sidebar" id="sidebar" aria-label="Contents">
+    <h2>Contents</h2>
+    <ul class="toc" id="toc"></ul>
+  </nav>
+  <div class="scrim" id="scrim"></div>
+
+  <main id="top">
+
+    <!-- ================= COVER ================= -->
+    <div class="cover">
+      <div class="kicker">Product Guide</div>
+      <h1>The BiG festival platform</h1>
+      <p>One place to sell and admit passes, house attendees, organise departments and track volunteers, built for the people who run the festival.</p>
+      <div class="cover-meta">
+        <span class="pill">Frontend <b data-meta="lastUpdatedThrough.ui"></b></span>
+        <span class="pill">Backend <b data-meta="lastUpdatedThrough.api"></b></span>
+        <span class="pill">Updated <b data-meta="lastUpdated"></b></span>
+      </div>
+      <div class="cta no-print">
+        <a class="btn" href="#at-a-glance">Start the tour →</a>
+        <a class="btn ghost" href="#roadmap">Jump to the roadmap</a>
+      </div>
+    </div>
+
+    <div class="page">
+
+    <!-- ================= INTRODUCTION ================= -->
+    <section class="chapter" id="introduction" data-toc="Introduction" data-no="">
+      <div class="chapter-head"><h2>Introduction</h2></div>
+      <p class="lead">BiG is a web platform that runs the operational side of a festival, from the first ticket sale to the last volunteer shift.</p>
+
+      <h3>Why this guide exists</h3>
+      <p>This guide explains what the platform does today, how each workflow runs from start to finish, where its current limits are, and what's coming next. It's written for organisers, directors, partners and anyone deciding how the festival should run, not for developers.</p>
+
+      <h3>How to read it</h3>
+      <div class="grid c3">
+        <div class="card"><h4>Skim</h4><p>Read <a href="#at-a-glance">Platform at a glance</a> and <a href="#strengths">Platform strengths</a>. It takes about five minutes.</p></div>
+        <div class="card"><h4>Explore</h4><p>Chapters 2–8 include hands-on demos. Click, tick and step through them. They use sample data and change nothing real.</p></div>
+        <div class="card"><h4>Plan</h4><p><a href="#limitations">Current limitations</a> and the <a href="#roadmap">Roadmap</a> show what's missing and what's next.</p></div>
+      </div>
+
+      <div class="callout note"><strong>About the demos</strong><p>Every interactive example runs entirely in this page with made-up names and numbers. Nothing you do here touches the real platform or its data.</p></div>
+
+      <h3>Conventions</h3>
+      <ul>
+        <li><b>Bold names</b> are what you see on screen in the app, e.g. <b>Bookings</b>, <b>Booking Found</b>, <b>Inventory</b>.</li>
+        <li>Roles are written as short codes: DEV (Developer), DIR (Director), ADMIN, TL (Team Lead) and VOL (Volunteer).</li>
+        <li>Terms are defined in <a href="#appendix-glossary">Appendix A — Glossary</a>.</li>
+      </ul>
+    </section>
+
+    <!-- ================= CONTENTS ================= -->
+    <section class="chapter" id="contents" data-toc="Contents" data-no="">
+      <div class="chapter-head"><h2>Contents</h2></div>
+      <div class="table-wrap"><table><tbody id="contentsTable"></tbody></table></div>
+    </section>
+
+    <!-- ================= 1. AT A GLANCE ================= -->
+    <section class="chapter" id="at-a-glance" data-toc="Platform at a glance" data-no="1">
+      <div class="chapter-head"><span class="chapter-no">1</span><h2>Platform at a glance</h2></div>
+      <p class="lead">Seven areas cover the festival end to end. Every one works on desktop and phone, and access to each is controlled by role and department.</p>
+
+      <div class="figures">
+        <div class="figure reveal"><div class="v" data-count="7">7</div><div class="l">Areas of the platform</div></div>
+        <div class="figure reveal"><div class="v" data-count="5">5</div><div class="l">Roles with distinct access</div></div>
+        <div class="figure reveal"><div class="v" data-count-from="releases" data-count="0">—</div><div class="l">Releases shipped since launch</div></div>
+        <div class="figure reveal"><div class="v" data-count="775">775</div><div class="l">Automated checks run before every release</div></div>
+      </div>
+
+      <h3>Explore the platform <span class="sample-tag">Click a tile</span></h3>
+      <div class="module-map" id="moduleMap"></div>
+      <div class="card module-detail" id="moduleDetail" aria-live="polite"></div>
+
+      <h3 id="data-model">How the pieces connect <span class="sample-tag">Interactive</span></h3>
+      <p>Everything in BiG belongs to one of two families. <b>Festival records</b> (events, passes, bookings, tents) start fresh with each edition. <b>People records</b> (users, departments, attendance) are shared across every event, so a volunteer's history carries over from one year to the next. Pick a flow to follow it, or click any box.</p>
+      <div class="seg no-print" id="dmSeg" role="group" aria-label="Choose a flow">
+        <button aria-pressed="true" data-flow="all">Everything</button>
+        <button aria-pressed="false" data-flow="selling">Selling &amp; admission</button>
+        <button aria-pressed="false" data-flow="accommodation">Accommodation</button>
+        <button aria-pressed="false" data-flow="workforce">Volunteers &amp; attendance</button>
+        <button aria-pressed="false" data-flow="access">Who can do what</button>
+      </div>
+      <div class="card dm-wrap">
+        <div class="svg-scroll"><svg class="dm" viewBox="0 0 700 604" role="img" aria-label="How BiG's records connect: festival records and people records">
+          <defs><marker id="dmArr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--text-3)"/></marker></defs>
+          <rect class="dm-zone" x="10" y="36" width="680" height="266" rx="14"/>
+          <text class="dm-zone-t" x="26" y="62">Festival records — new for each edition</text>
+          <rect class="dm-zone" x="10" y="322" width="680" height="268" rx="14"/>
+          <text class="dm-zone-t" x="26" y="348">People records — shared across every event</text>
+
+          <path class="dm-edge" id="dme1" d="M200 120H265" marker-end="url(#dmArr)"/>
+          <path class="dm-edge" id="dme2" d="M115 148V202" marker-end="url(#dmArr)"/>
+          <path class="dm-edge" id="dme3" d="M435 120H500" marker-end="url(#dmArr)"/>
+          <path class="dm-edge" id="dme4" d="M350 202V148" marker-end="url(#dmArr)"/>
+          <path class="dm-edge" id="dme5" d="M500 202L435 148" marker-end="url(#dmArr)"/>
+          <path class="dm-edge" id="dme6" d="M200 230H265" marker-end="url(#dmArr)"/>
+          <path class="dm-edge" id="dme7" d="M500 230H435" marker-end="url(#dmArr)"/>
+          <path class="dm-edge" id="dme8" d="M585 202V148" marker-end="url(#dmArr)"/>
+          <path class="dm-edge" id="dme9" d="M115 258V282H585V258" marker-end="url(#dmArr)"/>
+          <path class="dm-edge" id="dme10" d="M265 410H200" marker-end="url(#dmArr)"/>
+          <path class="dm-edge" id="dme11" d="M435 410H500" marker-end="url(#dmArr)"/>
+          <path class="dm-edge" id="dme12" d="M585 438V502" marker-end="url(#dmArr)"/>
+          <path class="dm-edge" id="dme13" d="M350 502V438" marker-end="url(#dmArr)"/>
+          <path class="dm-edge" id="dme14" d="M435 530H500" marker-end="url(#dmArr)"/>
+          <path class="dm-edge" id="dme15" d="M435 438L500 502" marker-end="url(#dmArr)"/>
+
+          <text class="dm-lbl" id="dml1" x="232" y="112" text-anchor="middle">offers</text>
+          <text class="dm-lbl" id="dml2" x="123" y="180">receives</text>
+          <text class="dm-lbl" id="dml3" x="467" y="112" text-anchor="middle">has units</text>
+          <text class="dm-lbl" id="dml4" x="358" y="180">kind of</text>
+          <text class="dm-lbl" id="dml6" x="232" y="222" text-anchor="middle">contains</text>
+          <text class="dm-lbl" id="dml7" x="467" y="222" text-anchor="middle">linked</text>
+          <text class="dm-lbl" id="dml8" x="593" y="180">allocated to</text>
+          <text class="dm-lbl" id="dml9" x="350" y="276" text-anchor="middle">contains (tent passes, add-ons)</text>
+          <text class="dm-lbl" id="dml10" x="232" y="402" text-anchor="middle">has a</text>
+          <text class="dm-lbl" id="dml11" x="467" y="402" text-anchor="middle">is given</text>
+          <text class="dm-lbl" id="dml12" x="593" y="474">tier in</text>
+          <text class="dm-lbl" id="dml13" x="358" y="474">for · marked by</text>
+          <text class="dm-lbl" id="dml14" x="467" y="522" text-anchor="middle">credited to</text>
+          <text class="dm-lbl" id="dml15" x="474" y="474">belongs to</text>
+
+          <g class="dm-node" data-id="event" tabindex="0" role="button" aria-label="Event"><rect x="30" y="92" width="170" height="56" rx="10"/><text class="t" x="115" y="116">Event</text><text class="s" x="115" y="135">Draft · Active · Archived</text></g>
+          <g class="dm-node" data-id="passtype" tabindex="0" role="button" aria-label="Pass Type"><rect x="265" y="92" width="170" height="56" rx="10"/><text class="t" x="350" y="116">Pass Type</text><text class="s" x="350" y="135">Festival · Tent · Add-on</text></g>
+          <g class="dm-node" data-id="tent" tabindex="0" role="button" aria-label="Tent unit"><rect x="500" y="92" width="170" height="56" rx="10"/><text class="t" x="585" y="116">Tent unit</text><text class="s" x="585" y="135">numbered, fixed capacity</text></g>
+          <g class="dm-node" data-id="booking" tabindex="0" role="button" aria-label="Booking"><rect x="30" y="202" width="170" height="56" rx="10"/><text class="t" x="115" y="226">Booking</text><text class="s" x="115" y="245">buyer · order number</text></g>
+          <g class="dm-node" data-id="festival" tabindex="0" role="button" aria-label="Festival Pass"><rect x="265" y="202" width="170" height="56" rx="10"/><text class="t" x="350" y="226">Festival Pass</text><text class="s" x="350" y="245">one person · admitted?</text></g>
+          <g class="dm-node" data-id="tentpass" tabindex="0" role="button" aria-label="Tent Pass"><rect x="500" y="202" width="170" height="56" rx="10"/><text class="t" x="585" y="226">Tent Pass</text><text class="s" x="585" y="245">one place in a tent</text></g>
+          <g class="dm-node" data-id="role" tabindex="0" role="button" aria-label="Role"><rect x="30" y="382" width="170" height="56" rx="10"/><text class="t" x="115" y="406">Role</text><text class="s" x="115" y="425">DEV · DIR · ADMIN · TL · VOL</text></g>
+          <g class="dm-node" data-id="user" tabindex="0" role="button" aria-label="User"><rect x="265" y="382" width="170" height="56" rx="10"/><text class="t" x="350" y="406">User</text><text class="s" x="350" y="425">active or deactivated</text></g>
+          <g class="dm-node" data-id="grant" tabindex="0" role="button" aria-label="Access grant"><rect x="500" y="382" width="170" height="56" rx="10"/><text class="t" x="585" y="406">Access grant</text><text class="s" x="585" y="425">Read · Write · Manage</text></g>
+          <g class="dm-node" data-id="attendance" tabindex="0" role="button" aria-label="Attendance"><rect x="265" y="502" width="170" height="56" rx="10"/><text class="t" x="350" y="526">Attendance</text><text class="s" x="350" y="545">per person · day · slot</text></g>
+          <g class="dm-node" data-id="department" tabindex="0" role="button" aria-label="Department"><rect x="500" y="502" width="170" height="56" rx="10"/><text class="t" x="585" y="526">Department</text><text class="s" x="585" y="545">Team Leads + volunteers</text></g>
+          <text class="dm-hint" x="30" y="526">Click any box</text>
+          <text class="dm-hint" x="30" y="544">to see what it is →</text>
+        </svg></div>
+        <div class="dm-panel" id="dmPanel" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <!-- ================= 2. PEOPLE & ACCESS ================= -->
+    <section class="chapter" id="people-access" data-toc="People, roles and access" data-no="2">
+      <div class="chapter-head"><span class="chapter-no">2</span><h2>People, roles and access</h2></div>
+      <p class="lead">Everyone sees exactly what their job needs. Access depends on three things: a person's <b>role</b>, the <b>department</b> they belong to, and any extra <b>access</b> they've been granted.</p>
+
+      <h3>See the platform through each role's eyes <span class="sample-tag">Interactive</span></h3>
+      <div class="seg no-print" id="roleSeg" role="group" aria-label="Choose a role"></div>
+      <p class="role-blurb" id="roleBlurb"></p>
+      <div class="legend">
+        <span><i style="background:var(--ok-tint);border:1px solid var(--ok)"></i>Full access</span>
+        <span><i style="background:var(--info-tint);border:1px solid var(--info)"></i>Limited to their own area</span>
+        <span><i style="background:var(--warn-tint);border:1px solid var(--warn)"></i>Only if granted / in the right department</span>
+        <span><i style="background:var(--surface-2);border:1px solid var(--border)"></i>No access</span>
+      </div>
+      <div class="cap-list" id="capList"></div>
+
+      <h3>Access tiers: Read, Write, Manage <span class="sample-tag">Interactive</span></h3>
+      <p>Besides their home department, anyone can be given access to other departments, at one of three tiers. Each tier includes the ones below it.</p>
+      <div class="seg no-print" id="tierSeg" role="group" aria-label="Choose an access tier">
+        <button aria-pressed="true" data-tier="1">Read</button>
+        <button aria-pressed="false" data-tier="2">Write</button>
+        <button aria-pressed="false" data-tier="3">Manage</button>
+      </div>
+      <div class="tiers" id="tiers">
+        <div class="tier" data-level="1"><h5>Read</h5><p>See the department's pages and information.</p></div>
+        <div class="tier" data-level="2"><h5>Write</h5><p>Also make changes and carry out day-to-day actions.</p></div>
+        <div class="tier" data-level="3"><h5>Manage</h5><p>Also oversee the department and the people in it.</p></div>
+      </div>
+
+      <div class="callout tip"><strong>Team Leads manage automatically</strong><p>A Team Lead always has Manage access to their own department(s). Nobody has to remember to grant it, and it can't drift out of sync.</p></div>
+
+      <details class="more"><summary>Example: a volunteer helping out at Box Office</summary><div class="body">
+        <p>A volunteer whose home department is Operations is needed at the gate for the weekend. An admin gives them <b>Read</b> access to Box Office. They can now open Bookings and Registration without moving departments, and their attendance stays with Operations. Removing the grant afterwards takes them back to normal.</p>
+      </div></details>
+      <p>See <a href="#appendix-matrix">Appendix C</a> for the full role-by-feature table.</p>
+    </section>
+
+    <!-- ================= 3. EVENTS ================= -->
+    <section class="chapter" id="events" data-toc="Events and pass types" data-no="3">
+      <div class="chapter-head"><span class="chapter-no">3</span><h2>Events and pass types</h2></div>
+      <p class="lead">Each festival edition is its own <b>event</b>, with its own passes, bookings and tents. Staff choose which event they're working on from the selector in the sidebar.</p>
+
+      <h3>An event's life <span class="sample-tag">Click a stage</span></h3>
+      <div class="lifecycle no-print" id="lifecycle">
+        <button class="lc-node" data-stage="draft" aria-pressed="true"><div class="t">Draft</div><div class="s">Being prepared</div></button>
+        <div class="lc-arrow">→</div>
+        <button class="lc-node" data-stage="active" aria-pressed="false"><div class="t">Active</div><div class="s">Live for staff</div></button>
+        <div class="lc-arrow">→</div>
+        <button class="lc-node" data-stage="archived" aria-pressed="false"><div class="t">Archived</div><div class="s">Kept for the record</div></button>
+      </div>
+      <div class="card" id="stageDetail" aria-live="polite"></div>
+
+      <h3>Pass types</h3>
+      <p>Admins define the passes sold for each event. Every pass type belongs to one of three categories, and the category decides how the rest of the platform treats it.</p>
+      <div class="grid c3">
+        <div class="cat festival"><span class="tag">Festival</span><p>Admission to the festival. Each festival pass is one person, which is how the platform counts attendees and admissions.</p></div>
+        <div class="cat tent"><span class="tag">Tent</span><p>A place to stay. Tent pass types get a short code (e.g. <b>SO</b>) and their own numbered tent units in Accommodation.</p></div>
+        <div class="cat addon"><span class="tag">Add-on</span><p>Anything sold alongside a pass. It's tracked on the booking but doesn't need a person or a tent.</p></div>
+      </div>
+
+      <h3>Setting up a new edition</h3>
+      <ol class="steps">
+        <li><b>Create the event</b> in Admin › Events. It starts as a Draft, visible to admins only.</li>
+        <li><b>Add its pass types</b> and give each a category.</li>
+        <li><b>Build the tents</b> for each tent pass type in Accommodation › Setup.</li>
+        <li><b>Set it to Active.</b> Team Leads and volunteers can now select it and start work.</li>
+        <li>After the festival, <b>archive</b> it. Everything is kept, and it disappears from day-to-day lists.</li>
+      </ol>
+      <figure class="shot" data-shot="events" data-caption="Admin › Events: every edition with its status"></figure>
+      <div class="callout warn"><strong>Real bookings are protected</strong><p>An event or pass type that already has bookings or tents can't be deleted. Archiving is the safe way to retire it.</p></div>
+    </section>
+
+    <!-- ================= 4. BOX OFFICE ================= -->
+    <section class="chapter" id="box-office" data-toc="Box Office" data-no="4">
+      <div class="chapter-head"><span class="chapter-no">4</span><h2>Box Office</h2></div>
+      <p class="lead">Box Office handles a booking from the day it's imported to the moment the attendee walks through the gate. It has two halves: <b>Bookings</b> for the back office and <b>Registration</b> for the gate.</p>
+
+      <h3 id="gate-sim">The gate, step by step <span class="sample-tag">Simulator</span></h3>
+      <p>Pick a scenario and step through it. The diagram highlights where you are.</p>
+      <div class="seg no-print" id="simSeg" role="group" aria-label="Choose a scenario">
+        <button aria-pressed="true" data-sc="qr">Booked, has QR code</button>
+        <button aria-pressed="false" data-sc="search">Booked, no QR code</button>
+        <button aria-pressed="false" data-sc="walkup">Walk-up, no booking</button>
+      </div>
+      <div class="sim card">
+        <div class="svg-scroll"><svg viewBox="0 0 760 372" role="img" aria-label="Gate flow from arrival to admission">
+          <defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--text-3)"/></marker></defs>
+          <g>
+            <path class="flow-edge" id="e-arrive" d="M160 60H190" marker-end="url(#arr)"/>
+            <path class="flow-edge" id="e-scan" d="M310 60H340" marker-end="url(#arr)"/>
+            <path class="flow-edge" id="e-search" d="M322 60V140H340" marker-end="url(#arr)"/>
+            <path class="flow-edge" id="e-spot" d="M250 98V220H340" marker-end="url(#arr)"/>
+            <path class="flow-edge" id="e-scan-found" d="M490 60H520V140H550" marker-end="url(#arr)"/>
+            <path class="flow-edge" id="e-search-found" d="M490 140H550" marker-end="url(#arr)"/>
+            <path class="flow-edge" id="e-spot-found" d="M490 220H520V140H550" marker-end="url(#arr)"/>
+            <path class="flow-edge" id="e-found-details" d="M635 160V290" marker-end="url(#arr)"/>
+            <path class="flow-edge" id="e-details-checkin" d="M560 310H520" marker-end="url(#arr)"/>
+            <path class="flow-edge" id="e-checkin-tent" d="M380 310H340" marker-end="url(#arr)"/>
+            <path class="flow-edge" id="e-tent-done" d="M200 310H160" marker-end="url(#arr)"/>
+          </g>
+          <g class="flow-node" id="n-arrive"><rect x="20" y="40" width="140" height="40" rx="9"/><text x="90" y="64" text-anchor="middle">Attendee arrives</text></g>
+          <g class="flow-node" id="n-decide"><polygon points="190,60 250,22 310,60 250,98"/><text x="250" y="64" text-anchor="middle">Booked?</text></g>
+          <g class="flow-node" id="n-scan"><rect x="340" y="40" width="150" height="40" rx="9"/><text x="415" y="64" text-anchor="middle">Scan QR code</text></g>
+          <g class="flow-node" id="n-search"><rect x="340" y="120" width="150" height="40" rx="9"/><text x="415" y="144" text-anchor="middle">Search booking</text></g>
+          <g class="flow-node" id="n-spot"><rect x="340" y="200" width="150" height="40" rx="9"/><text x="415" y="224" text-anchor="middle">Spot Registration</text></g>
+          <g class="flow-node" id="n-found"><rect x="550" y="120" width="170" height="40" rx="9"/><text x="635" y="144" text-anchor="middle">Booking Found</text></g>
+          <g class="flow-node" id="n-details"><rect x="560" y="290" width="160" height="40" rx="9"/><text x="640" y="314" text-anchor="middle">Complete details</text></g>
+          <g class="flow-node" id="n-checkin"><rect x="380" y="290" width="140" height="40" rx="9"/><text x="450" y="314" text-anchor="middle">Check In</text></g>
+          <g class="flow-node" id="n-tent"><rect x="200" y="290" width="140" height="40" rx="9"/><text x="270" y="314" text-anchor="middle">Allocate Tent</text></g>
+          <g class="flow-node" id="n-done"><rect x="20" y="290" width="140" height="40" rx="9"/><text x="90" y="314" text-anchor="middle">Admitted ✓</text></g>
+          <text class="flow-label" x="314" y="50">yes</text>
+          <text class="flow-label" x="258" y="176">no (walk-up)</text>
+          <text class="flow-label" x="645" y="230">if details missing</text>
+          <text class="flow-label" x="200" y="356">tent step only for tent-pass holders</text>
+        </svg></div>
+        <div class="sim-panel">
+          <div class="sim-step" id="simStep"></div>
+          <h4 class="sim-title" id="simTitle"></h4>
+          <p class="sim-text" id="simText"></p>
+          <div class="sim-screen" id="simScreen"></div>
+          <div class="sim-nav no-print">
+            <button class="btn small" id="simPrev">← Back</button>
+            <button class="btn small primary" id="simNext">Next →</button>
+            <div class="sim-dots" id="simDots"></div>
+          </div>
+        </div>
+      </div>
+
+      <h3>Bookings: the back office</h3>
+      <div class="grid c2">
+        <div class="card"><h4>Overview</h4><p>A searchable, paged list of every booking for the active event. Headline numbers (<b>Emails Sent</b>, <b>Admitted</b>, <b>Spot Registrations</b>) double as one-tap filters.</p></div>
+        <div class="card"><h4>Detail panel</h4><p>Selecting a booking slides in a panel with its summary, the number of attendees and passes, an <b>Edit Ticket</b> form, live attendee actions, and <b>Open in Registration</b>.</p></div>
+        <div class="card"><h4>Bulk Upload</h4><p>Bring in bookings sold elsewhere from an Excel file. Drag it in, pick the sheet, and every row is checked before anything is saved.</p></div>
+        <div class="card"><h4>Export</h4><p>Download every loaded booking as an Excel file, one row per pass, in the same layout Bulk Upload accepts, so it can be re-imported.</p></div>
+      </div>
+
+      <figure class="shot" data-shot="bookings" data-caption="Bookings: headline numbers, search and every booking for the active event"></figure>
+      <figure class="shot" data-shot="booking-panel" data-caption="The detail panel: booking summary and every attendee action"></figure>
+      <h3 id="bulk-demo">Try Bulk Upload's checks <span class="sample-tag">Demo</span></h3>
+      <p>Below is a sample file. Press <b>Check file</b> to see what the platform catches before saving, then fix the issue it allows you to fix on the spot.</p>
+      <div class="table-wrap upload-demo"><table>
+        <thead><tr><th>Order</th><th>Item</th><th class="num">Qty</th><th>Buyer</th><th>Email</th><th>Result</th></tr></thead>
+        <tbody id="uploadRows"></tbody>
+      </table></div>
+      <div class="demo-bar no-print">
+        <button class="btn primary small" id="uploadCheck">Check file</button>
+        <button class="btn small" id="uploadFix" disabled>Create “VIP Lounge” as an Add-on</button>
+        <button class="btn small" id="uploadReset">Reset</button>
+        <span class="demo-msg" id="uploadMsg" aria-live="polite"></span>
+      </div>
+      <details class="more"><summary>What Bulk Upload checks</summary><div class="body">
+        <ul>
+          <li><b>Required details</b> on every row: order, item, quantity, buyer name, phone and email.</li>
+          <li><b>Duplicates:</b> an order number that already exists for the event is rejected, so re-uploading a file never doubles bookings.</li>
+          <li><b>Unknown items:</b> an item name that doesn't match the event's pass types is flagged. Staff can create it as a new pass type, with a category, right there.</li>
+          <li><b>Grouping:</b> rows with the same order number become one booking with several passes.</li>
+          <li><b>Workbooks with several sheets:</b> staff pick which sheet to import.</li>
+        </ul>
+      </div></details>
+
+      <h3>Registration: the gate</h3>
+      <p>The Registration page opens with live numbers: <b>Checked In</b>, <b>Pending Admits</b>, <b>Incomplete Details</b> and <b>Spot Registrations</b>. Staff find a booking by scanning its QR code or searching by name, phone, email or order number. Either way they land on <b>Booking Found</b>, which lists every attendee on the booking.</p>
+
+      <figure class="shot" data-shot="registration" data-caption="Registration: live gate numbers, search, QR scan and Spot Registration"></figure>
+      <figure class="shot" data-shot="booking-found" data-caption="Booking Found: everyone on the booking, ready to check in"></figure>
+      <h3 id="attendee-demo">Attendee actions <span class="sample-tag">Demo</span></h3>
+      <p>The same actions are available on Booking Found and in the Bookings detail panel. Try them on this sample booking.</p>
+      <div id="attendeeDemo"></div>
+      <div class="log" id="attendeeLog" aria-live="polite"></div>
+
+      <details class="more"><summary>How tent allocation keeps things right</summary><div class="body">
+        <ul>
+          <li><b>Linked to a person:</b> a tent pass must be tied to a festival pass holder. The platform suggests the likely match, even when they bought on a different booking.</li>
+          <li><b>Right tent type:</b> only tents of the matching tent pass type are offered.</li>
+          <li><b>Never overfilled:</b> two staff members can't both take the last place in a tent. The platform settles that safely.</li>
+          <li><b>Gender-aware:</b> mixing genders in a tent needs a deliberate staff confirmation.</li>
+        </ul>
+      </div></details>
+
+      <h3>Spot Registration</h3>
+      <p>For walk-ups with no booking, staff create one on the spot. They choose items from the active event's pass types, enter the buyer's details, and the platform assigns an order number automatically. The new booking goes straight to Booking Found and is checked in like any other. Spot registrations are counted separately, so walk-up demand is visible at a glance.</p>
+    </section>
+
+    <!-- ================= 5. ACCOMMODATION ================= -->
+    <section class="chapter" id="accommodation" data-toc="Accommodation" data-no="5">
+      <div class="chapter-head"><span class="chapter-no">5</span><h2>Accommodation</h2></div>
+      <p class="lead">Accommodation is where the physical tents are built and kept accurate. Putting people into tents happens at the gate in Box Office. Both work on the same live tent records.</p>
+
+      <h3>Setup <span class="badge muted">Admins</span></h3>
+      <ol class="steps">
+        <li><b>Pick a tent pass type</b> of the active event. If it has no short code yet, you're asked for one once (e.g. <b>SO</b> for Solo Tent).</li>
+        <li><b>Enter a capacity and a quantity.</b> The platform creates that many numbered units (SO1, SO2, …), continuing from any that already exist.</li>
+        <li><b>Check the occupancy cards</b> for each tent type: units open, places vacant, wholly vacant and full tents, split by Male, Female and Mixed.</li>
+      </ol>
+
+      <figure class="shot" data-shot="accommodation-setup" data-caption="Accommodation › Setup: create units and watch occupancy per tent type"></figure>
+      <h3>Inventory <span class="badge muted">Box Office team &amp; admins</span></h3>
+      <ul>
+        <li>Search by unit number or occupant name. Filter by tent type and by occupancy. Numbers sort naturally (SO2 before SO10).</li>
+        <li>Rows are colour-coded by how full they are, and expand to show each occupant's details and admission status.</li>
+        <li>Edit a unit's number or capacity. Capacity can't drop below the number of people already in it.</li>
+        <li>Delete a unit only when it's empty.</li>
+        <li><b>Vacate</b> an occupant directly, after a confirmation.</li>
+      </ul>
+
+      <figure class="shot" data-shot="inventory" data-caption="Accommodation › Inventory: every unit, colour-coded by how full it is"></figure>
+      <h3 id="tent-demo">Try it: allocate and vacate <span class="sample-tag">Demo</span></h3>
+      <p>Pick an attendee, then click <b>Allocate</b> on a tent. Click an occupied place to vacate it. Watch the occupancy cards update.</p>
+      <div class="occ-cards" id="occCards"></div>
+      <div class="queue no-print" id="queue"></div>
+      <div class="tents" id="tents"></div>
+      <div class="log" id="tentLog" aria-live="polite"></div>
+    </section>
+
+    <!-- ================= 6. USERS & DEPARTMENTS ================= -->
+    <section class="chapter" id="users-departments" data-toc="Users and departments" data-no="6">
+      <div class="chapter-head"><span class="chapter-no">6</span><h2>Users and departments</h2></div>
+      <p class="lead">People and departments are set up once for the whole organisation and carry across every event.</p>
+
+      <h3>Finding people</h3>
+      <p><b>Admin › Users</b> follows the same layout as Bookings. Summary cards at the top (<b>Admins</b>, <b>Team Leads</b>, <b>Volunteers</b> and <b>No Department</b>) count each group and filter the table when tapped. Below them, staff can search by name or email, filter by role and department, and page through a table sorted by name. Selecting a person opens a side panel with their department, access level, dates and access in each department, plus the actions they're allowed to take.</p>
+
+      <figure class="shot" data-shot="users" data-caption="Admin › Users: summary cards, search, filters and the user table"></figure>
+      <figure class="shot" data-shot="users-panel" data-caption="Selecting a person opens their details and allowed actions"></figure>
+      <h3>Adding a person</h3>
+      <ol class="steps">
+        <li>An admin taps <b>+ New User</b>, which opens the same side panel ready for a new account, and fills in name, email, role and <b>Date of Joining</b>.</li>
+        <li>They choose the person's <b>home department</b>.</li>
+        <li>They tap access chips to grant Read, Write or Manage in any other department.</li>
+        <li>The person signs in with a password that must mix upper- and lower-case letters, a number and a symbol. The form checks that the password is typed the same way twice.</li>
+      </ol>
+      <div class="callout tip"><strong>Team Leads look after their own people</strong><p>A TL can open the Users page and adjust access for people in their own department. They can't create or remove accounts, change anyone's role or move people between departments, and grants to other departments are left untouched.</p></div>
+
+      <h3>Removing a person <span class="badge muted">Admins</span></h3>
+      <p>Before anything happens, the <b>Delete</b> confirmation says which of two outcomes applies:</p>
+      <ul>
+        <li><b>Deleted:</b> someone with no records, such as an account created by mistake, is removed for good.</li>
+        <li><b>Deactivated:</b> someone with attendance records, or who marked attendance or created events, is switched off instead, so the festival's history stays complete. They can't sign in, and any open session ends straight away. They disappear from user lists, department pages and attendance marking, while their past attendance still shows under their name.</li>
+      </ul>
+      <p>Directors and Developers have an extra <b>Deactivated</b> card and status filter, and can <b>Reactivate</b> an account with the same role, department and access as before. Nobody can remove their own account, and admins can't remove Directors or Developers.</p>
+
+      <h3>Profile photos</h3>
+      <p>People can add a photo from <b>My Profile</b>, either by uploading one from their device or by taking one with the camera, then dragging and zooming to frame a round crop. Admins can set or remove anyone's photo from the Users panel. The photo appears in the Users page, the sidebar, My Profile, Departments and My Department. People without a photo show their initial. Photos are saved as small thumbnails, so pages stay fast on festival-site connections.</p>
+
+      <h3>Managing departments <span class="badge muted">Admins</span></h3>
+      <div class="grid c2">
+        <div class="card"><h4>Create &amp; describe</h4><p>Each department has a name and a description, and its card shows the Team Lead(s) and volunteer count.</p></div>
+        <div class="card"><h4>Assign people</h4><p>Add Team Leads and volunteers by typing their names. A volunteer belongs to one department, so moving one shows a warning first. Leads and admins can belong to several.</p></div>
+        <div class="card"><h4>Remove people</h4><p>Taking someone out of a department also removes the access that came with it.</p></div>
+        <div class="card"><h4>Delete safely</h4><p>Deleting a department that still has people shows who's affected. Confirming unassigns everyone, then deletes it.</p></div>
+      </div>
+      <figure class="shot" data-shot="departments" data-caption="Admin › Departments: each team with its Team Leads and volunteer count"></figure>
+    </section>
+
+    <!-- ================= 7. MY DEPARTMENT ================= -->
+    <section class="chapter" id="my-department" data-toc="My Department and attendance" data-no="7">
+      <div class="chapter-head"><span class="chapter-no">7</span><h2>My Department and volunteer attendance</h2></div>
+      <p class="lead">Every role has a My Department page, scoped to what they should see. Team Leads mark attendance by <b>slot</b> (Morning, Afternoon, Night), so the record shows who worked, where and when.</p>
+
+      <div class="table-wrap"><table>
+        <thead><tr><th>Role</th><th>What they see</th></tr></thead>
+        <tbody>
+          <tr><td><b>DEV / DIR / ADMIN</b></td><td>Any department, plus an <b>All</b> view across departments with Daily Summary, Department Calendar and All Users tabs.</td></tr>
+          <tr><td><b>TL</b></td><td>Their own department(s); marks attendance for their team.</td></tr>
+          <tr><td><b>VOL</b></td><td>Their own department, read-only. Their personal history also appears on My Profile.</td></tr>
+        </tbody>
+      </table></div>
+
+      <figure class="shot" data-shot="my-department" data-caption="My Department: the All Departments reporting view (directors and admins)"></figure>
+      <h3 id="attendance-demo">Try it: mark a day's attendance <span class="sample-tag">Demo</span></h3>
+      <p>You're the Team Lead of <b>Operations</b>. Tick slots and press <b>Save</b>. One volunteer moved to Box Office for the afternoon. See what happens when you try to claim that slot.</p>
+      <div class="card att">
+        <div class="table-wrap" style="margin-top:0"><table>
+          <thead><tr><th>Volunteer</th><th>Morning</th><th>Afternoon</th><th>Night</th></tr></thead>
+          <tbody id="attRows"></tbody>
+        </table></div>
+        <div class="demo-bar no-print">
+          <button class="btn primary small" id="attSave">Save</button>
+          <button class="btn small" id="attReset">Reset</button>
+          <span class="demo-msg" id="attMsg" aria-live="polite"></span>
+        </div>
+      </div>
+
+      <details class="more"><summary>Why slots instead of whole days?</summary><div class="body">
+        <p>Volunteers often move mid-day: Operations in the morning, Box Office in the afternoon. Recording each slot separately means both departments get credit for the right hours. One department can't silently overwrite another's record: the platform asks first.</p>
+      </div></details>
+
+      <h3>History and calendar</h3>
+      <p>The <b>History</b> tab summarises each member's attendance over a date range. The <b>Calendar</b> tab shows everyone against every date, with each cell marked, unmarked or not applicable (for example before someone's date of joining). It opens scrolled to today.</p>
+    </section>
+
+    <!-- ================= 8. SIGN-IN, DASHBOARD, PROFILE ================= -->
+    <section class="chapter" id="signin-dashboard" data-toc="Sign-in, dashboard and profile" data-no="8">
+      <div class="chapter-head"><span class="chapter-no">8</span><h2>Sign-in, dashboard and profile</h2></div>
+      <p class="lead">Signing in takes people to a dashboard of the active event's headline numbers, and their profile shows exactly what they can access.</p>
+
+      <div class="grid c3">
+        <div class="card"><h4>Sign in</h4><p>Email and password. Repeated failed attempts pause sign-in for a while. Sessions last up to 7 days. If one expires mid-task, the next action returns you to sign-in with a notice, so nobody keeps working on a page that has silently stopped saving.</p></div>
+        <div class="card"><h4>Dashboard</h4><p>Passes sold, admitted, pending admission and accommodation bookings, plus volunteers by department for admins. Charts below show admitted vs. yet-to-admit across festival passes, tents and vehicles.</p></div>
+        <div class="card"><h4>My Profile</h4><p>Your photo, which you can add, change or remove. Also your role, departments, a colour-coded table of your access in each department, and your own attendance since your date of joining.</p></div>
+      </div>
+      <figure class="shot" data-shot="signin" data-caption="The sign-in screen"></figure>
+      <figure class="shot" data-shot="profile" data-caption="My Profile: photo, role, access per department and own attendance"></figure>
+      <p>Confirmations for deletes, vacates and overwrites appear as branded in-app dialogs. The sidebar footer always shows the current version.</p>
+    </section>
+
+    <!-- ================= 9. STRENGTHS ================= -->
+    <section class="chapter" id="strengths" data-toc="Platform strengths" data-no="9">
+      <div class="chapter-head"><span class="chapter-no">9</span><h2>Platform strengths</h2></div>
+      <p class="lead">These qualities make the platform dependable on festival day.</p>
+      <div class="grid c2">
+        <div class="card strength reveal"><div class="ic">🛡</div><div><h4>Built to protect real data</h4><p>Bookings, events and occupied tents can't be deleted by accident. Removing a person who has records deactivates them instead of erasing their history. Overwrites ask first, and destructive actions need confirmation.</p></div></div>
+        <div class="card strength reveal"><div class="ic">⚖</div><div><h4>Safe under pressure</h4><p>When several staff work the same booking or tent at once, the platform settles it cleanly. No double allocations, no overfilled tents.</p></div></div>
+        <div class="card strength reveal"><div class="ic">🎯</div><div><h4>Right access for every person</h4><p>Five roles, three access tiers and department membership combine, so a volunteer sees only their work and a director sees everything.</p></div></div>
+        <div class="card strength reveal"><div class="ic">📱</div><div><h4>Works on any screen</h4><p>Every page is designed for phones as well as desktops, so gate staff can work from a handheld device.</p></div></div>
+        <div class="card strength reveal"><div class="ic">🔁</div><div><h4>Ready for every edition</h4><p>Events and pass types are configured, not hard-coded. A new festival year needs setup, not development.</p></div></div>
+        <div class="card strength reveal"><div class="ic">✅</div><div><h4>Tested and staged releases</h4><p>Hundreds of automated checks run before every release. Each release is tried in a test environment before wider use.</p></div></div>
+        <div class="card strength reveal"><div class="ic">🔗</div><div><h4>Fits existing sales channels</h4><p>Bookings sold elsewhere come in through Bulk Upload. Export gives a re-importable backup at any time.</p></div></div>
+        <div class="card strength reveal"><div class="ic">🧭</div><div><h4>Honest records</h4><p>Attendance by slot, admissions per person, and tents linked to the right festival pass. The numbers can be trusted.</p></div></div>
+      </div>
+    </section>
+
+    <!-- ================= 10. LIMITATIONS ================= -->
+    <section class="chapter" id="limitations" data-toc="Current limitations" data-no="10">
+      <div class="chapter-head"><span class="chapter-no">10</span><h2>Current limitations</h2></div>
+      <p class="lead">This is what the platform doesn't do yet, and what it deliberately doesn't do. Each item is marked as <span class="badge info">By design</span>, <span class="badge warn">Planned</span> or <span class="badge muted">Not yet planned</span>.</p>
+      <div class="filters no-print" id="limFilters"></div>
+      <div class="lim-list" id="limList"></div>
+    </section>
+
+    <!-- ================= 11. ROADMAP ================= -->
+    <section class="chapter" id="roadmap" data-toc="Roadmap and future possibilities" data-no="11">
+      <div class="chapter-head"><span class="chapter-no">11</span><h2>Roadmap and future possibilities</h2></div>
+      <p class="lead">What's been delivered, what's being built now, what's planned next, and ideas worth exploring. Priorities (P1–P3) are set by the festival team and can change.</p>
+      <div class="filters no-print" id="rmFilters"></div>
+      <div class="timeline" id="timeline"></div>
+      <div class="callout note"><strong>Ideas are not commitments</strong><p>Items marked <span class="badge idea">Idea</span> are possibilities the platform's design makes easy. None has been scoped or scheduled.</p></div>
+    </section>
+
+    <!-- ================= APPENDICES ================= -->
+    <section class="chapter" id="appendix-glossary" data-toc="Appendix A — Glossary" data-no="A">
+      <div class="chapter-head"><span class="chapter-no">A</span><h2>Glossary</h2></div>
+      <div class="filters no-print"><input class="filter-input" id="glossFilter" type="search" placeholder="Filter terms…" aria-label="Filter glossary"></div>
+      <dl class="glossary" id="glossary"></dl>
+    </section>
+
+    <section class="chapter" id="appendix-releases" data-toc="Appendix B — Release history" data-no="B">
+      <div class="chapter-head"><span class="chapter-no">B</span><h2>Release history</h2></div>
+      <p>The frontend (what people see) and backend (what stores and protects the data) are versioned separately.</p>
+      <div class="filters no-print" id="relFilters"></div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Date</th><th>Part</th><th>Version</th><th>What changed</th></tr></thead>
+        <tbody id="relRows"></tbody>
+      </table></div>
+    </section>
+
+    <section class="chapter" id="appendix-matrix" data-toc="Appendix C — Role × feature matrix" data-no="C">
+      <div class="chapter-head"><span class="chapter-no">C</span><h2>Role × feature matrix</h2></div>
+      <p>Hover or tap a mark for details. F = full, S = own area only, G = if granted or in the right department, — = none.</p>
+      <div class="table-wrap matrix"><table>
+        <thead id="matrixHead"></thead>
+        <tbody id="matrixBody"></tbody>
+      </table></div>
+    </section>
+
+    <section class="chapter" id="appendix-history" data-toc="Appendix D — Document history" data-no="D">
+      <div class="chapter-head"><span class="chapter-no">D</span><h2>Document history</h2></div>
+      <p>This guide is updated as the platform changes. It currently covers up to frontend <b data-meta="lastUpdatedThrough.ui"></b> and backend <b data-meta="lastUpdatedThrough.api"></b>.</p>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Date</th><th>Covers</th><th>Change</th></tr></thead>
+        <tbody id="histRows"></tbody>
+      </table></div>
+    </section>
+
+    <footer class="foot">
+      <span>BiG Platform — Product Guide</span>
+      <span>Demos use sample data only.</span>
+    </footer>
+
+    </div>
+  </main>
+</div>
+
+<button class="to-top" id="toTop" aria-label="Back to top">↑</button>
+
+<div class="modal-back" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal">
+    <div class="mh" id="modalTitle"></div>
+    <div class="mb" id="modalBody"></div>
+    <div class="mf"><button class="btn small" id="modalNo">Cancel</button><button class="btn small primary" id="modalYes">Confirm</button></div>
+  </div>
+</div>
+
+<script src="project/data.js"></script>
+<script src="engine/engine.js"></script>
+<script src="project/project.js"></script>
+</body>
+</html>
