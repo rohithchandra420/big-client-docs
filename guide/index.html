@@ -66,7 +66,7 @@
       <h3>How to read it</h3>
       <div class="grid c3">
         <div class="card"><h4>Skim</h4><p>Read <a href="#at-a-glance">Platform at a glance</a> and <a href="#strengths">Platform strengths</a>. It takes about five minutes.</p></div>
-        <div class="card"><h4>Explore</h4><p>Chapters 2–8 include hands-on demos. Click, tick and step through them. They use sample data and change nothing real.</p></div>
+        <div class="card"><h4>Explore</h4><p>Chapters 2–7 include hands-on demos. Click, tick and step through them. They use sample data and change nothing real.</p></div>
         <div class="card"><h4>Plan</h4><p><a href="#limitations">Current limitations</a> and the <a href="#roadmap">Roadmap</a> show what's missing and what's next.</p></div>
       </div>
 
@@ -89,13 +89,13 @@
     <!-- ================= 1. AT A GLANCE ================= -->
     <section class="chapter" id="at-a-glance" data-toc="Platform at a glance" data-no="1">
       <div class="chapter-head"><span class="chapter-no">1</span><h2>Platform at a glance</h2></div>
-      <p class="lead">Seven areas cover the festival end to end. Every one works on desktop and phone, and access to each is controlled by role and department.</p>
+      <p class="lead">Nine areas cover the festival end to end, in the same order as the app's sidebar. Every one works on desktop and phone, and access to each is controlled by role and department.</p>
 
       <div class="figures">
-        <div class="figure reveal"><div class="v" data-count="7">7</div><div class="l">Areas of the platform</div></div>
+        <div class="figure reveal"><div class="v" data-count="9">9</div><div class="l">Areas of the platform</div></div>
         <div class="figure reveal"><div class="v" data-count="5">5</div><div class="l">Roles with distinct access</div></div>
         <div class="figure reveal"><div class="v" data-count-from="releases" data-count="0">—</div><div class="l">Releases shipped since launch</div></div>
-        <div class="figure reveal"><div class="v" data-count="775">775</div><div class="l">Automated checks run before every release</div></div>
+        <div class="figure reveal"><div class="v" data-count="954">954</div><div class="l">Automated checks run before every release</div></div>
       </div>
 
       <h3>Explore the platform <span class="sample-tag">Click a tile</span></h3>
@@ -205,44 +205,59 @@
       <p>See <a href="#appendix-matrix">Appendix C</a> for the full role-by-feature table.</p>
     </section>
 
-    <!-- ================= 3. EVENTS ================= -->
-    <section class="chapter" id="events" data-toc="Events and pass types" data-no="3">
-      <div class="chapter-head"><span class="chapter-no">3</span><h2>Events and pass types</h2></div>
-      <p class="lead">Each festival edition is its own <b>event</b>, with its own passes, bookings and tents. Staff choose which event they're working on from the selector in the sidebar.</p>
+    <!-- ================= 3. DASHBOARD AND SIGN-IN ================= -->
+    <section class="chapter" id="signin-dashboard" data-toc="Dashboard and sign-in" data-no="3">
+      <div class="chapter-head"><span class="chapter-no">3</span><h2>Dashboard and sign-in</h2></div>
+      <p class="lead">Signing in takes people to a dashboard of the active event's headline numbers.</p>
 
-      <h3>An event's life <span class="sample-tag">Click a stage</span></h3>
-      <div class="lifecycle no-print" id="lifecycle">
-        <button class="lc-node" data-stage="draft" aria-pressed="true"><div class="t">Draft</div><div class="s">Being prepared</div></button>
-        <div class="lc-arrow">→</div>
-        <button class="lc-node" data-stage="active" aria-pressed="false"><div class="t">Active</div><div class="s">Live for staff</div></button>
-        <div class="lc-arrow">→</div>
-        <button class="lc-node" data-stage="archived" aria-pressed="false"><div class="t">Archived</div><div class="s">Kept for the record</div></button>
+      <div class="grid c2">
+        <div class="card"><h4>Sign in</h4><p>Email and password. Repeated failed attempts pause sign-in for a while. Sessions last up to 7 days. If one expires mid-task, the next action returns you to sign-in with a notice, so nobody keeps working on a page that has silently stopped saving.</p></div>
+        <div class="card"><h4>Dashboard</h4><p>Passes sold, admitted, pending admission and accommodation bookings, plus volunteers by department for admins. Charts below show admitted vs. yet-to-admit across festival passes, tents and vehicles.</p></div>
       </div>
-      <div class="card" id="stageDetail" aria-live="polite"></div>
-
-      <h3>Pass types</h3>
-      <p>Admins define the passes sold for each event. Every pass type belongs to one of three categories, and the category decides how the rest of the platform treats it.</p>
-      <div class="grid c3">
-        <div class="cat festival"><span class="tag">Festival</span><p>Admission to the festival. Each festival pass is one person, which is how the platform counts attendees and admissions.</p></div>
-        <div class="cat tent"><span class="tag">Tent</span><p>A place to stay. Tent pass types get a short code (e.g. <b>SO</b>) and their own numbered tent units in Accommodation.</p></div>
-        <div class="cat addon"><span class="tag">Add-on</span><p>Anything sold alongside a pass. It's tracked on the booking but doesn't need a person or a tent.</p></div>
-      </div>
-
-      <h3>Setting up a new edition</h3>
-      <ol class="steps">
-        <li><b>Create the event</b> in Admin › Events. It starts as a Draft, visible to admins only.</li>
-        <li><b>Add its pass types</b> and give each a category.</li>
-        <li><b>Build the tents</b> for each tent pass type in Accommodation › Setup.</li>
-        <li><b>Set it to Active.</b> Team Leads and volunteers can now select it and start work.</li>
-        <li>After the festival, <b>archive</b> it. Everything is kept, and it disappears from day-to-day lists.</li>
-      </ol>
-      <figure class="shot" data-shot="events" data-caption="Admin › Events: every edition with its status"></figure>
-      <div class="callout warn"><strong>Real bookings are protected</strong><p>An event or pass type that already has bookings or tents can't be deleted. Archiving is the safe way to retire it.</p></div>
+      <figure class="shot" data-shot="signin" data-caption="The sign-in screen"></figure>
+      <p>Confirmations for deletes, vacates and overwrites appear as branded in-app dialogs. The sidebar footer always shows the current version.</p>
     </section>
 
-    <!-- ================= 4. BOX OFFICE ================= -->
-    <section class="chapter" id="box-office" data-toc="Box Office" data-no="4">
-      <div class="chapter-head"><span class="chapter-no">4</span><h2>Box Office</h2></div>
+    <!-- ================= 4. MY DEPARTMENT ================= -->
+    <section class="chapter" id="my-department" data-toc="My Department and attendance" data-no="4">
+      <div class="chapter-head"><span class="chapter-no">4</span><h2>My Department and volunteer attendance</h2></div>
+      <p class="lead">Every role has a My Department page, scoped to what they should see. Team Leads mark attendance by <b>slot</b> (Morning, Afternoon, Night), so the record shows who worked, where and when.</p>
+
+      <div class="table-wrap"><table>
+        <thead><tr><th>Role</th><th>What they see</th></tr></thead>
+        <tbody>
+          <tr><td><b>DEV / DIR / ADMIN</b></td><td>Any department, plus an <b>All</b> view across departments with Daily Summary, Department Calendar and All Users tabs.</td></tr>
+          <tr><td><b>TL</b></td><td>Their own department(s); marks attendance for their team.</td></tr>
+          <tr><td><b>VOL</b></td><td>Their own department, read-only. Their personal history also appears on My Profile.</td></tr>
+        </tbody>
+      </table></div>
+
+      <figure class="shot" data-shot="my-department" data-caption="My Department: the All Departments reporting view (directors and admins)"></figure>
+      <h3 id="attendance-demo">Try it: mark a day's attendance <span class="sample-tag">Demo</span></h3>
+      <p>You're the Team Lead of <b>Operations</b>. Tick slots and press <b>Save</b>. One volunteer moved to Box Office for the afternoon. See what happens when you try to claim that slot.</p>
+      <div class="card att">
+        <div class="table-wrap" style="margin-top:0"><table>
+          <thead><tr><th>Volunteer</th><th>Morning</th><th>Afternoon</th><th>Night</th></tr></thead>
+          <tbody id="attRows"></tbody>
+        </table></div>
+        <div class="demo-bar no-print">
+          <button class="btn primary small" id="attSave">Save</button>
+          <button class="btn small" id="attReset">Reset</button>
+          <span class="demo-msg" id="attMsg" aria-live="polite"></span>
+        </div>
+      </div>
+
+      <details class="more"><summary>Why slots instead of whole days?</summary><div class="body">
+        <p>Volunteers often move mid-day: Operations in the morning, Box Office in the afternoon. Recording each slot separately means both departments get credit for the right hours. One department can't silently overwrite another's record: the platform asks first.</p>
+      </div></details>
+
+      <h3>History and calendar</h3>
+      <p>The <b>History</b> tab summarises each member's attendance over a date range. The <b>Calendar</b> tab shows everyone against every date, with each cell marked, unmarked or not applicable (for example before someone's date of joining). It opens scrolled to today.</p>
+    </section>
+
+    <!-- ================= 5. BOX OFFICE ================= -->
+    <section class="chapter" id="box-office" data-toc="Box Office" data-no="5">
+      <div class="chapter-head"><span class="chapter-no">5</span><h2>Box Office</h2></div>
       <p class="lead">Box Office handles a booking from the day it's imported to the moment the attendee walks through the gate. It has two halves: <b>Bookings</b> for the back office and <b>Registration</b> for the gate.</p>
 
       <h3 id="gate-sim">The gate, step by step <span class="sample-tag">Simulator</span></h3>
@@ -298,8 +313,8 @@
 
       <h3>Bookings: the back office</h3>
       <div class="grid c2">
-        <div class="card"><h4>Overview</h4><p>A searchable, paged list of every booking for the active event. Headline numbers (<b>Emails Sent</b>, <b>Admitted</b>, <b>Spot Registrations</b>) double as one-tap filters.</p></div>
-        <div class="card"><h4>Detail panel</h4><p>Selecting a booking slides in a panel with its summary, the number of attendees and passes, an <b>Edit Ticket</b> form, live attendee actions, and <b>Open in Registration</b>.</p></div>
+        <div class="card"><h4>Overview</h4><p>A searchable, paged list of every booking for the active event, with each booking's <b>Ticket Email</b> status. Headline numbers (<b>Ticket Emails Sent</b>, <b>Admitted</b>, <b>Spot Registrations</b>) double as one-tap filters, and a status filter finds bookings not sent, bounced or failed.</p></div>
+        <div class="card"><h4>Detail panel</h4><p>Selecting a booking slides in a panel with its summary, the number of attendees and passes, an <b>Edit Ticket</b> form, live attendee actions, email buttons and <b>Email history</b>, and <b>Open in Registration</b>.</p></div>
         <div class="card"><h4>Bulk Upload</h4><p>Bring in bookings sold elsewhere from an Excel file. Drag it in, pick the sheet, and every row is checked before anything is saved.</p></div>
         <div class="card"><h4>Export</h4><p>Download every loaded booking as an Excel file, one row per pass, in the same layout Bulk Upload accepts, so it can be re-imported.</p></div>
       </div>
@@ -328,8 +343,31 @@
         </ul>
       </div></details>
 
+      <h3 id="emails">Emailing buyers</h3>
+      <p>Staff can email buyers straight from the platform. Select bookings on <b>Bookings</b> and open the <b>Email ▾</b> menu, or use the email buttons on a single booking in the detail panel or on Booking Found.</p>
+      <div class="table-wrap"><table>
+        <thead><tr><th></th><th>Ticket Email</th><th>Custom Email</th></tr></thead>
+        <tbody>
+          <tr><td><b>What it is</b></td><td>The buyer's ticket: every pass on the booking and one QR code for the gate.</td><td>A message you write, with bold, italics, lists and links.</td></tr>
+          <tr><td><b>Wording</b></td><td>Subject and intro set per event in Admin › Events.</td><td>Your own, with placeholders such as <b>{first_name}</b>, <b>{order_id}</b> and <b>{event}</b> filled in for each buyer.</td></tr>
+          <tr><td><b>Ticket details</b></td><td>Always included.</td><td>Optional: tick to add the ticket details and QR code.</td></tr>
+          <tr><td><b>Changes the booking's Ticket Email status</b></td><td>Yes</td><td>No</td></tr>
+          <tr><td><b>Who can send</b></td><td>Admins, Directors, Developers, Box Office Team Leads and anyone with Manage access to Box Office</td><td>Admins, Directors and Developers</td></tr>
+        </tbody>
+      </table></div>
+      <ol class="steps">
+        <li><b>Select the bookings</b> and choose <b>Send Ticket Email</b> or <b>Send Custom Email</b>.</li>
+        <li><b>Check the counts.</b> For ticket emails, the dialog shows how many are not sent yet, already sent, or have no buyer email. Choose to send only to those not sent yet, or resend to all.</li>
+        <li><b>Preview it, or send a test to yourself</b> first if you want to see exactly what buyers will get.</li>
+        <li><b>Send.</b> Emails go out in the background with a progress card that stays visible as you move between pages. Bookings refreshes itself when the send finishes.</li>
+      </ol>
+      <figure class="shot" data-shot="ticket-email-dialog" data-caption="Send Ticket Email: how many are not sent yet or already sent, and who to send to"></figure>
+      <figure class="shot" data-shot="custom-email-dialog" data-caption="Custom Email: a subject, a formatted message and placeholders for each buyer"></figure>
+      <p>The platform currently sends up to 300 emails in any 24 hours. The send dialog shows how many are left.</p>
+      <p>Each booking's <b>Ticket Email</b> status reads <b>Not sent</b>, <b>Sending…</b>, <b>Sent</b>, <b>Bounced</b>, <b>Failed</b> or <b>No email</b>. Hover a failed or bounced status to see why. A bounced booking is picked up again the next time you send to those not sent yet. The <b>Email history</b> on each booking shows every email it has received and whether it was delivered. Every email sent is also listed in <a href="#email-report">Admin › Email Report</a>.</p>
+
       <h3>Registration: the gate</h3>
-      <p>The Registration page opens with live numbers: <b>Checked In</b>, <b>Pending Admits</b>, <b>Incomplete Details</b> and <b>Spot Registrations</b>. Staff find a booking by scanning its QR code or searching by name, phone, email or order number. Either way they land on <b>Booking Found</b>, which lists every attendee on the booking.</p>
+      <p>The Registration page opens with live numbers: <b>Checked In</b>, <b>Pending Admits</b>, <b>Incomplete Details</b> and <b>Spot Registrations</b>. Staff find a booking by scanning the QR code from its ticket email or by searching by name, phone, email or order number. Every scanned code is checked first: one that has been altered or made up is rejected with a message, and the scanner keeps running. Either way staff land on <b>Booking Found</b>, which lists every attendee on the booking and offers the same email buttons and history as the detail panel.</p>
 
       <figure class="shot" data-shot="registration" data-caption="Registration: live gate numbers, search, QR scan and Spot Registration"></figure>
       <figure class="shot" data-shot="booking-found" data-caption="Booking Found: everyone on the booking, ready to check in"></figure>
@@ -348,22 +386,14 @@
       </div></details>
 
       <h3>Spot Registration</h3>
-      <p>For walk-ups with no booking, staff create one on the spot. They choose items from the active event's pass types, enter the buyer's details, and the platform assigns an order number automatically. The new booking goes straight to Booking Found and is checked in like any other. Spot registrations are counted separately, so walk-up demand is visible at a glance.</p>
+      <p>For walk-ups with no booking, staff create one on the spot. They choose items from the active event's pass types, enter the buyer's details, and the platform assigns an order number automatically. With <b>Email ticket to buyer</b> ticked (the default, for staff who can send ticket emails), the buyer gets their ticket email straight away. The new booking goes straight to Booking Found and is checked in like any other. Spot registrations are counted separately, so walk-up demand is visible at a glance.</p>
     </section>
 
-    <!-- ================= 5. ACCOMMODATION ================= -->
-    <section class="chapter" id="accommodation" data-toc="Accommodation" data-no="5">
-      <div class="chapter-head"><span class="chapter-no">5</span><h2>Accommodation</h2></div>
+    <!-- ================= 6. ACCOMMODATION ================= -->
+    <section class="chapter" id="accommodation" data-toc="Accommodation" data-no="6">
+      <div class="chapter-head"><span class="chapter-no">6</span><h2>Accommodation</h2></div>
       <p class="lead">Accommodation is where the physical tents are built and kept accurate. Putting people into tents happens at the gate in Box Office. Both work on the same live tent records.</p>
 
-      <h3>Setup <span class="badge muted">Admins</span></h3>
-      <ol class="steps">
-        <li><b>Pick a tent pass type</b> of the active event. If it has no short code yet, you're asked for one once (e.g. <b>SO</b> for Solo Tent).</li>
-        <li><b>Enter a capacity and a quantity.</b> The platform creates that many numbered units (SO1, SO2, …), continuing from any that already exist.</li>
-        <li><b>Check the occupancy cards</b> for each tent type: units open, places vacant, wholly vacant and full tents, split by Male, Female and Mixed.</li>
-      </ol>
-
-      <figure class="shot" data-shot="accommodation-setup" data-caption="Accommodation › Setup: create units and watch occupancy per tent type"></figure>
       <h3>Inventory <span class="badge muted">Box Office team &amp; admins</span></h3>
       <ul>
         <li>Search by unit number or occupant name. Filter by tent type and by occupancy. Numbers sort naturally (SO2 before SO10).</li>
@@ -380,19 +410,31 @@
       <div class="queue no-print" id="queue"></div>
       <div class="tents" id="tents"></div>
       <div class="log" id="tentLog" aria-live="polite"></div>
+
+      <h3>Setup <span class="badge muted">Admins</span></h3>
+      <ol class="steps">
+        <li><b>Pick a tent pass type</b> of the active event. If it has no short code yet, you're asked for one once (e.g. <b>SO</b> for Solo Tent).</li>
+        <li><b>Enter a capacity and a quantity.</b> The platform creates that many numbered units (SO1, SO2, …), continuing from any that already exist.</li>
+        <li><b>Check the occupancy cards</b> for each tent type: units open, places vacant, wholly vacant and full tents, split by Male, Female and Mixed.</li>
+      </ol>
+
+      <figure class="shot" data-shot="accommodation-setup" data-caption="Accommodation › Setup: create units and watch occupancy per tent type"></figure>
     </section>
 
-    <!-- ================= 6. USERS & DEPARTMENTS ================= -->
-    <section class="chapter" id="users-departments" data-toc="Users and departments" data-no="6">
-      <div class="chapter-head"><span class="chapter-no">6</span><h2>Users and departments</h2></div>
-      <p class="lead">People and departments are set up once for the whole organisation and carry across every event.</p>
+    <!-- ================= 7. ADMIN ================= -->
+    <section class="chapter" id="admin" data-toc="Admin" data-no="7">
+      <div class="chapter-head"><span class="chapter-no">7</span><h2>Admin</h2></div>
+      <p class="lead">The Admin pages set up the organisation: its people, its departments, each festival edition, and a record of every email sent. Each page is open only to the roles shown next to it.</p>
 
-      <h3>Finding people</h3>
+      <h3 id="users">Users <span class="badge muted">Admins; Team Leads for their own department</span></h3>
+      <p>People and departments are set up once for the whole organisation and carry across every event.</p>
+
+      <h4>Finding people</h4>
       <p><b>Admin › Users</b> follows the same layout as Bookings. Summary cards at the top (<b>Admins</b>, <b>Team Leads</b>, <b>Volunteers</b> and <b>No Department</b>) count each group and filter the table when tapped. Below them, staff can search by name or email, filter by role and department, and page through a table sorted by name. Selecting a person opens a side panel with their department, access level, dates and access in each department, plus the actions they're allowed to take.</p>
 
       <figure class="shot" data-shot="users" data-caption="Admin › Users: summary cards, search, filters and the user table"></figure>
       <figure class="shot" data-shot="users-panel" data-caption="Selecting a person opens their details and allowed actions"></figure>
-      <h3>Adding a person</h3>
+      <h4>Adding a person</h4>
       <ol class="steps">
         <li>An admin taps <b>+ New User</b>, which opens the same side panel ready for a new account, and fills in name, email, role and <b>Date of Joining</b>.</li>
         <li>They choose the person's <b>home department</b>.</li>
@@ -401,7 +443,7 @@
       </ol>
       <div class="callout tip"><strong>Team Leads look after their own people</strong><p>A TL can open the Users page and adjust access for people in their own department. They can't create or remove accounts, change anyone's role or move people between departments, and grants to other departments are left untouched.</p></div>
 
-      <h3>Removing a person <span class="badge muted">Admins</span></h3>
+      <h4>Removing a person <span class="badge muted">Admins</span></h4>
       <p>Before anything happens, the <b>Delete</b> confirmation says which of two outcomes applies:</p>
       <ul>
         <li><b>Deleted:</b> someone with no records, such as an account created by mistake, is removed for good.</li>
@@ -409,10 +451,7 @@
       </ul>
       <p>Directors and Developers have an extra <b>Deactivated</b> card and status filter, and can <b>Reactivate</b> an account with the same role, department and access as before. Nobody can remove their own account, and admins can't remove Directors or Developers.</p>
 
-      <h3>Profile photos</h3>
-      <p>People can add a photo from <b>My Profile</b>, either by uploading one from their device or by taking one with the camera, then dragging and zooming to frame a round crop. Admins can set or remove anyone's photo from the Users panel. The photo appears in the Users page, the sidebar, My Profile, Departments and My Department. People without a photo show their initial. Photos are saved as small thumbnails, so pages stay fast on festival-site connections.</p>
-
-      <h3>Managing departments <span class="badge muted">Admins</span></h3>
+      <h3 id="departments">Departments <span class="badge muted">Admins</span></h3>
       <div class="grid c2">
         <div class="card"><h4>Create &amp; describe</h4><p>Each department has a name and a description, and its card shows the Team Lead(s) and volunteer count.</p></div>
         <div class="card"><h4>Assign people</h4><p>Add Team Leads and volunteers by typing their names. A volunteer belongs to one department, so moving one shows a warning first. Leads and admins can belong to several.</p></div>
@@ -420,58 +459,56 @@
         <div class="card"><h4>Delete safely</h4><p>Deleting a department that still has people shows who's affected. Confirming unassigns everyone, then deletes it.</p></div>
       </div>
       <figure class="shot" data-shot="departments" data-caption="Admin › Departments: each team with its Team Leads and volunteer count"></figure>
-    </section>
 
-    <!-- ================= 7. MY DEPARTMENT ================= -->
-    <section class="chapter" id="my-department" data-toc="My Department and attendance" data-no="7">
-      <div class="chapter-head"><span class="chapter-no">7</span><h2>My Department and volunteer attendance</h2></div>
-      <p class="lead">Every role has a My Department page, scoped to what they should see. Team Leads mark attendance by <b>slot</b> (Morning, Afternoon, Night), so the record shows who worked, where and when.</p>
+      <h3 id="events">Events and pass types <span class="badge muted">Admins</span></h3>
+      <p>Each festival edition is its own <b>event</b>, with its own passes, bookings and tents. Staff choose which event they're working on from the selector in the sidebar.</p>
 
-      <div class="table-wrap"><table>
-        <thead><tr><th>Role</th><th>What they see</th></tr></thead>
-        <tbody>
-          <tr><td><b>DEV / DIR / ADMIN</b></td><td>Any department, plus an <b>All</b> view across departments with Daily Summary, Department Calendar and All Users tabs.</td></tr>
-          <tr><td><b>TL</b></td><td>Their own department(s); marks attendance for their team.</td></tr>
-          <tr><td><b>VOL</b></td><td>Their own department, read-only. Their personal history also appears on My Profile.</td></tr>
-        </tbody>
-      </table></div>
-
-      <figure class="shot" data-shot="my-department" data-caption="My Department: the All Departments reporting view (directors and admins)"></figure>
-      <h3 id="attendance-demo">Try it: mark a day's attendance <span class="sample-tag">Demo</span></h3>
-      <p>You're the Team Lead of <b>Operations</b>. Tick slots and press <b>Save</b>. One volunteer moved to Box Office for the afternoon. See what happens when you try to claim that slot.</p>
-      <div class="card att">
-        <div class="table-wrap" style="margin-top:0"><table>
-          <thead><tr><th>Volunteer</th><th>Morning</th><th>Afternoon</th><th>Night</th></tr></thead>
-          <tbody id="attRows"></tbody>
-        </table></div>
-        <div class="demo-bar no-print">
-          <button class="btn primary small" id="attSave">Save</button>
-          <button class="btn small" id="attReset">Reset</button>
-          <span class="demo-msg" id="attMsg" aria-live="polite"></span>
-        </div>
+      <h4>An event's life <span class="sample-tag">Click a stage</span></h4>
+      <div class="lifecycle no-print" id="lifecycle">
+        <button class="lc-node" data-stage="draft" aria-pressed="true"><div class="t">Draft</div><div class="s">Being prepared</div></button>
+        <div class="lc-arrow">→</div>
+        <button class="lc-node" data-stage="active" aria-pressed="false"><div class="t">Active</div><div class="s">Live for staff</div></button>
+        <div class="lc-arrow">→</div>
+        <button class="lc-node" data-stage="archived" aria-pressed="false"><div class="t">Archived</div><div class="s">Kept for the record</div></button>
       </div>
+      <div class="card" id="stageDetail" aria-live="polite"></div>
 
-      <details class="more"><summary>Why slots instead of whole days?</summary><div class="body">
-        <p>Volunteers often move mid-day: Operations in the morning, Box Office in the afternoon. Recording each slot separately means both departments get credit for the right hours. One department can't silently overwrite another's record: the platform asks first.</p>
-      </div></details>
-
-      <h3>History and calendar</h3>
-      <p>The <b>History</b> tab summarises each member's attendance over a date range. The <b>Calendar</b> tab shows everyone against every date, with each cell marked, unmarked or not applicable (for example before someone's date of joining). It opens scrolled to today.</p>
-    </section>
-
-    <!-- ================= 8. SIGN-IN, DASHBOARD, PROFILE ================= -->
-    <section class="chapter" id="signin-dashboard" data-toc="Sign-in, dashboard and profile" data-no="8">
-      <div class="chapter-head"><span class="chapter-no">8</span><h2>Sign-in, dashboard and profile</h2></div>
-      <p class="lead">Signing in takes people to a dashboard of the active event's headline numbers, and their profile shows exactly what they can access.</p>
-
+      <h4>Pass types</h4>
+      <p>Admins define the passes sold for each event. Every pass type belongs to one of three categories, and the category decides how the rest of the platform treats it.</p>
       <div class="grid c3">
-        <div class="card"><h4>Sign in</h4><p>Email and password. Repeated failed attempts pause sign-in for a while. Sessions last up to 7 days. If one expires mid-task, the next action returns you to sign-in with a notice, so nobody keeps working on a page that has silently stopped saving.</p></div>
-        <div class="card"><h4>Dashboard</h4><p>Passes sold, admitted, pending admission and accommodation bookings, plus volunteers by department for admins. Charts below show admitted vs. yet-to-admit across festival passes, tents and vehicles.</p></div>
-        <div class="card"><h4>My Profile</h4><p>Your photo, which you can add, change or remove. Also your role, departments, a colour-coded table of your access in each department, and your own attendance since your date of joining.</p></div>
+        <div class="cat festival"><span class="tag">Festival</span><p>Admission to the festival. Each festival pass is one person, which is how the platform counts attendees and admissions.</p></div>
+        <div class="cat tent"><span class="tag">Tent</span><p>A place to stay. Tent pass types get a short code (e.g. <b>SO</b>) and their own numbered tent units in Accommodation.</p></div>
+        <div class="cat addon"><span class="tag">Add-on</span><p>Anything sold alongside a pass. It's tracked on the booking but doesn't need a person or a tent.</p></div>
       </div>
-      <figure class="shot" data-shot="signin" data-caption="The sign-in screen"></figure>
+
+      <h4>Setting up a new edition</h4>
+      <ol class="steps">
+        <li><b>Create the event</b> in Admin › Events. It starts as a Draft, visible to admins only.</li>
+        <li><b>Add its pass types</b> and give each a category.</li>
+        <li><b>Check the ticket email wording.</b> Under <b>Ticket email</b>, set the <b>Subject</b> and <b>Intro paragraph</b> buyers will see, or leave them empty to use a default built from the event's name.</li>
+        <li><b>Build the tents</b> for each tent pass type in Accommodation › Setup.</li>
+        <li><b>Set it to Active.</b> Team Leads and volunteers can now select it and start work.</li>
+        <li>After the festival, <b>archive</b> it. Everything is kept, and it disappears from day-to-day lists.</li>
+      </ol>
+      <figure class="shot" data-shot="events" data-caption="Admin › Events: every edition with its status"></figure>
+      <figure class="shot" data-shot="event-detail" data-caption="Editing an event, including the wording of its ticket email"></figure>
+      <div class="callout warn"><strong>Real bookings are protected</strong><p>An event or pass type that already has bookings or tents can't be deleted. Archiving is the safe way to retire it.</p></div>
+
+      <h3 id="email-report">Email Report <span class="badge muted">Admins</span></h3>
+      <p><b>Admin › Email Report</b> lists every email the platform has sent, in the same layout as Bookings. Summary cards show <b>Sent</b>, <b>Delivered</b>, <b>Bounced</b>, <b>Failed</b> and <b>Opened (approx.)</b>. Staff can search, and filter by type, send status, delivery, event, sender and date range. Selecting an email shows its full details, how its delivery progressed and, for custom emails, the message as written. <b>Export</b> downloads the filtered list as an Excel file.</p>
+      <figure class="shot" data-shot="email-report" data-caption="Admin › Email Report: summary cards, filters and every email sent"></figure>
+      <figure class="shot" data-shot="email-report-panel" data-caption="Selecting an email shows its details, delivery and, for a custom email, the message"></figure>
+    </section>
+
+    <!-- ================= 8. MY PROFILE ================= -->
+    <section class="chapter" id="profile" data-toc="My Profile" data-no="8">
+      <div class="chapter-head"><span class="chapter-no">8</span><h2>My Profile</h2></div>
+      <p class="lead">My Profile shows each person exactly what they can access, and is where they manage their own photo. It opens from their name at the bottom of the sidebar.</p>
+      <p>It shows your photo, which you can add, change or remove. It also shows your role, departments, a colour-coded table of your access in each department, and your own attendance since your date of joining.</p>
       <figure class="shot" data-shot="profile" data-caption="My Profile: photo, role, access per department and own attendance"></figure>
-      <p>Confirmations for deletes, vacates and overwrites appear as branded in-app dialogs. The sidebar footer always shows the current version.</p>
+
+      <h3>Profile photos</h3>
+      <p>People can add a photo from <b>My Profile</b>, either by uploading one from their device or by taking one with the camera, then dragging and zooming to frame a round crop. Admins can set or remove anyone's photo from the Users panel. The photo appears in the Users page, the sidebar, My Profile, Departments and My Department. People without a photo show their initial. Photos are saved as small thumbnails, so pages stay fast on festival-site connections.</p>
     </section>
 
     <!-- ================= 9. STRENGTHS ================= -->
@@ -486,7 +523,7 @@
         <div class="card strength reveal"><div class="ic">🔁</div><div><h4>Ready for every edition</h4><p>Events and pass types are configured, not hard-coded. A new festival year needs setup, not development.</p></div></div>
         <div class="card strength reveal"><div class="ic">✅</div><div><h4>Tested and staged releases</h4><p>Hundreds of automated checks run before every release. Each release is tried in a test environment before wider use.</p></div></div>
         <div class="card strength reveal"><div class="ic">🔗</div><div><h4>Fits existing sales channels</h4><p>Bookings sold elsewhere come in through Bulk Upload. Export gives a re-importable backup at any time.</p></div></div>
-        <div class="card strength reveal"><div class="ic">🧭</div><div><h4>Honest records</h4><p>Attendance by slot, admissions per person, and tents linked to the right festival pass. The numbers can be trusted.</p></div></div>
+        <div class="card strength reveal"><div class="ic">🧭</div><div><h4>Honest records</h4><p>Attendance by slot, admissions per person, tents linked to the right festival pass, and a record of every email sent and whether it arrived. The numbers can be trusted.</p></div></div>
       </div>
     </section>
 
@@ -504,6 +541,17 @@
       <p class="lead">What's been delivered, what's being built now, what's planned next, and ideas worth exploring. Priorities (P1–P3) are set by the festival team and can change.</p>
       <div class="filters no-print" id="rmFilters"></div>
       <div class="timeline" id="timeline"></div>
+      <details class="more"><summary>What is an "installable app"?</summary><div class="body">
+        <p>Today BiG opens in a web browser. An installable app (sometimes called a progressive web app) is the same platform, set up so a phone, tablet or computer can keep it like a regular app. Here is how it could work for festival staff.</p>
+        <ul>
+          <li><b>Add to home screen:</b> staff would add BiG to their phone's home screen, or their computer's app list, in a couple of taps. No app store and no separate download.</li>
+          <li><b>Opens like an app:</b> it would launch from its own icon, full screen, without the browser's address bar and tabs.</li>
+          <li><b>When the connection drops:</b> instead of a blank browser error, it could still open and show a clear message, and perhaps keep recently viewed information on screen. Exactly what would work without a connection hasn't been decided.</li>
+          <li><b>Stays up to date:</b> as with the website today, everyone could get each new release without installing anything by hand.</li>
+        </ul>
+        <p><b>Why it could help:</b> gate and floor staff would reach BiG faster on festival day, have more of the screen to work with, and cope better with patchy signal on site.</p>
+        <p>The scope hasn't been discussed yet. Everything above describes possibilities, not commitments.</p>
+      </div></details>
       <div class="callout note"><strong>Ideas are not commitments</strong><p>Items marked <span class="badge idea">Idea</span> are possibilities the platform's design makes easy. None has been scoped or scheduled.</p></div>
     </section>
 

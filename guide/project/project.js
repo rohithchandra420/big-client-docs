@@ -28,9 +28,9 @@
   };
   var SC = {
     qr: [
-      { n: "n-arrive", e: [], t: "Attendee arrives", x: "Asha arrives at the gate with the QR code from her booking. She bought two festival passes and a two-person tent.", s: '<div class="row"><span>Asha Menon</span><span class="badge info">Has QR code</span></div>' },
+      { n: "n-arrive", e: [], t: "Attendee arrives", x: "Asha arrives at the gate with the QR code from her ticket email. She bought two festival passes and a two-person tent.", s: '<div class="row"><span>Asha Menon</span><span class="badge info">Has QR code</span></div>' },
       { n: "n-decide", e: ["e-arrive"], t: "Is there a booking?", x: "Yes, she booked in advance, so staff use the fast route.", s: "" },
-      { n: "n-scan", e: ["e-scan"], t: "Scan the QR code", x: "Staff scan it on the Registration page. The booking opens immediately, with no typing and no spelling mistakes.", s: '<div class="row"><span>Scanning…</span><span class="badge ok">Match</span></div>' },
+      { n: "n-scan", e: ["e-scan"], t: "Scan the QR code", x: "Staff scan it on the Registration page. The platform confirms the code is genuine and the booking opens immediately, with no typing and no spelling mistakes.", s: '<div class="row"><span>Scanning…</span><span class="badge ok">Match</span></div>' },
       { n: "n-found", e: ["e-scan-found"], t: "Booking Found", x: "Everyone on the booking is listed, with what's done and what's outstanding.", s: bookingScreen({}) },
       { n: "n-details", e: ["e-found-details"], t: "Complete missing details", x: "Her friend Rahul's details were never filled in. Staff complete them on the Counter Form while he's at the desk.", s: bookingScreen({ rn: "Rahul Verma", b: '<span class="badge muted">Not admitted</span>' }) },
       { n: "n-checkin", e: ["e-details-checkin"], t: "Check In", x: "Staff verify ID and give wristbands in person, then tap Check In for each person. The gate numbers update live.", s: bookingScreen({ rn: "Rahul Verma", a: '<span class="badge ok">Admitted</span>', b: '<span class="badge ok">Admitted</span>' }) },
@@ -268,10 +268,10 @@
 
   /* ---------- Data model diagram (Chapter 1) ---------- */
   var DM = {
-    event: { t: "Event", ch: "events", ch_t: "Events and pass types",
+    event: { t: "Event", ch: "events", ch_t: "Admin › Events and pass types",
       x: "One festival edition, with a name, dates and a status. Draft is visible to admins only. Active is live for everyone with access. Archived is kept for the record. Everything sold and built belongs to an event.",
       r: "Offers pass types · receives bookings · has tent units" },
-    passtype: { t: "Pass Type", ch: "events", ch_t: "Events and pass types",
+    passtype: { t: "Pass Type", ch: "events", ch_t: "Admin › Events and pass types",
       x: "A kind of pass sold for one event, such as Festival Pass or Two-Person Tent. Its category (Festival, Tent or Add-on) decides how the platform treats it. Tent types get a short code that numbers their units.",
       r: "Belongs to one event · every pass is one of these · tent types have tent units" },
     tent: { t: "Tent unit", ch: "accommodation", ch_t: "Accommodation",
@@ -289,13 +289,13 @@
     role: { t: "Role", ch: "people-access", ch_t: "People, roles and access",
       x: "Each user has one role: Developer, Director, Admin, Team Lead or Volunteer. The role sets the baseline of what they can see and do.",
       r: "Every user has one" },
-    user: { t: "User", ch: "users-departments", ch_t: "Users and departments",
+    user: { t: "User", ch: "users", ch_t: "Admin › Users",
       x: "A person who signs in, with a role, a home department, a date of joining, access grants and an optional photo. Removing someone with history deactivates them instead, so their records stay intact.",
       r: "Has a role · belongs to a department · is given access grants · has attendance records" },
     grant: { t: "Access grant", ch: "people-access", ch_t: "People, roles and access",
       x: "Read, Write or Manage access to one department, on top of the user's home department. Each tier includes the ones below. Team Leads have Manage in their own department automatically.",
       r: "Given to a user · a tier in one department" },
-    department: { t: "Department", ch: "users-departments", ch_t: "Users and departments",
+    department: { t: "Department", ch: "departments", ch_t: "Admin › Departments",
       x: "A festival team, such as Box Office or Operations, shared across all events. Team Leads and volunteers belong to it. Attendance is credited to it, and access grants point to it.",
       r: "Has members · receives attendance · access grants point to it" },
     attendance: { t: "Attendance", ch: "my-department", ch_t: "My Department and attendance",
