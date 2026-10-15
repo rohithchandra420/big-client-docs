@@ -6,7 +6,7 @@
 window.GUIDE = {
   meta: {
     title: "BiG Platform — Product Guide",
-    lastUpdated: "2026-10-14",
+    lastUpdated: "2026-10-15",
     defaultRole: "TL",
     lastUpdatedThrough: { ui: "1.15.0", api: "1.11.0" }
   },
@@ -168,7 +168,7 @@ window.GUIDE = {
     { title: "Allocate a tent from Inventory", status: "planned", when: "After team confirmation", priority: "P3",
       text: "Start from a tent, search for a participant holding the matching tent pass, and see the status of both their tent pass and festival pass." },
     { title: "Installable app", status: "planned", when: "Later", priority: "P3",
-      text: "Install BiG on a phone, tablet or computer and open it like a regular app. Scope not decided yet; see \"What is an installable app?\" below." },
+      text: "Add BiG to any phone or computer from the browser and open it like an app. It starts quickly, copes with patchy signal and sends notifications. Plan agreed; see chapter 12." },
     { title: "Audit logs", status: "planned", when: "Version 2",
       text: "A browsable history of who changed what and when, across the platform." },
     { title: "Reporting", status: "planned", when: "Version 2",
@@ -244,6 +244,7 @@ window.GUIDE = {
     ["Event", "One festival edition. Has a status: Draft, Active or Archived."],
     ["Festival Pass", "A pass category giving admission to the festival."],
     ["Home department", "The department a user belongs to, as opposed to departments they've only been given access to."],
+    ["Installable app", "BiG added to a phone's home screen or a computer's app list, so it opens like a regular app. Planned; see chapter 12."],
     ["Inventory", "The list of physical tent units for the active event, with occupancy."],
     ["Pass type", "A kind of pass sold for an event, e.g. a festival pass or a two-person tent. Each belongs to a category: Festival, Tent or Add-on."],
     ["Slot", "A part of the day for attendance: Morning, Afternoon or Night."],
@@ -257,6 +258,7 @@ window.GUIDE = {
 
   /* Appendix D — document history (newest first) */
   docHistory: [
+    { date: "2026-10-15", through: "Frontend 1.15.0 · Backend 1.11.0", text: "Added chapter 12 on the planned installable app: what changes for staff, notifications, what works without signal, and a comparison with app-store apps." },
     { date: "2026-10-14", through: "Frontend 1.15.0 · Backend 1.11.0", text: "Reorganised the chapters to follow the app's sidebar. Added ticket and custom emails, per-event email wording, the Email Report and the gate's code check. Booking emails moved to Shipped. Added one newly planned item, the installable app, with an explanation of what it means." },
     { date: "2026-10-10", through: "Frontend 1.14.0 · Backend 1.10.0", text: "Moved into the client documents site, replacing the old User Manual. Added an interactive diagram of how all the platform's records connect." },
     { date: "2026-10-10", through: "Frontend 1.14.0 · Backend 1.10.0", text: "Added the redesigned Users page, removing and reactivating users, and profile photos. Users page revamp moved to Shipped." },

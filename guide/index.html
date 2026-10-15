@@ -541,18 +541,122 @@
       <p class="lead">What's been delivered, what's being built now, what's planned next, and ideas worth exploring. Priorities (P1–P3) are set by the festival team and can change.</p>
       <div class="filters no-print" id="rmFilters"></div>
       <div class="timeline" id="timeline"></div>
-      <details class="more"><summary>What is an "installable app"?</summary><div class="body">
-        <p>Today BiG opens in a web browser. An installable app (sometimes called a progressive web app) is the same platform, set up so a phone, tablet or computer can keep it like a regular app. Here is how it could work for festival staff.</p>
-        <ul>
-          <li><b>Add to home screen:</b> staff would add BiG to their phone's home screen, or their computer's app list, in a couple of taps. No app store and no separate download.</li>
-          <li><b>Opens like an app:</b> it would launch from its own icon, full screen, without the browser's address bar and tabs.</li>
-          <li><b>When the connection drops:</b> instead of a blank browser error, it could still open and show a clear message, and perhaps keep recently viewed information on screen. Exactly what would work without a connection hasn't been decided.</li>
-          <li><b>Stays up to date:</b> as with the website today, everyone could get each new release without installing anything by hand.</li>
-        </ul>
-        <p><b>Why it could help:</b> gate and floor staff would reach BiG faster on festival day, have more of the screen to work with, and cope better with patchy signal on site.</p>
-        <p>The scope hasn't been discussed yet. Everything above describes possibilities, not commitments.</p>
-      </div></details>
+      <p>The installable app now has its own chapter: <a href="#installable-app">Coming next: BiG as an installable app</a>.</p>
       <div class="callout note"><strong>Ideas are not commitments</strong><p>Items marked <span class="badge idea">Idea</span> are possibilities the platform's design makes easy. None has been scoped or scheduled.</p></div>
+    </section>
+
+    <!-- ================= 12. INSTALLABLE APP ================= -->
+    <section class="chapter" id="installable-app" data-toc="Coming next: the installable app" data-no="12">
+      <div class="chapter-head"><span class="chapter-no">12</span><h2>Coming next: BiG as an installable app</h2></div>
+      <p class="lead">BiG will become an app that staff keep on their phone's home screen: quicker to open, steadier on weak signal, and able to send notifications.</p>
+      <div class="callout note"><strong>Planned, not built yet</strong><p>This chapter describes the plan agreed with the festival team. Details may change as it's built and tested.</p></div>
+
+      <h3>What changes for staff</h3>
+      <div class="grid c2">
+        <div class="card strength reveal"><div class="ic">📲</div><div><h4>On your home screen</h4><p>Add BiG from the browser in a few taps. No app store, no download, no new account. It works on Android phones, iPhones and computers.</p></div></div>
+        <div class="card strength reveal"><div class="ic">🖥</div><div><h4>Opens like an app</h4><p>BiG gets its own icon and opens full screen, without the address bar and tabs. That leaves more room for the gate and attendance screens.</p></div></div>
+        <div class="card strength reveal"><div class="ic">⚡</div><div><h4>Quick to start</h4><p>The app itself is kept on the phone, so it opens quickly even when the signal is weak.</p></div></div>
+        <div class="card strength reveal"><div class="ic">📶</div><div><h4>Copes with patchy signal</h4><p>No more endless spinners. BiG shows when the connection is slow or gone, and the most useful screens keep working. See <a href="#offline-rules">When the signal drops</a>.</p></div></div>
+        <div class="card strength reveal"><div class="ic">🔔</div><div><h4>Notifications</h4><p>Important messages reach staff's phones even when BiG is closed. See <a href="#notifications">Notifications</a>.</p></div></div>
+        <div class="card strength reveal"><div class="ic">🔄</div><div><h4>Always up to date</h4><p>New releases arrive by themselves. A short <b>New version available</b> message lets people reload when it suits them.</p></div></div>
+      </div>
+
+      <h3 id="offline-rules">When the signal drops</h3>
+      <p>Festival grounds, and sometimes even Box Office Wi-Fi, lose signal. Every part of BiG follows one of four clear rules, so staff always know what will work.</p>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Without signal…</th><th>Applies to</th></tr></thead>
+        <tbody>
+          <tr><td>✅ <b>Opens and works normally</b></td><td>Opening the app, menus and moving between pages</td></tr>
+          <tr><td>👁 <b>Shows the last saved copy</b>, labelled with its time (e.g. "As of 10:42")</td><td>Dashboard · My Profile · My Department roster and history · Bookings list · finding a booking at the gate</td></tr>
+          <tr><td>💾 <b>Saved on the phone, sent automatically when back online</b></td><td>Marking volunteer attendance</td></tr>
+          <tr><td>🌐 <b>Waits for a connection</b></td><td>Signing in · Check In · Spot Registration · tent allocation · editing details · Bulk Upload · sending emails · admin pages</td></tr>
+        </tbody>
+      </table></div>
+      <div class="callout warn"><strong>Why Check In needs a connection</strong><p>Two gates without signal could each admit the same ticket. Once someone is inside the venue, that can't be undone. So Check In always checks the latest record first. People already signed in stay signed in while offline.</p></div>
+      <ul>
+        <li><b>Booking details kept on phones:</b> only on Box Office staff's phones, for finding bookings offline. They're removed when the person signs out, and three days after the event ends.</li>
+        <li><b>Hospitality:</b> the planned mess-hall scanning will be designed to work without signal from the start.</li>
+      </ul>
+
+      <h3>Why an installable app, not app-store apps</h3>
+      <p>The alternative would be separate Android and iPhone apps from the app stores. This is how they compare.</p>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Area</th><th>Installable app <span class="badge info">BiG's choice</span></th><th>Android app</th><th>iPhone app</th></tr></thead>
+        <tbody>
+          <tr><td>Building and upkeep</td><td>✅ One app for every device</td><td>❌ A separate app</td><td>❌ Another separate app</td></tr>
+          <tr><td>Cost</td><td>✅ No extra fees</td><td>⚠️ One-time store fee (US$25)</td><td>❌ Yearly developer fee (US$99)</td></tr>
+          <tr><td>Getting it</td><td>✅ Open the link → Add to Home Screen</td><td>⚠️ Play Store</td><td>❌ App Store only</td></tr>
+          <tr><td>Updates</td><td>✅ Everyone gets them on next open</td><td>⚠️ Store review; each person updates</td><td>❌ Store review, often 1–3 days; each person updates</td></tr>
+          <tr><td>Laptops and desktops</td><td>✅ The same app</td><td>❌ Phones only</td><td>❌ Phones only</td></tr>
+          <tr><td>Without signal</td><td>✅ Opens, shows recent information, saves some actions for later</td><td>✅ Full</td><td>✅ Full</td></tr>
+          <tr><td>Notifications</td><td>✅ Android · ⚠️ iPhone once added to the Home Screen</td><td>✅</td><td>✅</td></tr>
+          <tr><td>Camera and QR scanning</td><td>✅ Works, slightly slower to start</td><td>✅ Fastest</td><td>✅ Fastest</td></tr>
+          <tr><td>Vibration</td><td>⚠️ Android only</td><td>✅</td><td>✅</td></tr>
+          <tr><td>Working while closed</td><td>⚠️ Limited</td><td>✅</td><td>✅</td></tr>
+          <tr><td>Special hardware (NFC wristbands, Bluetooth printers)</td><td>⚠️ Limited</td><td>✅</td><td>✅</td></tr>
+          <tr><td>Information saved on the phone</td><td>⚠️ The phone may clear it when storage is very low</td><td>✅ Reliable</td><td>✅ Reliable</td></tr>
+          <tr><td>Signing in</td><td>✅ Same as today</td><td>⚠️ Needs a new sign-in setup</td><td>⚠️ Needs a new sign-in setup</td></tr>
+          <tr><td>Look and feel</td><td>✅ Smooth for forms, lists and scanning</td><td>✅ Smoothest</td><td>✅ Smoothest</td></tr>
+          <tr><td>Store listing</td><td>— None (not needed)</td><td>✅</td><td>✅</td></tr>
+          <tr><td>Time to a first version</td><td>✅ Weeks</td><td>❌ Months</td><td>❌ Months</td></tr>
+        </tbody>
+      </table></div>
+      <div class="callout tip"><strong>Why the installable app</strong><p>Staff use a mix of Android phones and iPhones, and admin work happens on laptops. One app covers all of them, with no store fees or review delays, so improvements reach everyone the same day. If a hardware feature ever becomes essential, the same app can later be packaged for the stores without starting over.</p></div>
+
+      <h3>How it will arrive</h3>
+      <ol class="steps">
+        <li><b>The installable app:</b> home-screen icon, full-screen view, quick start, a clear offline screen and the <b>New version available</b> message.</li>
+        <li><b>Notifications:</b> announcements, "email sending finished", and notification settings in My Profile.</li>
+        <li><b>Working without signal:</b> the rules in <a href="#offline-rules">When the signal drops</a>.</li>
+      </ol>
+      <p><b>Later:</b> meal calls and attendance reminders arrive with the Hospitality page. If outages turn out to be frequent, one chosen <b>backup gate phone</b> could keep admitting people during an outage, with safeguards against double entry. That will be decided after the first festival with the app.</p>
+      <p><span class="badge idea">Idea</span> Timed notifications, such as a reminder before a shift starts.</p>
+
+      <h3 id="notifications">Notifications that know what's happening</h3>
+      <p>BiG isn't trying to replace the team's WhatsApp groups. Its notifications do what a chat group can't: BiG knows what's happening on the platform, so it tells exactly the right people at the right moment, without anyone typing a message.</p>
+
+      <div class="notif-showcase">
+        <div class="phone-mock" aria-label="Sample notifications on a phone's lock screen">
+          <div class="pm-time">12:58</div>
+          <div class="pm-date">Saturday · Festival day 2</div>
+          <div class="pm-note reveal"><span class="pm-ic">BiG</span><div><div class="pm-head"><b>Lunch is being served</b><span>now</span></div><p>The mess hall is open. Tap to see today's menu count.</p></div></div>
+          <div class="pm-note reveal" style="transition-delay:.15s"><span class="pm-ic">BiG</span><div><div class="pm-head"><b>3 people not marked yet</b><span>now</span></div><p>Operations · Afternoon slot. Tap to mark attendance.</p></div></div>
+          <div class="pm-note reveal" style="transition-delay:.3s"><span class="pm-ic">BiG</span><div><div class="pm-head"><b>Ticket emails sent</b><span>4m ago</span></div><p>248 of 250 sent. 2 need attention.</p></div></div>
+          <div class="pm-note reveal" style="transition-delay:.45s"><span class="pm-ic">BiG</span><div><div class="pm-head"><b>Announcement</b><span>12m ago</span></div><p>Gate B closes at 11 pm tonight. Please direct arrivals to Gate A.</p></div></div>
+          <div class="pm-sample">Sample notifications</div>
+        </div>
+        <div class="grid c2 notif-why">
+          <div class="card strength reveal"><div class="ic">🎯</div><div><h4>Only the right people</h4><p>BiG knows everyone's role and department. An attendance reminder reaches the three Team Leads with gaps, not a 200-person group.</p></div></div>
+          <div class="card strength reveal"><div class="ic">⚙️</div><div><h4>Nobody has to type it</h4><p>When a meal opens or emails finish sending, the notification goes out by itself.</p></div></div>
+          <div class="card strength reveal"><div class="ic">👆</div><div><h4>One tap to act</h4><p>Tapping a notification opens the exact page: the attendance sheet, the meal count, the email results.</p></div></div>
+          <div class="card strength reveal"><div class="ic">🔕</div><div><h4>No noise</h4><p>Everything is on to start with. Anyone can mute the types they don't need in <b>My Profile</b>.</p></div></div>
+          <div class="card strength reveal"><div class="ic">📇</div><div><h4>No numbers shared</h4><p>No one needs to swap phone numbers or be added to a group. Everyone signed in to BiG can receive them.</p></div></div>
+          <div class="card strength reveal"><div class="ic">🤫</div><div><h4>Discreet</h4><p>Notifications can show on a locked screen, so they never include personal details.</p></div></div>
+        </div>
+      </div>
+
+      <h4>Each for what it does best</h4>
+      <div class="table-wrap"><table>
+        <thead><tr><th></th><th>Team chat groups</th><th>BiG notifications</th></tr></thead>
+        <tbody>
+          <tr><td>Best for</td><td>Conversations, quick questions, photos and voice notes</td><td>Official updates and reminders tied to what's happening in BiG</td></tr>
+          <tr><td>Who gets it</td><td>Everyone in the group</td><td>Exactly the people it concerns</td></tr>
+          <tr><td>Who sends it</td><td>A person, every time</td><td>BiG itself, or an admin for announcements</td></tr>
+          <tr><td>What happens next</td><td>Find the right page yourself</td><td>One tap opens the right page</td></tr>
+        </tbody>
+      </table></div>
+
+      <h4>The notifications planned</h4>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Notification</th><th>Who receives it</th><th>What sends it</th><th>Arrives with</th></tr></thead>
+        <tbody>
+          <tr><td>📣 <b>Announcements</b></td><td>Festival staff</td><td>Directors, Admins or the platform team write one and send it</td><td>Notifications</td></tr>
+          <tr><td>✉ <b>Email sending finished</b></td><td>The admin who sent the emails</td><td>The last email in the send is done</td><td>Notifications</td></tr>
+          <tr><td>🍽 <b>Meal call</b></td><td>Festival staff</td><td>The mess team opens a meal</td><td>The Hospitality page</td></tr>
+          <tr><td>🧑‍🤝‍🧑 <b>Attendance not marked yet</b></td><td>Team Leads whose department still has people unmarked</td><td>The mess team taps <b>Remind TLs</b>, or a meal is opened</td><td>The Hospitality page</td></tr>
+        </tbody>
+      </table></div>
+      <div class="callout tip"><strong>On iPhone</strong><p>Notifications work once BiG has been added to the Home Screen and the person has allowed them. BiG will show a short guide for this the first time.</p></div>
     </section>
 
     <!-- ================= APPENDICES ================= -->

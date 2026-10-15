@@ -130,3 +130,21 @@
 .att-cell.on { background: var(--ok-tint); border-color: var(--ok); color: var(--ok); font-weight: 800; }
 .att-cell.other { background: var(--warn-tint); border-color: var(--warn); color: var(--warn); font-size: 11px; font-weight: 700; }
 
+
+/* Chapter 12 — sample notifications on a phone lock screen */
+.notif-showcase { display: grid; grid-template-columns: 300px minmax(0, 1fr); gap: 22px; align-items: start; margin: 18px 0 8px; }
+.phone-mock { background: linear-gradient(160deg, #2f6b55 0%, #1E4638 45%, #0f2a21 100%); border: 8px solid #111; border-radius: 34px; padding: 22px 12px 16px; box-shadow: var(--shadow); color: #fff; }
+.pm-time { text-align: center; font-size: 46px; font-weight: 300; line-height: 1; color: #fff; }
+.pm-date { text-align: center; font-size: 13px; color: rgba(255,255,255,.8); margin: 6px 0 16px; }
+.pm-note { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 10px; background: rgba(255,255,255,.92); color: #1a1a1a; border-radius: 16px; padding: 10px 12px; margin-bottom: 8px; }
+.pm-ic { width: 34px; height: 34px; border-radius: 9px; background: #1E4638; color: #fff; display: grid; place-items: center; font-size: 11px; font-weight: 800; letter-spacing: .3px; }
+.pm-head { display: flex; justify-content: space-between; gap: 8px; font-size: 13px; color: #1a1a1a; }
+.pm-head b { color: #1a1a1a; }
+.pm-head span { color: #666; font-size: 12px; white-space: nowrap; }
+.pm-note p { margin: 2px 0 0; font-size: 13px; line-height: 1.35; color: #333; }
+.pm-sample { text-align: center; font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: rgba(255,255,255,.7); margin-top: 10px; }
+.notif-why { margin: 0; }
+@media (max-width: 900px) {
+  .notif-showcase { grid-template-columns: 1fr; }
+  .phone-mock { max-width: 320px; width: 100%; margin: 0 auto; }
+}
