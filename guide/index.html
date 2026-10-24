@@ -290,7 +290,7 @@
           <g class="flow-node" id="n-spot"><rect x="340" y="200" width="150" height="40" rx="9"/><text x="415" y="224" text-anchor="middle">Spot Registration</text></g>
           <g class="flow-node" id="n-found"><rect x="550" y="120" width="170" height="40" rx="9"/><text x="635" y="144" text-anchor="middle">Booking Found</text></g>
           <g class="flow-node" id="n-details"><rect x="560" y="290" width="160" height="40" rx="9"/><text x="640" y="314" text-anchor="middle">Complete details</text></g>
-          <g class="flow-node" id="n-checkin"><rect x="380" y="290" width="140" height="40" rx="9"/><text x="450" y="314" text-anchor="middle">Check In</text></g>
+          <g class="flow-node" id="n-checkin"><rect x="380" y="290" width="140" height="40" rx="9"/><text x="450" y="314" text-anchor="middle">Admit</text></g>
           <g class="flow-node" id="n-tent"><rect x="200" y="290" width="140" height="40" rx="9"/><text x="270" y="314" text-anchor="middle">Allocate Tent</text></g>
           <g class="flow-node" id="n-done"><rect x="20" y="290" width="140" height="40" rx="9"/><text x="90" y="314" text-anchor="middle">Admitted ✓</text></g>
           <text class="flow-label" x="314" y="50">yes</text>
@@ -367,14 +367,34 @@
       <p>Each booking's <b>Ticket Email</b> status reads <b>Not sent</b>, <b>Sending…</b>, <b>Sent</b>, <b>Bounced</b>, <b>Failed</b> or <b>No email</b>. Hover a failed or bounced status to see why. A bounced booking is picked up again the next time you send to those not sent yet. The <b>Email history</b> on each booking shows every email it has received and whether it was delivered. Every email sent is also listed in <a href="#email-report">Admin › Email Report</a>.</p>
 
       <h3>Registration: the gate</h3>
-      <p>The Registration page opens with live numbers: <b>Checked In</b>, <b>Pending Admits</b>, <b>Incomplete Details</b> and <b>Spot Registrations</b>. Staff find a booking by scanning the QR code from its ticket email or by searching by name, phone, email or order number. Every scanned code is checked first: one that has been altered or made up is rejected with a message, and the scanner keeps running. Either way staff land on <b>Booking Found</b>, which lists every attendee on the booking and offers the same email buttons and history as the detail panel.</p>
+      <p>The Registration page opens with live numbers: <b>Admitted</b>, <b>Pending Admits</b>, <b>Incomplete Details</b> and <b>Spot Registrations</b>. Staff find a booking by scanning the QR code from its ticket email or by searching by name, phone, email or order number. Every scanned code is checked first: one that has been altered or made up is rejected with a message, and the scanner keeps running. Either way staff land on <b>Booking Found</b>, which lists every attendee on the booking and offers the same email buttons and history as the detail panel.</p>
+      <div class="callout note"><strong>Admit, not Check In</strong><p>At the gate the step is called <b>Admit</b>. "Check In" is kept for a planned online step, where each participant fills in their forms before arriving through a secure one-time link.</p></div>
 
       <figure class="shot" data-shot="registration" data-caption="Registration: live gate numbers, search, QR scan and Spot Registration"></figure>
-      <figure class="shot" data-shot="booking-found" data-caption="Booking Found: everyone on the booking, ready to check in"></figure>
+      <figure class="shot" data-shot="booking-found" data-caption="Booking Found: everyone on the booking, ready to admit"></figure>
       <h3 id="attendee-demo">Attendee actions <span class="sample-tag">Demo</span></h3>
       <p>The same actions are available on Booking Found and in the Bookings detail panel. Try them on this sample booking.</p>
       <div id="attendeeDemo"></div>
       <div class="log" id="attendeeLog" aria-live="polite"></div>
+
+      <h3 id="link-band">Link Band <span class="badge info">In development</span></h3>
+      <div class="callout warn"><strong>Not complete: in progress</strong><p>Band Linking is still being built. Today <b>Link Band</b> is a demo: it scans the wrist band and shows what was read, but nothing is saved to the pass yet. Saving starts once the band ID format is decided.</p></div>
+      <p><b>Link Band</b> appears on Festival Pass rows on Booking Found and in the Bookings detail panel, next to <b>Admit</b>. It shows once the attendee's details are complete, both before and after admission, because a band may be handed out later.</p>
+      <ol class="steps">
+        <li><b>Tap Link Band</b> on the attendee's Festival Pass. The scanner opens as <b>Link Wrist Band</b>, with the attendee's name.</li>
+        <li><b>Scan the wrist band.</b> The camera stops after the first read.</li>
+        <li><b>Check what was read.</b> Tap <b>Scan again</b> to retry, or <b>Done</b> to close.</li>
+      </ol>
+      <h4>What comes next</h4>
+      <ul>
+        <li><b>Next:</b> decide the band ID format, then save each band against its Festival Pass. Participants don't have profiles yet, so the band attaches to their ticket for now.</li>
+        <li><b>Later:</b> once the Workshop pages exist, staff scan the band at each workshop venue to mark workshop attendance.</li>
+      </ul>
+      <h4>Where band scanning is used</h4>
+      <ul>
+        <li><b>Today:</b> Box Office, through Link Band (demo).</li>
+        <li><b>Planned:</b> Workshops, for attendance at each session.</li>
+      </ul>
 
       <details class="more"><summary>How tent allocation keeps things right</summary><div class="body">
         <ul>
@@ -386,7 +406,7 @@
       </div></details>
 
       <h3>Spot Registration</h3>
-      <p>For walk-ups with no booking, staff create one on the spot. They choose items from the active event's pass types, enter the buyer's details, and the platform assigns an order number automatically. With <b>Email ticket to buyer</b> ticked (the default, for staff who can send ticket emails), the buyer gets their ticket email straight away. The new booking goes straight to Booking Found and is checked in like any other. Spot registrations are counted separately, so walk-up demand is visible at a glance.</p>
+      <p>For walk-ups with no booking, staff create one on the spot. They choose items from the active event's pass types, enter the buyer's details, and the platform assigns an order number automatically. With <b>Email ticket to buyer</b> ticked (the default, for staff who can send ticket emails), the buyer gets their ticket email straight away. The new booking goes straight to Booking Found and is admitted like any other. Spot registrations are counted separately, so walk-up demand is visible at a glance.</p>
     </section>
 
     <!-- ================= 6. ACCOMMODATION ================= -->
@@ -549,7 +569,7 @@
     <section class="chapter" id="installable-app" data-toc="Coming next: the installable app" data-no="12">
       <div class="chapter-head"><span class="chapter-no">12</span><h2>Coming next: BiG as an installable app</h2></div>
       <p class="lead">BiG will become an app that staff keep on their phone's home screen: quicker to open, steadier on weak signal, and able to send notifications.</p>
-      <div class="callout note"><strong>Planned, not built yet</strong><p>This chapter describes the plan agreed with the festival team. Details may change as it's built and tested.</p></div>
+      <div class="callout note"><strong>In development</strong><p>Work has started. The first steps, preparing sign-in for the installed app and then the home-screen app itself, are underway. This chapter describes the plan agreed with the festival team; details may change as it's built and tested.</p></div>
 
       <h3>What changes for staff</h3>
       <div class="grid c2">
@@ -569,10 +589,10 @@
           <tr><td>✅ <b>Opens and works normally</b></td><td>Opening the app, menus and moving between pages</td></tr>
           <tr><td>👁 <b>Shows the last saved copy</b>, labelled with its time (e.g. "As of 10:42")</td><td>Dashboard · My Profile · My Department roster and history · Bookings list · finding a booking at the gate</td></tr>
           <tr><td>💾 <b>Saved on the phone, sent automatically when back online</b></td><td>Marking volunteer attendance</td></tr>
-          <tr><td>🌐 <b>Waits for a connection</b></td><td>Signing in · Check In · Spot Registration · tent allocation · editing details · Bulk Upload · sending emails · admin pages</td></tr>
+          <tr><td>🌐 <b>Waits for a connection</b></td><td>Signing in · Admit · Spot Registration · tent allocation · editing details · Bulk Upload · sending emails · admin pages</td></tr>
         </tbody>
       </table></div>
-      <div class="callout warn"><strong>Why Check In needs a connection</strong><p>Two gates without signal could each admit the same ticket. Once someone is inside the venue, that can't be undone. So Check In always checks the latest record first. People already signed in stay signed in while offline.</p></div>
+      <div class="callout warn"><strong>Why Admit needs a connection</strong><p>Two gates without signal could each admit the same ticket. Once someone is inside the venue, that can't be undone. So Admit always checks the latest record first. People already signed in stay signed in while offline.</p></div>
       <ul>
         <li><b>Booking details kept on phones:</b> only on Box Office staff's phones, for finding bookings offline. They're removed when the person signs out, and three days after the event ends.</li>
         <li><b>Hospitality:</b> the planned mess-hall scanning will be designed to work without signal from the start.</li>

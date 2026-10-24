@@ -33,9 +33,9 @@
       { n: "n-scan", e: ["e-scan"], t: "Scan the QR code", x: "Staff scan it on the Registration page. The platform confirms the code is genuine and the booking opens immediately, with no typing and no spelling mistakes.", s: '<div class="row"><span>Scanning…</span><span class="badge ok">Match</span></div>' },
       { n: "n-found", e: ["e-scan-found"], t: "Booking Found", x: "Everyone on the booking is listed, with what's done and what's outstanding.", s: bookingScreen({}) },
       { n: "n-details", e: ["e-found-details"], t: "Complete missing details", x: "Her friend Rahul's details were never filled in. Staff complete them on the Counter Form while he's at the desk.", s: bookingScreen({ rn: "Rahul Verma", b: '<span class="badge muted">Not admitted</span>' }) },
-      { n: "n-checkin", e: ["e-details-checkin"], t: "Check In", x: "Staff verify ID and give wristbands in person, then tap Check In for each person. The gate numbers update live.", s: bookingScreen({ rn: "Rahul Verma", a: '<span class="badge ok">Admitted</span>', b: '<span class="badge ok">Admitted</span>' }) },
+      { n: "n-checkin", e: ["e-details-checkin"], t: "Admit", x: "Staff verify ID and give wrist bands in person, then tap Admit for each person. The gate numbers update live.", s: bookingScreen({ rn: "Rahul Verma", a: '<span class="badge ok">Admitted</span>', b: '<span class="badge ok">Admitted</span>' }) },
       { n: "n-tent", e: ["e-checkin-tent"], t: "Allocate Tent", x: "The tent pass is linked to Asha, the suggested match. Only two-person tents with space are offered, and they get TW3.", s: bookingScreen({ rn: "Rahul Verma", a: '<span class="badge ok">Admitted</span>', b: '<span class="badge ok">Admitted</span>', t: '<span class="badge ok">TW3</span>' }) },
-      { n: "n-done", e: ["e-tent-done"], t: "Admitted", x: "Done in about a minute. Bookings, Inventory and the Dashboard all reflect it straight away.", s: '<div class="row"><span>Checked In</span><b>+2</b></div><div class="row"><span>Pending Admits</span><b>−2</b></div><div class="row"><span>Tent TW3</span><b>2 / 2</b></div>' }
+      { n: "n-done", e: ["e-tent-done"], t: "Admitted", x: "Done in about a minute. Bookings, Inventory and the Dashboard all reflect it straight away.", s: '<div class="row"><span>Admitted</span><b>+2</b></div><div class="row"><span>Pending Admits</span><b>−2</b></div><div class="row"><span>Tent TW3</span><b>2 / 2</b></div>' }
     ],
     search: [
       { n: "n-arrive", e: [], t: "Attendee arrives", x: "Karan booked online but can't find his QR code.", s: '<div class="row"><span>Karan Shah</span><span class="badge warn">No QR code</span></div>' },
@@ -43,8 +43,8 @@
       { n: "n-search", e: ["e-search"], t: "Search for the booking", x: "Staff search by name, phone, email or order number. Search only covers the active event, so last year's bookings never get in the way.", s: '<div class="row"><span>Search: “karan”</span><span>1 result</span></div><div class="row"><b>#1043 · Karan Shah</b><span>1 pass</span></div>' },
       { n: "n-found", e: ["e-search-found"], t: "Booking Found", x: "His booking opens with one festival pass. His details are already complete.", s: '<div class="row"><b>Booking #1043</b><span>Karan Shah</span></div><div class="row"><span>Festival Pass — Karan Shah</span><span class="badge muted">Not admitted</span></div>' },
       { n: "n-details", e: ["e-found-details"], t: "Details already complete", x: "Nothing to fill in, so this step is skipped in practice.", s: '<div class="row"><span>Details</span><span class="badge ok">Complete</span></div>' },
-      { n: "n-checkin", e: ["e-details-checkin"], t: "Check In", x: "One tap after the ID check. He has no tent pass, so there's no tent step.", s: '<div class="row"><span>Festival Pass — Karan Shah</span><span class="badge ok">Admitted</span></div>' },
-      { n: "n-done", e: ["e-checkin-tent", "e-tent-done"], t: "Admitted", x: "Karan is in. The lookup took seconds.", s: '<div class="row"><span>Checked In</span><b>+1</b></div>' }
+      { n: "n-checkin", e: ["e-details-checkin"], t: "Admit", x: "One tap after the ID check. He has no tent pass, so there's no tent step.", s: '<div class="row"><span>Festival Pass — Karan Shah</span><span class="badge ok">Admitted</span></div>' },
+      { n: "n-done", e: ["e-checkin-tent", "e-tent-done"], t: "Admitted", x: "Karan is in. The lookup took seconds.", s: '<div class="row"><span>Admitted</span><b>+1</b></div>' }
     ],
     walkup: [
       { n: "n-arrive", e: [], t: "Attendee arrives", x: "Sana turns up without a booking and wants a festival pass.", s: '<div class="row"><span>Sana Khan</span><span class="badge muted">No booking</span></div>' },
@@ -52,8 +52,8 @@
       { n: "n-spot", e: ["e-spot"], t: "Spot Registration", x: "Staff pick items from the event's pass types and enter Sana's details. The platform assigns an order number automatically.", s: '<div class="row"><span>Festival Pass</span><span>× 1</span></div><div class="row"><span>Buyer</span><span>Sana Khan</span></div><div class="row"><span>Order no.</span><b>#1046 (auto)</b></div>' },
       { n: "n-found", e: ["e-spot-found"], t: "Booking Found", x: "The new booking opens like any other and is counted as a spot registration.", s: '<div class="row"><b>Booking #1046</b><span class="badge info">Spot</span></div><div class="row"><span>Festival Pass — Sana Khan</span><span class="badge muted">Not admitted</span></div>' },
       { n: "n-details", e: ["e-found-details"], t: "Details captured", x: "Her details were entered during Spot Registration, so nothing is missing.", s: '<div class="row"><span>Details</span><span class="badge ok">Complete</span></div>' },
-      { n: "n-checkin", e: ["e-details-checkin"], t: "Check In", x: "Checked in after the ID check, like everyone else.", s: '<div class="row"><span>Festival Pass — Sana Khan</span><span class="badge ok">Admitted</span></div>' },
-      { n: "n-done", e: ["e-checkin-tent", "e-tent-done"], t: "Admitted", x: "Walk-up to admitted in one flow. Spot Registrations rises by one.", s: '<div class="row"><span>Spot Registrations</span><b>+1</b></div><div class="row"><span>Checked In</span><b>+1</b></div>' }
+      { n: "n-checkin", e: ["e-details-checkin"], t: "Admit", x: "Admitted after the ID check, like everyone else.", s: '<div class="row"><span>Festival Pass — Sana Khan</span><span class="badge ok">Admitted</span></div>' },
+      { n: "n-done", e: ["e-checkin-tent", "e-tent-done"], t: "Admitted", x: "Walk-up to admitted in one flow. Spot Registrations rises by one.", s: '<div class="row"><span>Spot Registrations</span><b>+1</b></div><div class="row"><span>Admitted</span><b>+1</b></div>' }
     ]
   };
   var sc = "qr", si = 0;
@@ -132,8 +132,11 @@
       var meta, acts;
       if (a.kind === "Festival Pass") {
         meta = '<span class="badge ok">Festival</span>' + (a.complete ? "" : '<span class="badge warn">Incomplete details</span>') + (a.admitted ? '<span class="badge ok">Admitted</span>' : '<span class="badge muted">Not admitted</span>');
-        acts = (a.admitted ? "" : '<button class="btn small primary" data-act="checkin" data-id="' + a.id + '">Check In</button>') +
-          (a.complete ? '<button class="btn small" data-act="edit" data-id="' + a.id + '">Edit</button>' : '<button class="btn small" data-act="counter" data-id="' + a.id + '">Fill at Counter</button>');
+        acts = a.complete
+          ? (a.admitted ? "" : '<button class="btn small primary" data-act="admit" data-id="' + a.id + '">Admit</button>') +
+            '<button class="btn small" data-act="band" data-id="' + a.id + '">Link Band</button>' +
+            '<button class="btn small" data-act="edit" data-id="' + a.id + '">Edit</button>'
+          : '<button class="btn small" data-act="counter" data-id="' + a.id + '">Fill at Counter</button>';
       } else {
         meta = '<span class="badge info">Tent</span>' + (a.tent ? '<span class="badge ok">' + a.tent + "</span>" : '<span class="badge muted">No tent yet</span>');
         acts = a.tent ? '<button class="btn small" data-act="vacate" data-id="' + a.id + '">Vacate</button>' : '<button class="btn small primary" data-act="allocate" data-id="' + a.id + '">Allocate Tent</button>';
@@ -147,7 +150,8 @@
     var b = e.target.closest("button[data-act]"); if (!b) return;
     var a = att.filter(function (x) { return x.id === +b.dataset.id; })[0];
     var act = b.dataset.act;
-    if (act === "checkin") { a.admitted = true; aLog.textContent = "✓ " + (a.name || "Attendee") + " checked in. Gate numbers update everywhere."; attRender(); }
+    if (act === "admit") { a.admitted = true; aLog.textContent = "✓ " + (a.name || "Attendee") + " admitted. Gate numbers update everywhere."; attRender(); }
+    if (act === "band") ask("Link Wrist Band", "Scan the wrist band for <b>" + esc(a.name) + "</b>.<br><br>Wrist band scanned: <b>SAMPLE-0042</b><br><i>Demo only — the band is not saved yet.</i>", "Done").then(function (ok) { if (ok) aLog.textContent = "Not saved: Band Linking is still in development."; });
     if (act === "counter") ask("Complete attendee details", "Sample details:<br><b>Rahul Verma</b> · Male · 98xxxxxx10 · rahul@example.com", "Save details").then(function (ok) { if (ok) { a.name = "Rahul Verma"; a.complete = true; aLog.textContent = "Details completed on the Counter Form."; attRender(); } });
     if (act === "edit") ask("Edit attendee details", "Correct a typo, phone number or email for <b>" + esc(a.name) + "</b>. The same form is used, labelled for editing.", "Save changes").then(function (ok) { if (ok) aLog.textContent = "Details updated for " + a.name + "."; });
     if (act === "allocate") ask("Allocate Tent", "Linked festival pass: <b>Asha Menon</b> (suggested match).<br>Vacant two-person tents: <b>TW3</b> (2 places).<br><br>Allocate TW3?", "Allocate TW3").then(function (ok) { if (ok) { a.tent = "TW3"; aLog.textContent = "Tent pass allocated to TW3 and linked to Asha Menon."; attRender(); } });
@@ -281,7 +285,7 @@
       x: "One order: the buyer's name and contact details, the order number and total, and every pass bought. Bookings arrive through Bulk Upload or are created at the gate with Spot Registration.",
       r: "Belongs to one event · contains festival passes, tent passes and add-ons" },
     festival: { t: "Festival Pass", ch: "box-office", ch_t: "Box Office",
-      x: "Admission for one person on a booking: their name, contact details and gender, and whether they've been admitted. Check In at the gate marks it admitted. Each festival pass counts as one attendee.",
+      x: "Admission for one person on a booking: their name, contact details and gender, and whether they've been admitted. Admit at the gate marks it admitted. Each festival pass counts as one attendee.",
       r: "Part of a booking · a kind of pass type · a tent pass can link to it" },
     tentpass: { t: "Tent Pass", ch: "accommodation", ch_t: "Accommodation",
       x: "A place in a tent, bought on a booking. It's linked to the festival pass of the person staying there, even if they bought on a different booking, and allocated to one tent unit. Vacating frees the place.",
@@ -305,7 +309,7 @@
   var FLOWS = {
     all: null,
     selling: { n: ["event", "passtype", "booking", "festival", "tentpass"], e: [1, 2, 4, 5, 6, 9],
-      x: "<b>Selling & admission:</b> an event offers pass types. Bookings come in through Bulk Upload or Spot Registration, and each contains passes of those types. At the gate, each festival pass is checked in." },
+      x: "<b>Selling & admission:</b> an event offers pass types. Bookings come in through Bulk Upload or Spot Registration, and each contains passes of those types. At the gate, each festival pass is admitted." },
     accommodation: { n: ["passtype", "tent", "tentpass", "festival"], e: [3, 5, 7, 8],
       x: "<b>Accommodation:</b> each tent pass type gets numbered tent units in Setup. At the gate, a tent pass is linked to its holder's festival pass and allocated a place in a unit of the matching type." },
     workforce: { n: ["user", "department", "attendance"], e: [13, 14, 15],
