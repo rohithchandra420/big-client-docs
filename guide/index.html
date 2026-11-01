@@ -89,13 +89,13 @@
     <!-- ================= 1. AT A GLANCE ================= -->
     <section class="chapter" id="at-a-glance" data-toc="Platform at a glance" data-no="1">
       <div class="chapter-head"><span class="chapter-no">1</span><h2>Platform at a glance</h2></div>
-      <p class="lead">Ten areas cover the festival end to end, in the same order as the app's sidebar. Every one works on desktop and phone, and access to each is controlled by role and department.</p>
+      <p class="lead">Eleven areas cover the festival end to end, in the same order as the app's sidebar. Every one works on desktop and phone, and access to each is controlled by role and department.</p>
 
       <div class="figures">
-        <div class="figure reveal"><div class="v" data-count="10">10</div><div class="l">Areas of the platform</div></div>
+        <div class="figure reveal"><div class="v" data-count="11">11</div><div class="l">Areas of the platform</div></div>
         <div class="figure reveal"><div class="v" data-count="5">5</div><div class="l">Roles with distinct access</div></div>
         <div class="figure reveal"><div class="v" data-count-from="releases" data-count="0">—</div><div class="l">Releases shipped since launch</div></div>
-        <div class="figure reveal"><div class="v" data-count="1111">1111</div><div class="l">Automated checks run before every release</div></div>
+        <div class="figure reveal"><div class="v" data-count="1141">1141</div><div class="l">Automated checks run before every release</div></div>
       </div>
 
       <h3>Explore the platform <span class="sample-tag">Click a tile</span></h3>
@@ -205,10 +205,10 @@
       <p>See <a href="#appendix-matrix">Appendix C</a> for the full role-by-feature table.</p>
     </section>
 
-    <!-- ================= 3. DASHBOARD AND SIGN-IN ================= -->
-    <section class="chapter" id="signin-dashboard" data-toc="Dashboard and sign-in" data-no="3">
-      <div class="chapter-head"><span class="chapter-no">3</span><h2>Dashboard and sign-in</h2></div>
-      <p class="lead">Signing in takes people to a dashboard of the active event's headline numbers.</p>
+    <!-- ================= 3. DASHBOARD, BILLBOARD AND SIGN-IN ================= -->
+    <section class="chapter" id="signin-dashboard" data-toc="Dashboard, Billboard and sign-in" data-no="3">
+      <div class="chapter-head"><span class="chapter-no">3</span><h2>Dashboard, Billboard and sign-in</h2></div>
+      <p class="lead">Signing in takes people to a dashboard of the active event's headline numbers, and the Billboard keeps every announcement sent to them.</p>
 
       <div class="grid c2">
         <div class="card"><h4>Sign in</h4><p>Email and password. Repeated failed attempts pause sign-in for a while. Sessions last up to 7 days. If one expires mid-task, the next action returns you to sign-in with a notice, so nobody keeps working on a page that has silently stopped saving.</p></div>
@@ -216,6 +216,28 @@
       </div>
       <figure class="shot" data-shot="signin" data-caption="The sign-in screen"></figure>
       <p>Confirmations for deletes, vacates and overwrites appear as branded in-app dialogs. The sidebar footer always shows the current version.</p>
+
+      <h3 id="billboard">Billboard <span class="badge muted">Everyone</span></h3>
+      <p><b>Billboard</b>, under <b>Main</b> in the sidebar, keeps every announcement sent to you, pinned up as post-it notes with the newest first. It's the place to catch up on anything you missed, even if you never turned notifications on or have muted them.</p>
+      <figure class="shot" data-shot="billboard" data-caption="Billboard: every announcement sent to you, in its type's colour, with NEW on the ones not opened yet"></figure>
+      <ul>
+        <li><b>One colour per type.</b> Each note takes its announcement type's colour (General, Urgent, Schedule, Weather, Reminder or Task) and shows the title, the message and when it was sent.</li>
+        <li>A <b>NEW</b> sticker marks a note you haven't opened yet.</li>
+        <li><b>Tap a note</b> to open it as a large note with the full message, <b>From</b> (who sent it), <b>To</b> (who it went to) and <b>Sent</b> (date and time).</li>
+        <li>The <b>All</b> and <b>Unread</b> tabs switch between every note and only the new ones. <b>Mark all read</b> clears every NEW sticker at once.</li>
+        <li>The newest 100 notes show first. <b>Show older</b> brings in earlier ones.</li>
+        <li>A red number next to <b>Billboard</b> in the sidebar shows how many notes are unread.</li>
+      </ul>
+      <p>The board fills the page width on a desktop. On phones, notes sit two to a row.</p>
+      <figure class="shot" data-shot="billboard-note" data-caption="Tapping a note opens it with who sent it, who it went to and when"></figure>
+      <h4>Where notes come from</h4>
+      <ul>
+        <li><b>Announcements</b> sent to you from <a href="#announcements">Admin › Announcements</a>.</li>
+        <li><b>Emails sent:</b> when a ticket or custom email send you started has finished, a private note from BiG, addressed to "Only you", gives how many were sent and how many failed.</li>
+        <li><b>Tapping a BiG notification</b> on your phone or computer opens the Billboard with that note already open.</li>
+      </ul>
+      <p>Announcements sent before the Billboard was added aren't on it.</p>
+      <figure class="shot" data-shot="billboard-menu" data-views="phone" data-caption="On a phone, the menu shows the unread count next to Billboard (sample volunteer)"></figure>
     </section>
 
     <!-- ================= 4. MY DEPARTMENT ================= -->
@@ -520,7 +542,7 @@
       <figure class="shot" data-shot="email-report-panel" data-caption="Selecting an email shows its details, delivery and, for a custom email, the message"></figure>
 
       <h3 id="announcements">Announcements <span class="badge muted">Admins</span></h3>
-      <p><b>Admin › Announcements</b> sends a short notification straight to staff phones and computers, even when BiG is closed. It reaches exactly the roles and departments chosen. On a desktop the form sits on the left and <b>Sent announcements</b> on the right, in its own scrolling column. On phones and tablets they're stacked.</p>
+      <p><b>Admin › Announcements</b> sends a short notification straight to staff phones and computers, even when BiG is closed. It reaches exactly the roles and departments chosen, and also appears on each recipient's <a href="#billboard">Billboard</a>. On a desktop the form sits on the left and <b>Sent announcements</b> on the right, in its own scrolling column. On phones and tablets they're stacked.</p>
       <figure class="shot" data-shot="announcements" data-caption="Admin › Announcements: type tiles, audience by role and department, preview, and the sent list alongside"></figure>
 
       <h4>Sending an announcement</h4>
@@ -544,7 +566,7 @@
           <tr><td>✅ <b>Task</b></td><td>Something staff need to do</td><td>A normal notification, titled "Task: …". Tracking who has seen or done it is planned.</td></tr>
         </tbody>
       </table></div>
-      <p>Every type except General starts its title with the type's name, such as "Weather: Heat advisory", so it's clear at a glance. Android phones and computers also show a coloured icon for each type. iPhones always show the BiG icon. Each announcement arrives as its own notification, so a new one never hides an unread one. Reminders are the exception. Tapping a notification opens BiG.</p>
+      <p>Every type except General starts its title with the type's name, such as "Weather: Heat advisory", so it's clear at a glance. Android phones and computers also show a coloured icon for each type. iPhones always show the BiG icon. Each announcement arrives as its own notification, so a new one never hides an unread one. Reminders are the exception. Tapping a notification opens that announcement on the <a href="#billboard">Billboard</a>.</p>
 
       <h4>Choosing the audience</h4>
       <ul>
@@ -552,7 +574,7 @@
         <li><b>Departments only:</b> everyone whose <b>home department</b> is one of those, whatever their role.</li>
         <li><b>Both:</b> only people who match both. For example, Volunteers plus Box Office means "Volunteers in Box Office".</li>
         <li><b>Only active accounts.</b> Deactivated people never receive announcements.</li>
-        <li><b>Only devices with notifications turned on.</b> People choose this in <a href="#profile-notifications">My Profile › Notifications</a>. If nobody in the audience has turned them on yet, BiG says so after sending.</li>
+        <li><b>Notifications reach only devices with them turned on.</b> People choose this in <a href="#profile-notifications">My Profile › Notifications</a>. If nobody in the audience has turned them on yet, BiG says so after sending. Everyone in the audience still finds the announcement on their <a href="#billboard">Billboard</a>.</li>
         <li>The <b>Developers</b> role is offered only to Developers.</li>
       </ul>
 
@@ -581,14 +603,14 @@
       <p>The <b>Notifications</b> section controls notifications on the phone or computer you're using.</p>
       <ul>
         <li><b>Turn on</b> or <b>Turn off</b> for this device. Each phone or computer is turned on separately.</li>
-        <li><b>Send test</b> sends a test notification, to check it arrives.</li>
-        <li>Two switches choose what you receive: <b>Email batch finished</b> (when ticket or custom emails you sent have all gone out) and <b>Announcements</b> (messages from the festival organisers). Both are on to start with and apply to every device you've turned on. Urgent / Safety announcements still come through when Announcements is off.</li>
+        <li><b>Send test</b> sends a test notification, to check it arrives. Test notifications don't appear on the Billboard.</li>
+        <li>Two switches choose what you receive: <b>Email batch finished</b> (when ticket or custom emails you sent have all gone out) and <b>Announcements</b> (messages from the festival organisers). Both are on to start with and apply to every device you've turned on. Urgent / Safety announcements still come through when Announcements is off. Turning a switch off only stops the notification: the note still appears on your <a href="#billboard">Billboard</a>.</li>
         <li>If the browser blocks notifications, the section explains how to allow them in the browser's site settings.</li>
         <li>On iPhone and iPad, notifications work in the installed app only: tap <b>Share</b> → <b>Add to Home Screen</b>, open BiG from its icon, then turn them on here (iOS 16.4 or later).</li>
       </ul>
       <p>After signing in, a one-time message, <b>Get BiG notifications</b>, offers to turn them on straight away. Closing it hides it for good on that device. Signing out turns notifications off for that device, so a shared phone stops receiving the previous person's messages.</p>
       <h4>"Emails sent"</h4>
-      <p>Whoever starts a ticket or custom email send gets an <b>Emails sent</b> notification when it has gone out, with how many were sent and how many failed. Tapping it opens Bookings.</p>
+      <p>Whoever starts a ticket or custom email send gets an <b>Emails sent</b> notification when it has gone out, with how many were sent and how many failed. The same message is kept as a private note on their <a href="#billboard">Billboard</a>, and tapping the notification opens it there.</p>
     </section>
 
     <!-- ================= 9. STRENGTHS ================= -->
@@ -645,7 +667,7 @@
         <div class="card strength reveal"><div class="ic">🖥</div><div><h4>Opens like an app</h4><p>BiG gets its own icon and opens full screen, without the address bar and tabs. That leaves more room for the gate and attendance screens.</p></div></div>
         <div class="card strength reveal"><div class="ic">⚡</div><div><h4>Quick to start</h4><p>The app itself is kept on the phone, so it opens quickly even when the signal is weak.</p></div></div>
         <div class="card strength reveal"><div class="ic">📶</div><div><h4>Opens without signal</h4><p>BiG still opens when the connection drops, and an <b>Offline</b> notice says so: it shows what's already loaded, and changes need a connection. Keeping recent information on the phone comes next. See <a href="#offline-rules">When the signal drops</a>.</p></div></div>
-        <div class="card strength reveal"><div class="ic">🔔</div><div><h4>Notifications</h4><p>Important messages reach staff's phones even when BiG is closed. See <a href="#notifications">Notifications</a>, <a href="#announcements">Announcements</a> and <a href="#profile-notifications">My Profile › Notifications</a>.</p></div></div>
+        <div class="card strength reveal"><div class="ic">🔔</div><div><h4>Notifications</h4><p>Important messages reach staff's phones even when BiG is closed, and each one waits on their <a href="#billboard">Billboard</a>. See <a href="#notifications">Notifications</a>, <a href="#announcements">Announcements</a> and <a href="#profile-notifications">My Profile › Notifications</a>.</p></div></div>
         <div class="card strength reveal"><div class="ic">🔄</div><div><h4>Always up to date</h4><p>New releases arrive by themselves. A short <b>New version available</b> message with a <b>Reload</b> button lets people switch when it suits them.</p></div></div>
       </div>
 
@@ -694,7 +716,7 @@
       <h3>How it's arriving</h3>
       <ol class="steps">
         <li><b>The installable app</b> <span class="badge ok">Available</span>: home-screen icon, full-screen view, quick start, the <b>Offline</b> notice and the <b>New version available</b> message.</li>
-        <li><b>Notifications</b> <span class="badge ok">Available</span>: announcements, "emails sent", and notification settings in My Profile.</li>
+        <li><b>Notifications</b> <span class="badge ok">Available</span>: announcements, "emails sent", the Billboard, and notification settings in My Profile.</li>
         <li><b>Working without signal</b> <span class="badge info">Coming next</span>: the rules in <a href="#offline-rules">When the signal drops</a>.</li>
       </ol>
       <p><b>Later:</b> meal calls and attendance reminders arrive with the Hospitality page. If outages turn out to be frequent, one chosen <b>backup gate phone</b> could keep admitting people during an outage, with safeguards against double entry. That will be decided after the first festival with the app.</p>
@@ -716,8 +738,8 @@
         <div class="grid c2 notif-why">
           <div class="card strength reveal"><div class="ic">🎯</div><div><h4>Only the right people</h4><p>BiG knows everyone's role and department. An attendance reminder reaches the three Team Leads with gaps, not a 200-person group.</p></div></div>
           <div class="card strength reveal"><div class="ic">⚙️</div><div><h4>Nobody has to type it</h4><p>When a meal opens or emails finish sending, the notification goes out by itself.</p></div></div>
-          <div class="card strength reveal"><div class="ic">👆</div><div><h4>One tap to act</h4><p>Tapping a notification opens the exact page: the attendance sheet, the meal count, the email results.</p></div></div>
-          <div class="card strength reveal"><div class="ic">🔕</div><div><h4>No noise</h4><p>Everything is on to start with. Anyone can mute the types they don't need in <b>My Profile</b>. Urgent / Safety announcements always come through.</p></div></div>
+          <div class="card strength reveal"><div class="ic">👆</div><div><h4>One tap to act</h4><p>Tapping a notification opens the exact place: the announcement or email results on the Billboard today, and the attendance sheet or meal count once Hospitality arrives.</p></div></div>
+          <div class="card strength reveal"><div class="ic">🔕</div><div><h4>No noise</h4><p>Everything is on to start with. Anyone can mute the types they don't need in <b>My Profile</b>, and muted announcements still wait on the Billboard. Urgent / Safety announcements always come through.</p></div></div>
           <div class="card strength reveal"><div class="ic">📇</div><div><h4>No numbers shared</h4><p>No one needs to swap phone numbers or be added to a group. Everyone signed in to BiG can receive them.</p></div></div>
           <div class="card strength reveal"><div class="ic">🤫</div><div><h4>Discreet</h4><p>Notifications can show on a locked screen, so they never include personal details.</p></div></div>
         </div>
@@ -744,6 +766,7 @@
           <tr><td>🧑‍🤝‍🧑 <b>Attendance not marked yet</b></td><td>Team Leads whose department still has people unmarked</td><td>The mess team taps <b>Remind TLs</b>, or a meal is opened</td><td>With the Hospitality page</td></tr>
         </tbody>
       </table></div>
+      <p>Announcements and "Emails sent" messages also appear on the recipient's <a href="#billboard">Billboard</a>, so nothing is lost if a notification is missed.</p>
       <div class="callout tip"><strong>On iPhone</strong><p>Notifications work once BiG has been added to the Home Screen (iOS 16.4 or later) and the person has turned them on. My Profile explains the steps on iPhone.</p></div>
     </section>
 

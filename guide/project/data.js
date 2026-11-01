@@ -8,7 +8,7 @@ window.GUIDE = {
     title: "BiG Platform — Product Guide",
     lastUpdated: "2026-11-01",
     defaultRole: "TL",
-    lastUpdatedThrough: { ui: "1.19.0", api: "1.12.0" }
+    lastUpdatedThrough: { ui: "1.20.0", api: "1.13.0" }
   },
 
   /* Section 1 — module map */
@@ -16,6 +16,9 @@ window.GUIDE = {
     { id: "dashboard", name: "Dashboard", icon: "📊", section: "signin-dashboard",
       who: "Every signed-in user",
       summary: "Headline numbers for the active event — passes sold, admitted, pending, accommodation — plus admission charts." },
+    { id: "billboard", name: "Billboard", icon: "📌", section: "billboard",
+      who: "Every signed-in user",
+      summary: "Every announcement sent to you, pinned up as colour-coded notes, with unread ones marked NEW and a count in the sidebar." },
     { id: "my-department", name: "My Department", icon: "🧑‍🤝‍🧑", section: "my-department",
       who: "Everyone, scoped by role",
       summary: "Department details and volunteer attendance by slot — marking, history, calendar and a cross-department reporting view." },
@@ -60,6 +63,9 @@ window.GUIDE = {
       TL: ["full", "Volunteer count is shown to admins only"], VOL: ["full", "Volunteer count is shown to admins only"] },
     { name: "My Profile", area: "General",
       DEV: ["full"], DIR: ["full"], ADMIN: ["full"], TL: ["full"], VOL: ["full"] },
+    { name: "Billboard", area: "General",
+      DEV: ["full", "Announcements sent to them"], DIR: ["full", "Announcements sent to them"], ADMIN: ["full", "Announcements sent to them"],
+      TL: ["full", "Announcements sent to them"], VOL: ["full", "Announcements sent to them"] },
     { name: "Choose the active event", area: "Events",
       DEV: ["full", "All events, including Draft and Archived"], DIR: ["full", "All events, including Draft and Archived"], ADMIN: ["full", "All events, including Draft and Archived"],
       TL: ["scoped", "Active events only"], VOL: ["scoped", "Active events only"] },
@@ -143,14 +149,18 @@ window.GUIDE = {
       text: "A TL can edit their volunteers' access from the Users page, but can't open a volunteer's full profile page." },
     { title: "Announcements can't be recalled or edited", kind: "design", area: "Notifications",
       text: "Once sent, an announcement can't be taken back or changed. Copy to form lets an admin send a corrected one." },
-    { title: "Only devices with notifications on receive announcements", kind: "design", area: "Notifications",
-      text: "Each person turns notifications on for their own phone or computer. Anyone who hasn't won't see an announcement, so keep the usual team channels for anything critical. After sending, BiG says how many devices it reached." },
+    { title: "Only devices with notifications on get the notification", kind: "design", area: "Notifications",
+      text: "Each person turns notifications on for their own phone or computer. Anyone who hasn't won't be alerted, though the announcement still waits on their Billboard the next time they open BiG. Keep the usual team channels for anything critical. After sending, BiG says how many devices it reached." },
     { title: "On iPhone, notifications need the installed app", kind: "design", area: "Notifications",
       text: "iPhones and iPads only show BiG notifications once BiG has been added to the Home Screen, on iOS 16.4 or later." },
     { title: "Task announcements aren't tracked yet", kind: "planned", area: "Notifications",
       text: "A Task announcement reaches people like any other. Seeing who has read it or marked it done is planned." },
     { title: "Announcements go out straight away", kind: "open", area: "Notifications",
       text: "There's no way to schedule an announcement for later. Timed notifications are an idea for the future." },
+    { title: "Older announcements aren't on the Billboard", kind: "design", area: "Notifications",
+      text: "The Billboard shows announcements sent after it was added. Earlier ones are still listed under Sent announcements for admins." },
+    { title: "Notes can't be removed from the Billboard", kind: "open", area: "Notifications",
+      text: "Every note stays on the Billboard. Mark all read clears the NEW stickers, and the newest 100 show first, with Show older for the rest." },
     { title: "Developers aren't tracked for attendance", kind: "design", area: "My Department",
       text: "Developer is a platform role, not a festival-floor role, so it's excluded from volunteer attendance." },
     { title: "Dashboard uses the older visual style", kind: "open", area: "Dashboard",
@@ -193,6 +203,8 @@ window.GUIDE = {
       text: "Start from a tent, search for a participant holding the matching tent pass, and see the status of both their tent pass and festival pass." },
     { title: "Installable app and notifications", status: "shipped", when: "Oct–Nov 2026",
       text: "Add BiG to any phone or computer from the browser and open it like an app, even without signal. Notifications: announcements from admins to chosen roles and departments, an \"emails sent\" message, and settings in My Profile. See chapter 12." },
+    { title: "Billboard", status: "shipped", when: "Nov 2026",
+      text: "Every announcement a person receives, kept on a board of colour-coded notes with unread markers and a count in the sidebar. Tapping a notification opens its note. See chapter 3." },
     { title: "Working without signal", status: "in-development", when: "Now", priority: "P3",
       text: "The next part of the installable app: recent information kept on the phone, attendance marking saved and sent when back online, and clear rules for what waits for a connection. See chapter 12." },
     { title: "Audit logs", status: "planned", when: "Version 2",
@@ -217,6 +229,8 @@ window.GUIDE = {
 
   /* Appendix B — release history (business summaries) */
   releases: [
+    { app: "Frontend", v: "1.20.0", date: "2026-11-01", text: "Billboard: every announcement sent to you as colour-coded notes, with NEW stickers, All / Unread tabs, Mark all read, Show older and an unread count in the sidebar. Tapping a notification opens its note." },
+    { app: "Backend", v: "1.13.0", date: "2026-11-01", text: "Billboard: each person's own announcements and a private \"Emails sent\" note, with read and unread status. Notifications now open the matching note." },
     { app: "Frontend", v: "1.19.0", date: "2026-11-01", text: "Notifications: Admin › Announcements with six types, audiences by role and department, Send again and Copy to form; notification settings in My Profile; a one-time prompt after sign-in." },
     { app: "Backend", v: "1.12.0", date: "2026-11-01", text: "Notifications to staff devices: announcements to chosen roles and departments, each kept with its sender and how many devices received it; an \"Emails sent\" notification when an email send finishes." },
     { app: "Frontend", v: "1.18.0", date: "2026-10-24", text: "BiG is now an installable app: install from the browser, open full screen from its own icon, an Offline notice when the signal drops, and a New version available message." },
@@ -257,8 +271,9 @@ window.GUIDE = {
     ["Access tier", "Read, Write or Manage, granted per department. A higher tier includes the lower ones."],
     ["Admit", "Recording at the gate that an attendee has been let into the festival, after staff check their ID."],
     ["Allocate Tent", "Assigning an attendee with a tent pass to a place in a specific tent unit."],
-    ["Announcement", "A short notification an admin sends from Admin › Announcements to chosen roles and departments. It has a type, such as General, Urgent / Safety or Weather."],
+    ["Announcement", "A short notification an admin sends from Admin › Announcements to chosen roles and departments. It has a type, such as General, Urgent / Safety or Weather, and also appears on each recipient's Billboard."],
     ["Attendee", "A person on a booking. One booking can cover several attendees."],
+    ["Billboard", "The page under Main where everyone sees the announcements sent to them, as colour-coded notes. Ones not opened yet are marked NEW."],
     ["Booking", "One order: the buyer, and every pass bought in it."],
     ["Booking Found", "The page showing a single booking and its attendees, used at the gate."],
     ["Bounced", "A ticket email the buyer's mail server refused, for example because the address doesn't exist. The booking is flagged so it can be fixed and sent again."],
@@ -288,7 +303,7 @@ window.GUIDE = {
 
   /* Appendix D — document history (newest first) */
   docHistory: [
-    { date: "2026-11-01", through: "Frontend 1.19.0 · Backend 1.12.0", text: "BiG as an installable app is now available: chapter 12 reworked with install steps, the Offline notice and the update message, while working without signal stays coming next. Added Announcements (Admin) and notification settings (My Profile), with new limitations, role-matrix rows and glossary terms. Added the installable-app and notifications releases." },
+    { date: "2026-11-01", through: "Frontend 1.20.0 · Backend 1.13.0", text: "BiG as an installable app is now available: chapter 12 reworked with install steps, the Offline notice and the update message, while working without signal stays coming next. Added Announcements (Admin) and notification settings (My Profile), with new limitations, role-matrix rows and glossary terms. Added the Billboard to chapter 3, now Dashboard, Billboard and sign-in, with screenshots, a module tile, a roadmap item and limitations; notifications now open their note on the Billboard. Added the installable-app, notifications and Billboard releases." },
     { date: "2026-10-24", through: "Frontend 1.17.0 · Backend 1.11.0", text: "Check In renamed Admit throughout. Added Link Band as in development. Added Workshops to the roadmap. Installable app work has started. Removed release rows that were bug fixes only." },
     { date: "2026-10-15", through: "Frontend 1.15.0 · Backend 1.11.0", text: "Added chapter 12 on the planned installable app: what changes for staff, notifications, what works without signal, and a comparison with app-store apps." },
     { date: "2026-10-14", through: "Frontend 1.15.0 · Backend 1.11.0", text: "Reorganised the chapters to follow the app's sidebar. Added ticket and custom emails, per-event email wording, the Email Report and the gate's code check. Booking emails moved to Shipped. Added one newly planned item, the installable app, with an explanation of what it means." },
