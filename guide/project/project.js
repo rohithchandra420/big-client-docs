@@ -232,10 +232,10 @@
 
   /* ---------- Attendance demo ---------- */
   var SLOTS = ["Morning", "Afternoon", "Night"];
-  var VOLS = ["Ravi", "Anjali", "Tom", "Lina", "Arjun"];
+  var VOLS = ["Ravi", "Sana", "Tom", "Lina", "Arjun"];
   var attState, attOther;
   function attnReset() {
-    attState = { Ravi: [1, 0, 0], Anjali: [1, 1, 0], Tom: [0, 0, 0], Lina: [0, 0, 0], Arjun: [0, 0, 0] };
+    attState = { Ravi: [1, 0, 0], Sana: [1, 1, 0], Tom: [0, 0, 0], Lina: [0, 0, 0], Arjun: [0, 0, 0] };
     attOther = { "Arjun-1": "Box Office" };
     $("#attMsg").textContent = "";
     attnRender();
