@@ -41,7 +41,7 @@
     <div class="cover">
       <div class="kicker">Product Guide</div>
       <h1>The BiG festival platform</h1>
-      <p>One place to sell and admit passes, house attendees, map the site, run workshops, organise departments and track volunteers, built for the people who run the festival.</p>
+      <p>One place to sell and admit passes, house attendees, map the site, run workshops, feed and house the crew, organise departments and track volunteers, built for the people who run the festival.</p>
       <div class="cover-meta">
         <span class="pill">Frontend <b data-meta="lastUpdatedThrough.ui"></b></span>
         <span class="pill">Backend <b data-meta="lastUpdatedThrough.api"></b></span>
@@ -66,7 +66,7 @@
       <h3>How to read it</h3>
       <div class="grid c3">
         <div class="card"><h4>Skim</h4><p>Read <a href="#at-a-glance">Platform at a glance</a> and <a href="#strengths">Platform strengths</a>. It takes about five minutes.</p></div>
-        <div class="card"><h4>Explore</h4><p>Chapters 2–9 include hands-on demos. Click, tick and step through them. They use sample data and change nothing real.</p></div>
+        <div class="card"><h4>Explore</h4><p>Chapters 2–10 include hands-on demos. Click, tick and step through them. They use sample data and change nothing real.</p></div>
         <div class="card"><h4>Plan</h4><p><a href="#limitations">Current limitations</a> and the <a href="#roadmap">Roadmap</a> show what's missing and what's next.</p></div>
       </div>
 
@@ -89,13 +89,13 @@
     <!-- ================= 1. AT A GLANCE ================= -->
     <section class="chapter" id="at-a-glance" data-toc="Platform at a glance" data-no="1">
       <div class="chapter-head"><span class="chapter-no">1</span><h2>Platform at a glance</h2></div>
-      <p class="lead">Thirteen areas cover the festival end to end, in the same order as the app's sidebar. Every one works on desktop and phone, and access to each is controlled by role and department.</p>
+      <p class="lead">Fourteen areas cover the festival end to end, in the same order as the app's sidebar. Every one works on desktop and phone, and access to each is controlled by role and department.</p>
 
       <div class="figures">
-        <div class="figure reveal"><div class="v" data-count="13">13</div><div class="l">Areas of the platform</div></div>
+        <div class="figure reveal"><div class="v" data-count="14">14</div><div class="l">Areas of the platform</div></div>
         <div class="figure reveal"><div class="v" data-count="5">5</div><div class="l">Roles with distinct access</div></div>
         <div class="figure reveal"><div class="v" data-count-from="releases" data-count="0">—</div><div class="l">Releases shipped since launch</div></div>
-        <div class="figure reveal"><div class="v" data-count="1408">1408</div><div class="l">Automated checks run before every release</div></div>
+        <div class="figure reveal"><div class="v" data-count="1536">1536</div><div class="l">Automated checks run before every release</div></div>
       </div>
 
       <h3>Explore the platform <span class="sample-tag">Click a tile</span></h3>
@@ -103,7 +103,7 @@
       <div class="card module-detail" id="moduleDetail" aria-live="polite"></div>
 
       <h3 id="data-model">How the pieces connect <span class="sample-tag">Interactive</span></h3>
-      <p>Everything in BiG belongs to one of two families. <b>Festival records</b> (events, passes, bookings, tents) start fresh with each edition. <b>People records</b> (users, departments, attendance) are shared across every event, so a volunteer's history carries over from one year to the next. Pick a flow to follow it, or click any box.</p>
+      <p>Everything in BiG belongs to one of two families. <b>Festival records</b> (events, passes, bookings, tents) start fresh with each edition. <b>People records</b> (users, departments, attendance) are shared across every event, so a volunteer's history carries over from one year to the next. Hospitality's mess plan, guests, meal passes and beds belong to an event too, while the staff they feed and house are people records. Pick a flow to follow it, or click any box.</p>
       <div class="seg no-print" id="dmSeg" role="group" aria-label="Choose a flow">
         <button aria-pressed="true" data-flow="all">Everything</button>
         <button aria-pressed="false" data-flow="selling">Selling &amp; admission</button>
@@ -216,12 +216,13 @@
       </div>
       <figure class="shot" data-shot="signin" data-caption="The sign-in screen"></figure>
       <p>Confirmations for deletes, vacates and overwrites appear as branded in-app dialogs. In every side panel and dialog, <b>Close</b> or <b>Cancel</b> sits on the left and the main action on the right, on phones too. The sidebar footer always shows the current version.</p>
+      <p>The sidebar groups (<b>Main</b>, <b>Box Office</b>, <b>Accommodation</b>, <b>Workshops</b>, <b>Hospitality</b> and <b>Admin</b>) open and close with a tap on their title. Main starts open and the others closed. The group holding the page you're on always opens, and BiG remembers your choice in that browser. When Main is closed, the Billboard's unread count shows on its title.</p>
 
       <h3 id="billboard">Billboard <span class="badge muted">Everyone</span></h3>
       <p><b>Billboard</b>, under <b>Main</b> in the sidebar, keeps every announcement sent to you, pinned up as post-it notes with the newest first. It's the place to catch up on anything you missed, even if you never turned notifications on or have muted them.</p>
       <figure class="shot" data-shot="billboard" data-caption="Billboard: every announcement sent to you, in its type's colour, with NEW on the ones not opened yet"></figure>
       <ul>
-        <li><b>One colour per type.</b> Each note takes its announcement type's colour (General, Urgent, Schedule, Weather, Reminder or Task) and shows the title, the message and when it was sent.</li>
+        <li><b>One colour per type.</b> Each note takes its type's colour (General, Urgent, Schedule, Weather, Reminder, Task or Meals) and shows the title, the message and when it was sent.</li>
         <li>A <b>NEW</b> sticker marks a note you haven't opened yet.</li>
         <li><b>Tap a note</b> to open it as a large note with the full message, <b>From</b> (who sent it), <b>To</b> (who it went to) and <b>Sent</b> (date and time).</li>
         <li>The <b>All</b> and <b>Unread</b> tabs switch between every note and only the new ones. <b>Mark all read</b> clears every NEW sticker at once.</li>
@@ -234,6 +235,8 @@
       <ul>
         <li><b>Announcements</b> sent to you from <a href="#announcements">Admin › Announcements</a>.</li>
         <li><b>Emails sent:</b> when a ticket or custom email send you started has finished, a private note from BiG, addressed to "Only you", gives how many were sent and how many failed.</li>
+        <li><b>Meal alerts</b> from the Hospitality team, to all staff.</li>
+        <li><b>Hospitality tasks for Team Leads:</b> a private Task addressed to "Only you". It either asks you to mark attendance before a meal's kitchen count is due, or lists people from your team who ate without attendance marked. Tasks sent automatically show "From: BiG".</li>
         <li><b>Tapping a BiG notification</b> on your phone or computer opens the Billboard with that note already open.</li>
       </ul>
       <p>Announcements sent before the Billboard was added aren't on it.</p>
@@ -243,7 +246,7 @@
     <!-- ================= 4. VENUE MAP ================= -->
     <section class="chapter" id="venue-map" data-toc="Venue Map" data-no="4">
       <div class="chapter-head"><span class="chapter-no">4</span><h2>Venue Map</h2></div>
-      <p class="lead">The Venue Map shows the festival ground for the active event: the places that matter, the zones and routes between them, and what's happening in each workshop area right now.</p>
+      <p class="lead">The Venue Map shows the festival ground for the active event: the places that matter, the zones and routes between them, what's happening in each workshop area right now, and whether the Mess Hall is open.</p>
       <p><b>Venue Map</b>, under <b>Main</b> in the sidebar, is open to everyone signed in. It shows a <b>Street</b> map or a <b>Satellite</b> view. Each event has its own map, so a new venue starts clean. On a desktop the map stays in place and the side panel scrolls. On phones the lists sit below the map, and picking an item scrolls back up to it.</p>
       <figure class="shot" data-shot="venue-map" data-caption="Venue Map: the festival boundary, zones, routes and pins for the active event (sample venue)"></figure>
 
@@ -263,7 +266,7 @@
         <thead><tr><th>Group</th><th>Kinds</th></tr></thead>
         <tbody>
           <tr><td><b>Boundary</b></td><td>Festival boundary: one per event, a dashed light-green outline</td></tr>
-          <tr><td><b>Zones</b></td><td>Workshop area · Camping zone · Washroom area · Parking · Stage area · Medical camp · Office · Crew area · No-go zone · Other area</td></tr>
+          <tr><td><b>Zones</b></td><td>Workshop area · Camping zone · Washroom area · Parking · Stage area · Medical camp · Office · Crew area · Mess Hall · No-go zone · Other area</td></tr>
           <tr><td><b>Lines</b></td><td>Fence · Road · Path (walkable only) · Entry / exit · Emergency exit route · Other line</td></tr>
         </tbody>
       </table></div>
@@ -296,6 +299,9 @@
       <h3 id="map-workshops">Workshops on the map</h3>
       <p>While a session is running, a Workshop area with a workshop venue shows live numbers on its icon, such as "28/40". Selecting the area shows a timeline of its sessions: on now, then upcoming ones with their list and registration status, then past ones, dimmed, with how many attended. The timeline keeps itself up to date. See <a href="#workshops">Workshops</a>.</p>
       <figure class="shot" data-shot="venue-map-area" data-caption="A Workshop area selected: live numbers and the timeline of its sessions"></figure>
+
+      <h3 id="map-mess-hall">The Mess Hall on the map</h3>
+      <p>The Mess Hall is drawn as a <b>Mess Hall</b> area, and Hospitality › Setup picks which one it is. Its badge carries a green or grey dot for open or closed, and its tooltip and panel give the current status. The open map refreshes this once a minute, and pauses while the page is hidden. Other live statuses will join the same refresh later. The Mess Hall area chosen in Setup can't be deleted while it's in use. Stay units can also be linked to an area, so people can find their bed on the map. See <a href="#hospitality">Hospitality</a>.</p>
     </section>
 
     <!-- ================= 5. MY DEPARTMENT ================= -->
@@ -330,6 +336,8 @@
       <details class="more"><summary>Why slots instead of whole days?</summary><div class="body">
         <p>Volunteers often move mid-day: Operations in the morning, Box Office in the afternoon. Recording each slot separately means both departments get credit for the right hours. One department can't silently overwrite another's record: the platform asks first.</p>
       </div></details>
+
+      <div class="callout tip"><strong>Attendance feeds the kitchen</strong><p>Hospitality counts Team Leads and volunteers at a meal only when they're marked present in the slot that meal counts. Marking attendance on time keeps the kitchen's numbers right. See <a href="#hospitality-counts">Who's counted at meals</a>.</p></div>
 
       <h3>History and calendar</h3>
       <p>The <b>History</b> tab summarises each member's attendance over a date range. The <b>Calendar</b> tab shows everyone against every date, with each cell marked, unmarked or not applicable (for example before someone's date of joining). It opens scrolled to today.</p>
@@ -466,6 +474,7 @@
       </ol>
       <ul>
         <li><b>One band, one person, ever.</b> A band already linked to someone else is refused, naming who has it. Ticket QR codes are refused as bands.</li>
+        <li><b>Staff bands</b> are recognised. A band that belongs to a staff member shows "This is a staff band" at Registration instead of "unknown band". See <a href="#hospitality-bands">Staff wrist bands</a>.</li>
         <li><b>Replace Band</b>, with a reason, for a lost or broken band. The old band is flagged as replaced. Wherever it's scanned, a red <b>Replaced band</b> card shows whose it was, why it was replaced, and the person's band now.</li>
         <li><b>Link Band</b> appears only for people admitted before bands were in use.</li>
         <li>A <b>Band</b> badge on each admitted Festival Pass opens its band history: the current band and any replaced ones, who linked or replaced them, and when.</li>
@@ -476,6 +485,7 @@
       <ul>
         <li><b>Box Office:</b> Admit, Link Band, Replace Band, and the Registration scanner.</li>
         <li><b>Workshops:</b> adding people to session lists, and the door. See <a href="#workshops">Workshops</a>.</li>
+        <li><b>Hospitality:</b> staff bands at the Serving desk. See <a href="#hospitality-bands">Staff wrist bands</a>.</li>
       </ul>
 
       <details class="more"><summary>How tent allocation keeps things right</summary><div class="body">
@@ -586,6 +596,7 @@
           <tr><td>Already in</td><td>Shown with the time they came.</td></tr>
           <tr><td>With a replaced band</td><td>A red card shows whose band it was. After checking, staff can continue with its owner.</td></tr>
           <tr><td>Not admitted at the gate, or an unknown band</td><td>Not let in, with a message saying why.</td></tr>
+          <tr><td>A staff member's band</td><td>Shown as a <b>Staff band</b>, with whose it is. Nobody is added, because staff aren't on workshop lists yet.</td></tr>
         </tbody>
       </table></div>
       <p>After the cut-off, the waitlist and walk-ins go in, in order. Going over the venue's capacity shows a warning but stops nobody. Only arrivals are recorded: nobody is marked as leaving. Removed names are kept for the record, people who attended can't be removed, and a session with people on its lists can't be deleted.</p>
@@ -598,22 +609,175 @@
       <figure class="shot" data-shot="workshop-reports-panel" data-caption="Tapping a session shows who came and who didn't"></figure>
     </section>
 
-    <!-- ================= 9. ADMIN ================= -->
-    <section class="chapter" id="admin" data-toc="Admin" data-no="9">
-      <div class="chapter-head"><span class="chapter-no">9</span><h2>Admin</h2></div>
+    <!-- ================= 9. HOSPITALITY ================= -->
+    <section class="chapter" id="hospitality" data-toc="Hospitality" data-no="9">
+      <div class="chapter-head"><span class="chapter-no">9</span><h2>Hospitality</h2></div>
+      <p class="lead">Hospitality feeds and houses the festival's staff and guests: how many plates the kitchen should cook, who ate, what was left over, and who sleeps where.</p>
+      <p>Its people are the festival's staff, meaning everyone with a BiG account, and <b>guests</b> such as artists, vendors and drivers. Festival-goers aren't part of it: they have Festival Passes and participant tents (see <a href="#accommodation">Accommodation</a>). Everything in Hospitality belongs to the active event.</p>
+
+      <div class="table-wrap"><table>
+        <thead><tr><th>Page</th><th>What it's for</th></tr></thead>
+        <tbody>
+          <tr><td><b>Today</b></td><td>The day's four meals, the kitchen count, who isn't marked yet, the Mess Hall and meal alerts</td></tr>
+          <tr><td><b>Serving desk</b></td><td>Serving people at the Mess Hall by QR code, wrist band or search</td></tr>
+          <tr><td><b>Guests</b></td><td>People without a BiG account, and their Meal Passes</td></tr>
+          <tr><td><b>Report</b></td><td>Prepared, served and left over, per meal, day and department</td></tr>
+          <tr><td><b>Stay</b></td><td>Beds for staff and guests: units, allocations and a calendar of nights</td></tr>
+          <tr><td><b>Setup</b></td><td>The mess plan for the event</td></tr>
+        </tbody>
+      </table></div>
+      <div class="callout note"><strong>Who the Hospitality team is</strong><p>Directors, Admins and Developers, the Hospitality department's Team Lead, and anyone given Manage access to Hospitality. There's no Read or Write tier: whoever has access can do everything on these pages. The Team Lead grants Manage to the volunteers who run the desk. Only they see the Hospitality group in the sidebar.</p></div>
+
+      <h3 id="hospitality-setup">Setup <span class="badge muted">Hospitality team</span></h3>
+      <p><b>Hospitality › Setup</b> holds the event's mess plan:</p>
+      <ul>
+        <li><b>Mess calendar:</b> the days the mess runs. They can start weeks before the festival, because the crew arrives early.</li>
+        <li><b>Meals · default times:</b> the usual opening time of Breakfast, Lunch, Snacks and Dinner. One day can be changed on its own from Today.</li>
+        <li><b>Mess Hall open for:</b> how long it stays open for each meal, 2.5 hours by default.</li>
+        <li><b>Count based on:</b> whether the Snacks count uses the Morning or the Afternoon slot.</li>
+        <li><b>Kitchen count due:</b> how soon after the previous meal closes the kitchen needs the next count, 45 minutes by default.</li>
+        <li><b>Remind TLs automatically:</b> how many minutes before the count is due the reminders go out, 30 by default.</li>
+        <li><b>Left-over goal (%):</b> 5% of what was prepared by default. Meals above it are flagged in the Report.</li>
+        <li><b>Mess Hall area:</b> which Mess Hall area on the Venue Map it is.</li>
+      </ul>
+
+      <h3 id="hospitality-counts">Who's counted at meals</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Who</th><th>Counted at a meal</th></tr></thead>
+        <tbody>
+          <tr><td><b>Directors, Admins and Developers</b></td><td>Always, from their date of joining. No attendance is needed.</td></tr>
+          <tr><td><b>Team Leads and volunteers</b></td><td>When they're marked present in the slot the meal counts.</td></tr>
+          <tr><td><b>Guests</b></td><td>The plates on their Meal Pass, if it's valid for that meal.</td></tr>
+        </tbody>
+      </table></div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Meal</th><th>Attendance slot it counts</th></tr></thead>
+        <tbody>
+          <tr><td>Breakfast</td><td>The previous day's Night</td></tr>
+          <tr><td>Lunch</td><td>Morning</td></tr>
+          <tr><td>Snacks</td><td>Morning or Afternoon, chosen per event</td></tr>
+          <tr><td>Dinner</td><td>Afternoon</td></tr>
+        </tbody>
+      </table></div>
+      <p>Each person has a <b>Food preference</b>, Veg or Non-veg, so every count is split in two. Anyone who hasn't set one counts as Veg.</p>
+
+      <h3 id="hospitality-today">Today <span class="badge muted">Hospitality team</span></h3>
+      <ul>
+        <li>The day's four meals with their times and status: upcoming, open or closed. The day arrows look at other days.</li>
+        <li>The <b>kitchen count</b> for the chosen meal in big Veg and Non-veg numbers, with where it comes from and when the kitchen needs it.</li>
+        <li><b>Save count</b> keeps the numbers at that moment, so the Report can compare them with what was served. <b>Copy for WhatsApp</b> copies a message for the kitchen.</li>
+        <li><b>Not marked yet</b> lists, per department, the Team Leads and volunteers with no attendance in the counted slot. <b>Remind TLs</b> gives each Team Lead a private Task on their Billboard with their own number.</li>
+        <li><b>Close Mess Hall</b> early, and <b>Reopen</b> it before its closing time. Staff are notified either way.</li>
+        <li><b>Change time</b> moves one day's meal. <b>Meal alert</b> sends a short message to all staff.</li>
+        <li><b>Add kitchen figures</b> on a meal that has closed.</li>
+      </ul>
+
+      <h3 id="hospitality-desk">Serving desk <span class="badge muted">Hospitality team</span></h3>
+      <p>The <b>Serving desk</b> serves only while the Mess Hall is open for a meal. Staff tap <b>Scan QR</b> to read a person's meal QR, staff wrist band or a guest's Meal Pass. They can also search by name or email. Guests show up in the search too, by name, note or phone, when their pass is valid for the open meal. Each result appears as a large coloured card, with the same Found and Not Found sounds as the gate.</p>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Card</th><th>What staff do</th></tr></thead>
+        <tbody>
+          <tr><td><b>Enjoy your meal</b></td><td>Marked present, or a Director, Admin or Developer: served at once.</td></tr>
+          <tr><td><b>No attendance marked</b></td><td>Pick a reason and <b>Serve</b>, or <b>Refuse</b>.</td></tr>
+          <tr><td><b>Already ate</b></td><td><b>Block</b>, or <b>Allow a second plate</b>.</td></tr>
+          <tr><td><b>Guest</b></td><td>Hand out the pass's Veg and Non-veg plates, all at once or in parts. Once they're used, <b>Block</b> or <b>Allow extra</b>.</td></tr>
+        </tbody>
+      </table></div>
+      <ul>
+        <li>Every decision is recorded, refusals and blocks too. <b>Just served</b> shows the latest ones and the plates served so far.</li>
+        <li><b>Notify TLs</b> sends each Team Lead one private Task listing their people who ate without attendance marked. Each person is reported once.</li>
+        <li><b>Walk-in guest? Issue a pass</b> gives a walk-in a One Meal pass for the open meal on the spot.</li>
+        <li>Every staff member has <b>My meal QR</b> on My Profile. It's a different kind of code from a ticket QR, so the two can't be mixed up.</li>
+      </ul>
+
+      <h3 id="hospitality-guests">Guests and Meal Passes <span class="badge muted">Hospitality team</span></h3>
+      <p><b>Hospitality › Guests</b> lists the people who eat at the Mess Hall without a BiG account, such as artists, vendors and drivers. A group, such as a sound crew, can be one guest. Guests have no sign-in and never appear in user lists, attendance or announcements. Search, and filter by <b>All</b>, <b>Valid today</b> or <b>No active pass</b>.</p>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Meal Pass</th><th>Covers</th></tr></thead>
+        <tbody>
+          <tr><td><b>One Meal</b></td><td>One chosen meal on one day</td></tr>
+          <tr><td><b>One Day</b></td><td>All four meals that day, each once</td></tr>
+          <tr><td><b>Date Range</b></td><td>Every meal on every day in the range, each once</td></tr>
+        </tbody>
+      </table></div>
+      <ul>
+        <li>Each pass sets its <b>Veg plates</b> and <b>Non-veg plates</b> per meal, so a group can share one pass.</li>
+        <li>Each pass has its own QR code. <b>Download</b> a pass card, <b>Share</b> it from a phone, or <b>Print</b> it. <b>Revoke</b> stops it working.</li>
+        <li>Guest plates valid for a meal are added to its kitchen count.</li>
+        <li>A guest who has eaten stays on record. One who never ate can be deleted.</li>
+      </ul>
+
+      <h3 id="hospitality-report">Report <span class="badge muted">Hospitality team</span></h3>
+      <p>After each meal closes, the team adds the <b>kitchen figures</b>: Veg and Non-veg plates prepared, with an optional left-over weight in kg and a note. <b>Hospitality › Report</b> then shows:</p>
+      <ul>
+        <li>Tiles for <b>Prepared</b>, <b>Served</b>, <b>Left over</b> and <b>Count accuracy</b> (served against the saved count).</li>
+        <li>A table with a block per day: asked for, prepared, served to staff and guests, served without attendance, refused, blocked, extra plates and left over, with a <b>day total</b> and a <b>grand total</b>. Opening a meal shows it by department.</li>
+        <li>Left over is prepared minus served, with its share of what was prepared. Meals above the left-over goal are flagged, and a chart shows the trend per day.</li>
+        <li>One day, a date range or the <b>Whole mess period</b>, and a <b>Department</b> filter. Choosing one department narrows the served side and leaves out the kitchen-wide numbers.</li>
+        <li><b>Excel</b> downloads three sheets: Meals (by day, with day totals and a grand total), Served and Flagged.</li>
+      </ul>
+      <p>Each staff plate keeps the person's food preference and home department as they were when they ate, so later changes don't rewrite the record.</p>
+
+      <h3 id="hospitality-stay">Stay <span class="badge muted">Hospitality team</span></h3>
+      <p><b>Hospitality › Stay</b> gives beds to staff and guests. It's completely separate from participant tents in Accommodation. Above its three tabs, <b>counts for a night</b> show staff with a bed, <b>No bed</b> (with the list and an Allocate button for each person), guests with a bed, and how many have moved in. The ‹ › arrows change the night.</p>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Tab</th><th>What it does</th></tr></thead>
+        <tbody>
+          <tr><td><b>Units</b></td><td>Types with an icon (Dorm, Tent, Villa…), and units with a number of beds, added one at a time or many at once (A-01 … A-10). A unit can be <b>Only on certain days</b> and linked to a Venue Map area. Each shows its busiest night.</td></tr>
+          <tr><td><b>Allocate</b></td><td>Find a staff member or guest, pick <b>Stay from</b> and <b>Stay to</b> (the day they leave), then choose from the units with a free bed every night. The list of stays has <b>Moved in</b>, <b>Moved out</b> and cancel.</td></tr>
+          <tr><td><b>Calendar</b></td><td>Units against nights: beds taken out of beds, full nights dark, unavailable nights hatched. Tap a night to see who's there.</td></tr>
+        </tbody>
+      </table></div>
+      <ul>
+        <li><b>Stay from / Stay to</b> are the plan. <b>Moved in / Moved out</b> record what actually happened, and Moved in can be undone.</li>
+        <li>A unit is full on a night only when every bed is taken that night. Nobody can be given a bed on a day the unit isn't available.</li>
+        <li><b>Gender</b> is needed before giving someone a bed. A different gender already in the unit shows a warning that staff can confirm.</li>
+        <li>One staff member can't have overlapping stays. Bookings can be made ahead, but a person is moved in to one unit at a time.</li>
+        <li><b>Guest groups:</b> one guest stay can take several beds (<b>How many people</b>). A mixed group is booked as one stay per gender.</li>
+        <li>Units and dates can't be changed in a way that breaks existing stays. A unit can be deleted only when it's empty.</li>
+        <li>A search next to the tabs finds units (by name, type, area or who sleeps there) and stays (by person or unit). Filters: Type, and Empty, Has room, Full or Not available on the picked night.</li>
+        <li>Everyone sees <b>My stay</b> on My Profile: their unit, dates and a link to its area on the Venue Map.</li>
+      </ul>
+
+      <h3 id="hospitality-bands">Staff wrist bands</h3>
+      <p>A wrist band can belong to a staff member as well as to a Festival Pass. Each person gets one band per event, and a band is never reused. At the Serving desk, a staff band works like the person's meal QR.</p>
+      <ul>
+        <li><b>Link band</b> and <b>Replace band</b> (with a reason) are on the Serving desk's person card and in the Users page side panel, for the event picked in the sidebar, with the band history.</li>
+        <li>Who can link or replace: Directors, Admins, Developers, the Hospitality team, and a Team Lead for people in their own department(s).</li>
+        <li>Unknown, replaced, other-event and participant bands are turned away at the desk with the reason.</li>
+      </ul>
+
+      <h3 id="hospitality-notifications">Hospitality notifications</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Notification</th><th>Who receives it</th><th>When</th><th>Muted by</th></tr></thead>
+        <tbody>
+          <tr><td>🍽 <b>Meals: Mess Hall</b> (meal alert)</td><td>All staff</td><td>The Hospitality team sends one. Also kept on the Billboard.</td><td>The <b>Meals</b> switch</td></tr>
+          <tr><td>🍽 <b>Mess Hall closed / open again</b></td><td>All staff</td><td>The Mess Hall is closed early or reopened. Tapping it opens the Venue Map.</td><td>The <b>Meals</b> switch</td></tr>
+          <tr><td>✅ <b>Task: Mark attendance for …</b></td><td>Team Leads with people not marked</td><td><b>Remind TLs</b> on Today, or automatically before the kitchen count is due</td><td>Always comes through</td></tr>
+          <tr><td>✅ <b>Task: Mark attendance: ate at …</b></td><td>Team Leads whose people ate without attendance</td><td><b>Notify TLs</b> on the Serving desk</td><td>Always comes through</td></tr>
+          <tr><td>⏰ <b>Count due in 15 min</b></td><td>The Hospitality Team Lead and anyone with Manage access to Hospitality</td><td>The count hasn't been saved 15 minutes before it's due</td><td>Always comes through</td></tr>
+          <tr><td>⏰ <b>Kitchen figures missing</b></td><td>The same team</td><td>An hour after a meal closes without figures</td><td>Always comes through</td></tr>
+        </tbody>
+      </table></div>
+      <p>Lock-screen notifications carry numbers only. Names appear only inside the Task on the Billboard.</p>
+    </section>
+
+    <!-- ================= 10. ADMIN ================= -->
+    <section class="chapter" id="admin" data-toc="Admin" data-no="10">
+      <div class="chapter-head"><span class="chapter-no">10</span><h2>Admin</h2></div>
       <p class="lead">The Admin pages set up the organisation: its people, its departments, each festival edition, a record of every email sent, and announcements to staff phones. Each page is open only to the roles shown next to it.</p>
 
       <h3 id="users">Users <span class="badge muted">Admins; Team Leads for their own department</span></h3>
       <p>People and departments are set up once for the whole organisation and carry across every event.</p>
 
       <h4>Finding people</h4>
-      <p><b>Admin › Users</b> follows the same layout as Bookings. Summary cards at the top (<b>Admins</b>, <b>Team Leads</b>, <b>Volunteers</b> and <b>No Department</b>) count each group and filter the table when tapped. Below them, staff can search by name or email, filter by role and department, and page through a table sorted by name. Selecting a person opens a side panel with their department, access level, dates and access in each department, plus the actions they're allowed to take.</p>
+      <p><b>Admin › Users</b> follows the same layout as Bookings. Summary cards at the top (<b>Admins</b>, <b>Team Leads</b>, <b>Volunteers</b> and <b>No Department</b>) count each group and filter the table when tapped. Below them, staff can search by name or email, filter by role and department, and page through a table sorted by name. Selecting a person opens a side panel with their department, access level, dates and access in each department, plus the actions they're allowed to take. For those allowed to change staff bands, the panel also has a <b>Wrist Band</b> section for the event picked in the sidebar (see <a href="#hospitality-bands">Staff wrist bands</a>).</p>
 
       <figure class="shot" data-shot="users" data-caption="Admin › Users: summary cards, search, filters and the user table"></figure>
       <figure class="shot" data-shot="users-panel" data-caption="Selecting a person opens their details and allowed actions"></figure>
       <h4>Adding a person</h4>
       <ol class="steps">
-        <li>An admin taps <b>+ New User</b>, which opens the same side panel ready for a new account, and fills in name, email, role and <b>Date of Joining</b>.</li>
+        <li>An admin taps <b>+ New User</b>, which opens the same side panel ready for a new account, and fills in name, email, role, <b>Date of Joining</b>, <b>Food preference</b> (Veg or Non-veg) and <b>Gender</b>.</li>
         <li>They choose the person's <b>home department</b>.</li>
         <li>They tap access chips to grant Read, Write or Manage in any other department.</li>
         <li>The person signs in with a password that must mix upper- and lower-case letters, a number and a symbol. The form checks that the password is typed the same way twice.</li>
@@ -668,6 +832,7 @@
         <li><b>Build the tents</b> for each tent pass type in Accommodation › Setup.</li>
         <li><b>Draw the venue boundary.</b> The event's page shows whether it's drawn, with a button that opens the Venue Map.</li>
         <li><b>Plan the workshops</b> in Workshops › Setup and the Planner, if the edition has any.</li>
+        <li><b>Set up Hospitality:</b> the mess calendar and meal times in Hospitality › Setup, the Mess Hall area on the Venue Map, and the staff and guest units in Hospitality › Stay.</li>
         <li><b>Set it to Active.</b> Team Leads and volunteers can now select it and start work.</li>
         <li>After the festival, <b>archive</b> it. Everything is kept, and it disappears from day-to-day lists.</li>
       </ol>
@@ -728,11 +893,16 @@
       <div class="callout warn"><strong>Keep it discreet</strong><p>Notifications can appear on locked phones. The page reminds senders not to include personal or sensitive details.</p></div>
     </section>
 
-    <!-- ================= 10. MY PROFILE ================= -->
-    <section class="chapter" id="profile" data-toc="My Profile" data-no="10">
-      <div class="chapter-head"><span class="chapter-no">10</span><h2>My Profile</h2></div>
-      <p class="lead">My Profile shows each person exactly what they can access, and is where they manage their own photo and notifications. It opens from their name at the bottom of the sidebar.</p>
+    <!-- ================= 11. MY PROFILE ================= -->
+    <section class="chapter" id="profile" data-toc="My Profile" data-no="11">
+      <div class="chapter-head"><span class="chapter-no">11</span><h2>My Profile</h2></div>
+      <p class="lead">My Profile shows each person exactly what they can access, and is where they manage their own photo, meal details and notifications. It opens from their name at the bottom of the sidebar.</p>
       <p>It shows your photo, which you can add, change or remove. It also shows your role, departments, a colour-coded table of your access in each department, and your own attendance since your date of joining.</p>
+      <ul>
+        <li><b>Food preference</b> (Veg or Non-veg) and <b>Gender</b> (Male, Female or Prefer not to say): everyone sets their own.</li>
+        <li><b>My meal QR</b>, shown at the Mess Hall's Serving desk. <b>Get a new QR</b> replaces it and the old one stops working.</li>
+        <li><b>My stay</b>: your unit and dates in Hospitality › Stay, with a link to its area on the Venue Map.</li>
+      </ul>
       <figure class="shot" data-shot="profile" data-caption="My Profile: photo, role and access per department"></figure>
 
       <h3>Profile photos</h3>
@@ -743,7 +913,7 @@
       <ul>
         <li><b>Turn on</b> or <b>Turn off</b> for this device. Each phone or computer is turned on separately.</li>
         <li><b>Send test</b> sends a test notification, to check it arrives. Test notifications don't appear on the Billboard.</li>
-        <li>Two switches choose what you receive: <b>Email batch finished</b> (when ticket or custom emails you sent have all gone out) and <b>Announcements</b> (messages from the festival organisers). Both are on to start with and apply to every device you've turned on. Urgent / Safety announcements still come through when Announcements is off. Turning a switch off only stops the notification: the note still appears on your <a href="#billboard">Billboard</a>.</li>
+        <li>Three switches choose what you receive: <b>Email batch finished</b> (when ticket or custom emails you sent have all gone out), <b>Announcements</b> (messages from the festival organisers) and <b>Meals</b> (meal time changes and when the Mess Hall opens or closes). All are on to start with and apply to every device you've turned on. Urgent / Safety announcements still come through when Announcements is off, and Hospitality tasks for Team Leads come through when Meals is off. Turning a switch off only stops the notification: the note still appears on your <a href="#billboard">Billboard</a>.</li>
         <li>If the browser blocks notifications, the section explains how to allow them in the browser's site settings.</li>
         <li>On iPhone and iPad, notifications work in the installed app only: tap <b>Share</b> → <b>Add to Home Screen</b>, open BiG from its icon, then turn them on here (iOS 16.4 or later).</li>
       </ul>
@@ -752,9 +922,9 @@
       <p>Whoever starts a ticket or custom email send gets an <b>Emails sent</b> notification when it has gone out, with how many were sent and how many failed. The same message is kept as a private note on their <a href="#billboard">Billboard</a>, and tapping the notification opens it there.</p>
     </section>
 
-    <!-- ================= 11. STRENGTHS ================= -->
-    <section class="chapter" id="strengths" data-toc="Platform strengths" data-no="11">
-      <div class="chapter-head"><span class="chapter-no">11</span><h2>Platform strengths</h2></div>
+    <!-- ================= 12. STRENGTHS ================= -->
+    <section class="chapter" id="strengths" data-toc="Platform strengths" data-no="12">
+      <div class="chapter-head"><span class="chapter-no">12</span><h2>Platform strengths</h2></div>
       <p class="lead">These qualities make the platform dependable on festival day.</p>
       <div class="grid c2">
         <div class="card strength reveal"><div class="ic">🛡</div><div><h4>Built to protect real data</h4><p>Bookings, events and occupied tents can't be deleted by accident. Removing a person who has records deactivates them instead of erasing their history. Overwrites ask first, and destructive actions need confirmation.</p></div></div>
@@ -764,21 +934,21 @@
         <div class="card strength reveal"><div class="ic">🔁</div><div><h4>Ready for every edition</h4><p>Events and pass types are configured, not hard-coded. A new festival year needs setup, not development.</p></div></div>
         <div class="card strength reveal"><div class="ic">✅</div><div><h4>Tested and staged releases</h4><p>Well over a thousand automated checks run before every release. Each release is tried in a test environment before wider use.</p></div></div>
         <div class="card strength reveal"><div class="ic">🔗</div><div><h4>Fits existing sales channels</h4><p>Bookings sold elsewhere come in through Bulk Upload. Export gives a re-importable backup at any time.</p></div></div>
-        <div class="card strength reveal"><div class="ic">🧭</div><div><h4>Honest records</h4><p>Attendance by slot, admissions per person with one wrist band each, tents linked to the right festival pass, workshop attendance by session, and a record of every email sent and whether it arrived. The numbers can be trusted.</p></div></div>
+        <div class="card strength reveal"><div class="ic">🧭</div><div><h4>Honest records</h4><p>Attendance by slot, admissions per person with one wrist band each, tents linked to the right festival pass, workshop attendance by session, every meal served or refused, and a record of every email sent and whether it arrived. The numbers can be trusted.</p></div></div>
       </div>
     </section>
 
-    <!-- ================= 12. LIMITATIONS ================= -->
-    <section class="chapter" id="limitations" data-toc="Current limitations" data-no="12">
-      <div class="chapter-head"><span class="chapter-no">12</span><h2>Current limitations</h2></div>
+    <!-- ================= 13. LIMITATIONS ================= -->
+    <section class="chapter" id="limitations" data-toc="Current limitations" data-no="13">
+      <div class="chapter-head"><span class="chapter-no">13</span><h2>Current limitations</h2></div>
       <p class="lead">This is what the platform doesn't do yet, and what it deliberately doesn't do. Each item is marked as <span class="badge info">By design</span>, <span class="badge warn">Planned</span> or <span class="badge muted">Not yet planned</span>.</p>
       <div class="filters no-print" id="limFilters"></div>
       <div class="lim-list" id="limList"></div>
     </section>
 
-    <!-- ================= 13. ROADMAP ================= -->
-    <section class="chapter" id="roadmap" data-toc="Roadmap and future possibilities" data-no="13">
-      <div class="chapter-head"><span class="chapter-no">13</span><h2>Roadmap and future possibilities</h2></div>
+    <!-- ================= 14. ROADMAP ================= -->
+    <section class="chapter" id="roadmap" data-toc="Roadmap and future possibilities" data-no="14">
+      <div class="chapter-head"><span class="chapter-no">14</span><h2>Roadmap and future possibilities</h2></div>
       <p class="lead">What's been delivered, what's being built now, what's planned next, and ideas worth exploring. Priorities (P1–P3) are set by the festival team and can change.</p>
       <div class="filters no-print" id="rmFilters"></div>
       <div class="timeline" id="timeline"></div>
@@ -786,9 +956,9 @@
       <div class="callout note"><strong>Ideas are not commitments</strong><p>Items marked <span class="badge idea">Idea</span> are possibilities the platform's design makes easy. None has been scoped or scheduled.</p></div>
     </section>
 
-    <!-- ================= 14. INSTALLABLE APP ================= -->
-    <section class="chapter" id="installable-app" data-toc="The installable app" data-no="14">
-      <div class="chapter-head"><span class="chapter-no">14</span><h2>BiG as an installable app</h2></div>
+    <!-- ================= 15. INSTALLABLE APP ================= -->
+    <section class="chapter" id="installable-app" data-toc="The installable app" data-no="15">
+      <div class="chapter-head"><span class="chapter-no">15</span><h2>BiG as an installable app</h2></div>
       <p class="lead">BiG is an app staff can keep on their phone's home screen: quick to open, still there when the signal drops, and able to send notifications.</p>
       <div class="callout note"><strong>Available now, with more to come</strong><p>BiG can be installed on phones and computers, and it sends notifications. Next, the most useful screens will keep working without signal; see <a href="#offline-rules">When the signal drops</a>.</p></div>
 
@@ -818,13 +988,13 @@
           <tr><td>✅ <b>Opens and works normally</b></td><td>Opening the app, menus and moving between pages</td></tr>
           <tr><td>👁 <b>Shows the last saved copy</b>, labelled with its time (e.g. "As of 10:42")</td><td>Dashboard · My Profile · My Department roster and history · Bookings list · finding a booking at the gate</td></tr>
           <tr><td>💾 <b>Saved on the phone, sent automatically when back online</b></td><td>Marking volunteer attendance</td></tr>
-          <tr><td>🌐 <b>Waits for a connection</b></td><td>Signing in · Admit · Spot Registration · tent allocation · editing details · Bulk Upload · sending emails · admin pages</td></tr>
+          <tr><td>🌐 <b>Waits for a connection</b></td><td>Signing in · Admit · Spot Registration · tent allocation · editing details · Bulk Upload · sending emails · Hospitality pages · admin pages</td></tr>
         </tbody>
       </table></div>
       <div class="callout warn"><strong>Why Admit needs a connection</strong><p>Two gates without signal could each admit the same ticket. Once someone is inside the venue, that can't be undone. So Admit always checks the latest record first. People already signed in stay signed in while offline.</p></div>
       <ul>
         <li><b>Booking details kept on phones:</b> only on Box Office staff's phones, for finding bookings offline. They're removed when the person signs out, and three days after the event ends.</li>
-        <li><b>Hospitality:</b> the planned mess-hall scanning will be designed to work without signal from the start.</li>
+        <li><b>Hospitality:</b> the Serving desk needs a connection today. Saving desk scans on the phone and sending them when back online is planned with working without signal.</li>
         <li><b>Workshop door:</b> planned to save scans on the phone and send them when back online. Today the lists and the door need a connection.</li>
       </ul>
 
@@ -859,7 +1029,7 @@
         <li><b>Notifications</b> <span class="badge ok">Available</span>: announcements, "emails sent", the Billboard, and notification settings in My Profile.</li>
         <li><b>Working without signal</b> <span class="badge info">Coming next</span>: the rules in <a href="#offline-rules">When the signal drops</a>.</li>
       </ol>
-      <p><b>Later:</b> meal calls and attendance reminders arrive with the Hospitality page. If outages turn out to be frequent, one chosen <b>backup gate phone</b> could keep admitting people during an outage, with safeguards against double entry. That will be decided after the first festival with the app.</p>
+      <p>Meal alerts and attendance reminders for Team Leads now come from <a href="#hospitality-notifications">Hospitality</a>. <b>Later:</b> if outages turn out to be frequent, one chosen <b>backup gate phone</b> could keep admitting people during an outage, with safeguards against double entry. That will be decided after the first festival with the app.</p>
       <p><span class="badge idea">Idea</span> Timed notifications, such as a reminder before a shift starts.</p>
 
       <h3 id="notifications">Notifications that know what's happening</h3>
@@ -869,16 +1039,16 @@
         <div class="phone-mock" aria-label="Sample notifications on a phone's lock screen">
           <div class="pm-time">12:58</div>
           <div class="pm-date">Saturday · Festival day 2</div>
-          <div class="pm-note reveal"><span class="pm-ic">BiG</span><div><div class="pm-head"><b>Lunch is being served</b><span>now</span></div><p>The mess hall is open. Tap to see today's menu count.</p></div></div>
-          <div class="pm-note reveal" style="transition-delay:.15s"><span class="pm-ic">BiG</span><div><div class="pm-head"><b>3 people not marked yet</b><span>now</span></div><p>Operations · Afternoon slot. Tap to mark attendance.</p></div></div>
+          <div class="pm-note reveal"><span class="pm-ic">BiG</span><div><div class="pm-head"><b>Meals: Mess Hall</b><span>now</span></div><p>Lunch is ready. Please come before 3 pm.</p></div></div>
+          <div class="pm-note reveal" style="transition-delay:.15s"><span class="pm-ic">BiG</span><div><div class="pm-head"><b>Task: Mark attendance for Lunch</b><span>now</span></div><p>3 of your team are not marked for the Morning slot yet.</p></div></div>
           <div class="pm-note reveal" style="transition-delay:.3s"><span class="pm-ic">BiG</span><div><div class="pm-head"><b>Emails sent</b><span>4m ago</span></div><p>Ticket emails: 248 sent, 2 failed.</p></div></div>
           <div class="pm-note reveal" style="transition-delay:.45s"><span class="pm-ic">BiG</span><div><div class="pm-head"><b>Schedule change: Gate B closes at 11 pm</b><span>12m ago</span></div><p>Please direct arrivals to Gate A tonight.</p></div></div>
           <div class="pm-sample">Sample notifications</div>
         </div>
         <div class="grid c2 notif-why">
           <div class="card strength reveal"><div class="ic">🎯</div><div><h4>Only the right people</h4><p>BiG knows everyone's role and department. An attendance reminder reaches the three Team Leads with gaps, not a 200-person group.</p></div></div>
-          <div class="card strength reveal"><div class="ic">⚙️</div><div><h4>Nobody has to type it</h4><p>When a meal opens or emails finish sending, the notification goes out by itself.</p></div></div>
-          <div class="card strength reveal"><div class="ic">👆</div><div><h4>One tap to act</h4><p>Tapping a notification opens the exact place: the announcement or email results on the Billboard today, and the attendance sheet or meal count once Hospitality arrives.</p></div></div>
+          <div class="card strength reveal"><div class="ic">⚙️</div><div><h4>Nobody has to type it</h4><p>When a kitchen count is coming due or emails finish sending, the notification goes out by itself.</p></div></div>
+          <div class="card strength reveal"><div class="ic">👆</div><div><h4>One tap to act</h4><p>Tapping a notification opens the exact place: the announcement, email results or Team Lead's task on the Billboard, or the Venue Map when the Mess Hall opens or closes.</p></div></div>
           <div class="card strength reveal"><div class="ic">🔕</div><div><h4>No noise</h4><p>Everything is on to start with. Anyone can mute the types they don't need in <b>My Profile</b>, and muted announcements still wait on the Billboard. Urgent / Safety announcements always come through.</p></div></div>
           <div class="card strength reveal"><div class="ic">📇</div><div><h4>No numbers shared</h4><p>No one needs to swap phone numbers or be added to a group. Everyone signed in to BiG can receive them.</p></div></div>
           <div class="card strength reveal"><div class="ic">🤫</div><div><h4>Discreet</h4><p>Notifications can show on a locked screen, so they never include personal details.</p></div></div>
@@ -902,11 +1072,12 @@
         <tbody>
           <tr><td>📣 <b>Announcements</b></td><td>The roles and/or departments the sender picks</td><td>Directors, Admins or the platform team write one and send it (<a href="#announcements">Announcements</a>)</td><td><span class="badge ok">Available</span></td></tr>
           <tr><td>✉ <b>Emails sent</b></td><td>Whoever started the email send</td><td>The last email in the send is done</td><td><span class="badge ok">Available</span></td></tr>
-          <tr><td>🍽 <b>Meal call</b></td><td>Festival staff</td><td>The mess team opens a meal</td><td>With the Hospitality page</td></tr>
-          <tr><td>🧑‍🤝‍🧑 <b>Attendance not marked yet</b></td><td>Team Leads whose department still has people unmarked</td><td>The mess team taps <b>Remind TLs</b>, or a meal is opened</td><td>With the Hospitality page</td></tr>
+          <tr><td>🍽 <b>Meals</b></td><td>All staff</td><td>The Hospitality team sends a meal alert, or closes or reopens the Mess Hall</td><td><span class="badge ok">Available</span></td></tr>
+          <tr><td>🧑‍🤝‍🧑 <b>Attendance not marked yet</b></td><td>Team Leads whose people are unmarked</td><td>The Hospitality team taps <b>Remind TLs</b>, or automatically before the kitchen count is due</td><td><span class="badge ok">Available</span></td></tr>
+          <tr><td>⏰ <b>Kitchen count and figures</b></td><td>The Hospitality Team Lead and anyone with Manage access to Hospitality</td><td>A count not saved 15 minutes before it's due, or a meal's figures missing an hour after it closes</td><td><span class="badge ok">Available</span></td></tr>
         </tbody>
       </table></div>
-      <p>Announcements and "Emails sent" messages also appear on the recipient's <a href="#billboard">Billboard</a>, so nothing is lost if a notification is missed.</p>
+      <p>Announcements, meal alerts, Team Lead tasks and "Emails sent" messages also appear on the recipient's <a href="#billboard">Billboard</a>, so nothing is lost if a notification is missed. See <a href="#hospitality-notifications">Hospitality notifications</a> for the full list.</p>
       <div class="callout tip"><strong>On iPhone</strong><p>Notifications work once BiG has been added to the Home Screen (iOS 16.4 or later) and the person has turned them on. My Profile explains the steps on iPhone.</p></div>
     </section>
 

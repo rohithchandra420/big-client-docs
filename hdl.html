@@ -415,16 +415,16 @@
   <div class="cover">
     <div class="cover-eyebrow">High-Level Design Document</div>
     <h1>BiG Event &amp; Ticketing Platform</h1>
-    <p class="sub">A single operational system for festival ticketing, admission, accommodation and volunteer management — covering the platform as delivered today and the direction it is heading in.</p>
+    <p class="sub">A single operational system for festival ticketing, admission, accommodation, site mapping, workshops, hospitality and volunteer management — covering the platform as delivered today and the direction it is heading in.</p>
     <div class="meta-row">
       <span class="chip accent"><b>Prepared for</b> — [Client Organisation Name]</span>
-      <span class="chip"><b>Version</b> 1.0 · Draft</span>
-      <span class="chip"><b>Date</b> 19 August 2026</span>
-      <span class="chip"><b>Platform status</b> V1 in production</span>
+      <span class="chip"><b>Version</b> 2.0</span>
+      <span class="chip"><b>Date</b> 4 November 2026</span>
+      <span class="chip"><b>Platform status</b> In acceptance testing</span>
     </div>
     <div class="confidential">
       <span class="dot"></span>
-      <p>This document describes the architecture and design of the BiG platform at a level suited for review and sign-off. It intentionally omits operational security detail (credentials, thresholds, infrastructure secrets) that is not relevant to a design review.</p>
+      <p>This document describes the design of the BiG platform at a level suited for review and sign-off. It deliberately leaves out technical, hosting and security detail that isn't needed for a design review. For how each screen works, see the <a href="guide/">Product Guide</a>.</p>
     </div>
   </div>
 
@@ -437,9 +437,9 @@
       <a href="#modules">4 · Functional Modules</a>
       <a href="#data">5 · Data Design</a>
       <a href="#interfaces">6 · Interfaces &amp; Integration</a>
-      <a href="#security">7 · Security &amp; Access Control</a>
+      <a href="#security">7 · Access Control</a>
       <a href="#nfr">8 · Non-Functional Requirements</a>
-      <a href="#deployment">9 · Deployment &amp; Hosting</a>
+      <a href="#deployment">9 · Releases</a>
       <a href="#assumptions">10 · Assumptions &amp; Constraints</a>
       <a href="#status">11 · Current Status</a>
       <a href="#roadmap">12 · Roadmap</a>
@@ -457,9 +457,9 @@
           <a href="#modules">4 · Functional Modules</a>
           <a href="#data">5 · Data Design</a>
           <a href="#interfaces">6 · Interfaces &amp; Integration</a>
-          <a href="#security">7 · Security &amp; Access Control</a>
+          <a href="#security">7 · Access Control</a>
           <a href="#nfr">8 · Non-Functional Requirements</a>
-          <a href="#deployment">9 · Deployment &amp; Hosting</a>
+          <a href="#deployment">9 · Releases</a>
           <a href="#assumptions">10 · Assumptions &amp; Constraints</a>
           <a href="#status">11 · Current Status</a>
           <a href="#roadmap">12 · Roadmap</a>
@@ -478,12 +478,12 @@
 
         <h3>1.2 Purpose of the system</h3>
         <div class="prose">
-          <p>BiG is the operational backbone for running a festival-scale event: selling and tracking tickets, checking attendees in at the gate, allocating tent accommodation, and coordinating the volunteers and departments (Finance, Operations, and others) who run the event on the ground.</p>
+          <p>BiG is the operational backbone for running a festival-scale event: selling and tracking tickets, admitting attendees at the gate with a wrist band, allocating tent accommodation, mapping the festival ground, running workshops, feeding and housing the crew and guests, and coordinating the volunteers and departments (Finance, Operations, and others) who run the event on the ground.</p>
         </div>
 
         <h3>1.3 Scope</h3>
         <div class="prose">
-          <p>This document covers the platform as a whole — the production system in current use (referred to as V1) together with the modules delivered since as part of an ongoing V2 programme. It also outlines what is planned next, at the level of intent rather than implementation detail.</p>
+          <p>This document covers the platform as a whole — the original system (referred to as V1) together with the modules delivered since as part of an ongoing V2 programme. Every release is first checked in a test environment before wider use. It also outlines what is planned next, at the level of intent rather than implementation detail.</p>
         </div>
 
         <h3>1.4 Intended audience</h3>
@@ -496,10 +496,12 @@
           <table>
             <tr><th>Term</th><th>Meaning</th></tr>
             <tr><td class="mono">HDL</td><td>High-Level Design — this document.</td></tr>
-            <tr><td class="mono">SPA</td><td>Single-Page Application — the browser-based app staff and admins use.</td></tr>
+            <tr><td class="mono">Web app</td><td>The browser-based app staff and admins use. It can also be installed on a phone or computer and opened like an app.</td></tr>
+            <tr><td class="mono">Admit</td><td>Letting an attendee into the festival at the gate, which also links their wrist band.</td></tr>
+            <tr><td class="mono">UAT</td><td>User acceptance testing — the environment where each release is checked before wider use.</td></tr>
             <tr><td class="mono">Pass Type</td><td>A category of ticket or add-on sold for an event (e.g. a festival pass, a tent, a merchandise add-on).</td></tr>
             <tr><td class="mono">RBAC</td><td>Role-Based Access Control — permissions determined by a user's role and department.</td></tr>
-            <tr><td class="mono">V1 / V2</td><td>V1: the original production system. V2: the current programme of enhancements layered on top of it.</td></tr>
+            <tr><td class="mono">V1 / V2</td><td>V1: the original system. V2: the current programme of enhancements layered on top of it.</td></tr>
           </table>
         </div>
       </section>
@@ -511,38 +513,43 @@
 
         <h3>2.1 Business context</h3>
         <div class="prose">
-          <p>Running a festival means coordinating several activities that are easy to plan separately and hard to run separately: who has a valid ticket, who has checked in, where they are staying, and who is on duty to make it all happen. BiG brings these into one system so that box office, admissions, accommodation and department management all read from — and write to — the same source of truth.</p>
+          <p>Running a festival means coordinating several activities that are easy to plan separately and hard to run separately: who has a valid ticket, who has been admitted, where they are staying, what is happening where on the ground, who is on duty, and how many plates the kitchen should cook. BiG brings these into one system so that box office, admissions, accommodation, the site map, workshops, hospitality and department management all read from — and write to — the same source of truth.</p>
         </div>
 
         <h3>2.2 Who uses it</h3>
         <div class="prose">
-          <p>Access is scoped by <strong>role</strong> (what a person is allowed to do) and <strong>department</strong> (where they are allowed to do it). Five role tiers cover the organisation:</p>
+          <p>Access is scoped by <strong>role</strong> (what a person is allowed to do) , <strong>department</strong> (where they are allowed to do it) and any extra <strong>access</strong> granted to other departments at a Read, Write or Manage tier. Five roles cover the organisation:</p>
         </div>
         <div class="card-grid">
+          <div class="card"><span class="tag">Full access</span><h4>Developer</h4><p>The platform team. Full access, and not tracked for volunteer attendance.</p></div>
           <div class="card"><span class="tag">Full access</span><h4>Administrator</h4><p>Configures the platform: events, departments, users and system-wide settings.</p></div>
           <div class="card"><span class="tag">Full access</span><h4>Director</h4><p>Organisation-wide oversight across every department, without day-to-day configuration duties.</p></div>
           <div class="card"><span class="tag">Department-wide</span><h4>Team Lead</h4><p>Runs one or more departments: manages volunteers, records attendance, works bookings.</p></div>
-          <div class="card"><span class="tag">Own record</span><h4>Volunteer</h4><p>Operates within their assigned department — check-in duty, own attendance history.</p></div>
+          <div class="card"><span class="tag">Own department</span><h4>Volunteer</h4><p>Operates within their assigned department, plus anything they've been granted — gate duty, workshop doors, the mess desk, own attendance history.</p></div>
         </div>
 
         <h3>2.3 Core capabilities</h3>
         <ul>
-          <li><strong>Ticketing &amp; Box Office</strong> — sell, look up and manage bookings for an event, including bulk import of pre-sold orders.</li>
-          <li><strong>Admission</strong> — check attendees in at the gate, including on-the-spot registration for walk-ups.</li>
-          <li><strong>Accommodation</strong> — allocate and track tent assignments per attendee.</li>
-          <li><strong>Volunteer &amp; Department Management</strong> — assign staff to departments, track attendance by shift.</li>
-          <li><strong>Reporting</strong> — a live dashboard of ticketing, admission, accommodation and staffing.</li>
+          <li><strong>Ticketing &amp; Box Office</strong> — look up and manage bookings for an event, bulk import of pre-sold orders, export, and ticket and custom emails to buyers.</li>
+          <li><strong>Admission</strong> — admit attendees at the gate by QR code or search, link each one's wrist band, and register walk-ups on the spot.</li>
+          <li><strong>Accommodation</strong> — build the tent inventory and allocate places to tent-pass holders.</li>
+          <li><strong>Venue Map</strong> — places, zones, routes and the festival boundary on a street or satellite map, with live status for workshops and the Mess Hall.</li>
+          <li><strong>Workshops</strong> — venues, a schedule calendar, pre-registration lists, the door by wrist band, and attendance reports.</li>
+          <li><strong>Hospitality</strong> — the kitchen count from attendance, the serving desk, guest meal passes, a daily left-over report, and beds for staff and guests.</li>
+          <li><strong>Volunteer &amp; Department Management</strong> — assign staff to departments, track attendance by slot (Morning, Afternoon, Night).</li>
+          <li><strong>Communication</strong> — notifications to staff phones, announcements, and a Billboard that keeps every message.</li>
+          <li><strong>Dashboard</strong> — headline numbers of ticketing, admission, accommodation and staffing.</li>
         </ul>
       </section>
 
       <!-- 3. ARCHITECTURE -->
       <section id="architecture">
         <div class="sec-head"><span class="sec-num">03</span><h2>Architecture Overview</h2></div>
-        <p class="lede">A conventional three-tier web application: a browser-based app, an API server, and a managed database — each hosted independently.</p>
+        <p class="lede">A conventional three-tier web application: a browser-based app, an application server, and a database — each run independently.</p>
 
         <h3>3.1 Architecture at a glance</h3>
         <figure class="diagram-frame">
-          <svg viewBox="0 0 820 330" role="img" aria-label="Browser loads the Angular app once from static hosting, then talks directly to the API server for all data, which in turn reads and writes the database.">
+          <svg viewBox="0 0 820 330" role="img" aria-label="Browser loads the web app once from static hosting, then talks to the application server for all data, which in turn reads and writes the database.">
             <defs>
               <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
                 <path d="M0,0 L10,5 L0,10 z" fill="currentColor" class="lbl" style="fill:var(--ink-muted)"/>
@@ -552,7 +559,7 @@
             <!-- Browser -->
             <rect x="310" y="16" width="200" height="56" rx="10" class="box-accent"/>
             <text x="410" y="40" text-anchor="middle" font-size="13.5" font-weight="600">Browser</text>
-            <text x="410" y="58" text-anchor="middle" font-size="11.5" class="lbl">Angular app (SPA)</text>
+            <text x="410" y="58" text-anchor="middle" font-size="11.5" class="lbl">web app (installable)</text>
 
             <!-- Static hosting -->
             <rect x="70" y="160" width="220" height="66" rx="10" class="box"/>
@@ -560,16 +567,16 @@
             <text x="180" y="204" text-anchor="middle" font-size="11.5" class="lbl">serves the compiled app</text>
             <text x="180" y="219" text-anchor="middle" font-size="11.5" class="lbl">files only</text>
 
-            <!-- API server -->
+            <!-- Application server -->
             <rect x="530" y="160" width="220" height="66" rx="10" class="box"/>
-            <text x="640" y="186" text-anchor="middle" font-size="13.5" font-weight="600">API Server</text>
+            <text x="640" y="186" text-anchor="middle" font-size="13.5" font-weight="600">Application Server</text>
             <text x="640" y="204" text-anchor="middle" font-size="11.5" class="lbl">application &amp; business</text>
             <text x="640" y="219" text-anchor="middle" font-size="11.5" class="lbl">logic</text>
 
             <!-- Database -->
             <rect x="530" y="272" width="220" height="56" rx="10" class="box-accent"/>
             <text x="640" y="296" text-anchor="middle" font-size="13.5" font-weight="600">Database</text>
-            <text x="640" y="314" text-anchor="middle" font-size="11.5" class="lbl">managed, cloud-hosted</text>
+            <text x="640" y="314" text-anchor="middle" font-size="11.5" class="lbl">all platform records</text>
 
             <!-- Browser -> Static hosting -->
             <path d="M355,72 C300,105 240,120 200,160" class="arrow" marker-end="url(#arrow)"/>
@@ -578,36 +585,35 @@
             <!-- Browser -> API -->
             <path d="M465,72 C520,105 590,120 630,160" class="arrow" marker-end="url(#arrow)"/>
             <text x="500" y="128" font-size="11" class="lbl">data requests</text>
-            <text x="500" y="142" font-size="11" class="lbl">(secure session cookie)</text>
+            <text x="500" y="142" font-size="11" class="lbl">(signed-in users only)</text>
 
             <!-- API -> DB -->
             <path d="M640,226 L640,272" class="arrow" marker-end="url(#arrow)"/>
             <text x="655" y="253" font-size="11" class="lbl">reads / writes</text>
           </svg>
-          <figcaption>The browser loads the application once from static hosting, then talks directly to the API server for every action. The API server is the only component with database access — the browser never reaches the database directly. <span class="scroll-hint">On a narrow screen, swipe sideways within the diagram to see all of it.</span></figcaption>
+          <figcaption>The browser loads the application once from static hosting, keeps a copy so it opens quickly, then talks to the application server for every action. The application server is the only component with database access — the browser never reaches the database directly. <span class="scroll-hint">On a narrow screen, swipe sideways within the diagram to see all of it.</span></figcaption>
         </figure>
 
-        <h3>3.2 Technology stack</h3>
+        <h3>3.2 Building blocks</h3>
         <div class="table-wrap">
           <table>
-            <tr><th>Layer</th><th>Technology</th><th>Notes</th></tr>
-            <tr><td>Frontend</td><td class="mono">Angular 16</td><td>Single-page application, responsive across desktop and mobile.</td></tr>
-            <tr><td>Backend</td><td class="mono">Node.js + Express</td><td>REST API, handles all business logic and validation.</td></tr>
-            <tr><td>Database</td><td class="mono">MongoDB (Atlas)</td><td>Managed, cloud-hosted document database.</td></tr>
-            <tr><td>Authentication</td><td class="mono">Session cookie (JWT-based)</td><td>Secure, httpOnly cookie — not exposed to page scripts.</td></tr>
+            <tr><th>Layer</th><th>Role</th></tr>
+            <tr><td>Web app</td><td>One responsive app for desktop, tablet and phone, installable on the home screen, opening without signal and receiving notifications.</td></tr>
+            <tr><td>Application server</td><td>All business rules, validation and access checks, plus background work such as email sends and timed meal reminders.</td></tr>
+            <tr><td>Database</td><td>Holds every platform record.</td></tr>
           </table>
         </div>
 
         <h3>3.3 Request &amp; data flow</h3>
         <div class="prose">
-          <p>A user's browser downloads the Angular application once from static hosting. From that point on, every action in the app — viewing a dashboard, checking in an attendee, editing a booking — sends a request to the API server, which validates the request, applies the relevant business rules and role checks, and reads or writes the database. The database is never reached directly from the browser.</p>
+          <p>A user's browser downloads the application once from static hosting. From that point on, every action in the app — viewing a dashboard, admitting an attendee, serving a meal — sends a request to the application server, which checks the request, applies the relevant business rules and access checks, and reads or writes the database. The database is never reached directly from the browser. A few screens, such as the Venue Map and the workshop Planner, refresh their live numbers by themselves while open.</p>
         </div>
       </section>
 
       <!-- 4. MODULES -->
       <section id="modules">
         <div class="sec-head"><span class="sec-num">04</span><h2>Functional Modules</h2></div>
-        <p class="lede">Six modules cover the platform's day-to-day use, from configuring an event through to running it on the ground.</p>
+        <p class="lede">Ten modules cover the platform's day-to-day use, from configuring an event through to running it on the ground.</p>
 
         <h3>4.1 Users, Roles &amp; Departments</h3>
         <div class="prose">
@@ -621,29 +627,49 @@
 
         <h3>4.3 Box Office — Bookings, Registration &amp; Admission</h3>
         <div class="prose">
-          <p>Box Office covers the full lifecycle of a ticket: pre-sold orders can be bulk-imported from a spreadsheet, staff can look up a booking and manage every attendee on it, walk-ups can be registered on the spot, and attendees can be checked in at the gate — including by QR scan. A single, shared attendee-actions component is used everywhere an attendee is checked in, allocated a tent, or edited, so behaviour is identical whichever screen staff are working from.</p>
+          <p>Box Office covers the full lifecycle of a ticket: pre-sold orders can be bulk-imported from a spreadsheet and exported again, buyers receive a ticket email with a tamper-proof QR code, staff can look up a booking and manage every attendee on it, walk-ups can be registered on the spot, and attendees are admitted at the gate by QR scan or search. Admitting someone links the wrist band they are given; a band belongs to one person, ever, and a lost band can be replaced and is flagged wherever it is scanned. The same attendee actions appear on every screen that shows a booking, so behaviour is identical wherever staff are working.</p>
         </div>
 
         <h3>4.4 Tent / Accommodation Allocation</h3>
         <div class="prose">
-          <p>Attendees with a tent pass can be allocated a specific tent at check-in, moved if needed, and vacated when they leave. Allocation is tracked per attendee, so occupancy is always known in real time.</p>
+          <p>Admins build each event's numbered tent units per tent pass type. Attendees with a tent pass are allocated a place at the gate and vacated when they leave; moving someone is a vacate followed by a new allocation. Allocation is tracked per attendee, can't overfill a tent, and asks for confirmation before mixing genders, so occupancy is always known in real time.</p>
         </div>
 
         <h3>4.5 Volunteer Attendance</h3>
         <div class="prose">
-          <p>Each department can mark and review attendance for its volunteers, by date and by shift — supporting volunteers who move between departments mid-event. Directors and administrators get a cross-department view; Team Leads see their own department; volunteers see their own record.</p>
+          <p>Each department marks and reviews attendance for its people, by date and by slot (Morning, Afternoon, Night) — supporting volunteers who move between departments mid-event. Directors and administrators get a cross-department view; Team Leads see their own department; volunteers see their own department, read-only. Attendance also drives the kitchen's meal counts.</p>
         </div>
 
-        <h3>4.6 Dashboard &amp; Insights</h3>
+        <h3>4.6 Venue Map</h3>
         <div class="prose">
-          <p>A summary view of ticketing, admission, accommodation and (for administrators) volunteer numbers, refreshed from live data — the first screen most users land on after signing in.</p>
+          <p>Each event has its own map of the festival ground on a street or satellite view: places as pins, the festival boundary, zones and routes drawn on the map, and imports from Google Earth or My Maps. Admins can change anything; Team Leads change their own department's items, inside the boundary; everyone can view. Workshop areas show live numbers, and the Mess Hall shows whether it is open.</p>
+        </div>
+
+        <h3>4.7 Workshops</h3>
+        <div class="prose">
+          <p>Venues, workshops and categories are set up once per event, then scheduled on a calendar with warnings that never block. Staff build ordered pre-registration lists with a waitlist, admit people at the door by wrist band or search, and report who attended each session, with an Excel export.</p>
+        </div>
+
+        <h3>4.8 Hospitality</h3>
+        <div class="prose">
+          <p>A separate area for feeding and housing the festival's staff and guests. Each event has a mess plan with meal times. Expected Veg and Non-veg counts come from attendance — Directors, Admins and Developers are always expected, Team Leads and volunteers when marked present — plus guest meal passes. Team Leads are reminded to mark attendance before each count is due. A serving desk identifies people by a personal meal QR code, a staff wrist band or search, and records every decision. A daily report compares what was prepared, asked for and served, and tracks what was left over against a goal. Staff and guest beds are allocated by night, completely separately from participant tents.</p>
+        </div>
+
+        <h3>4.9 Communication</h3>
+        <div class="prose">
+          <p>Admins send announcements to chosen roles and departments; the platform itself sends notifications when emails finish sending, when meals change and when attendance is needed. Notifications reach staff devices even when BiG is closed, people choose what they receive, and every message also waits on each person's Billboard.</p>
+        </div>
+
+        <h3>4.10 Dashboard</h3>
+        <div class="prose">
+          <p>A summary view of ticketing, admission, accommodation and (for administrators) volunteer numbers — the first screen most users land on after signing in.</p>
         </div>
       </section>
 
       <!-- 5. DATA DESIGN -->
       <section id="data">
         <div class="sec-head"><span class="sec-num">05</span><h2>Data Design</h2></div>
-        <p class="lede">Two connected chains of data: what was sold and to whom, and who is on duty to run it.</p>
+        <p class="lede">Two connected families of data: festival records that belong to one event, and people records shared across every event.</p>
 
         <h3>5.1 Conceptual data model</h3>
         <figure class="diagram-frame">
@@ -678,7 +704,7 @@
 
             <rect x="410" y="220" width="150" height="52" rx="9" class="box"/>
             <text x="485" y="245" text-anchor="middle" font-size="13" font-weight="600">Attendance</text>
-            <text x="485" y="261" text-anchor="middle" font-size="10.5" class="lbl">per user / date</text>
+            <text x="485" y="261" text-anchor="middle" font-size="10.5" class="lbl">per user / date / slot</text>
 
             <path d="M170,246 L215,246" class="arrow" marker-end="url(#arrow)"/>
             <text x="192" y="238" text-anchor="middle" font-size="10" class="lbl">joins</text>
@@ -689,20 +715,28 @@
             <path d="M290,220 C290,160 485,140 485,76" class="arrow" marker-end="url(#arrow)" stroke-dasharray="4 4"/>
             <text x="490" y="150" font-size="10.5" class="lbl">department staff process bookings</text>
           </svg>
-          <figcaption>Ticketing data (Event → Pass Type → Booking → Tent) and workforce data (User → Department → Attendance) are separate chains, joined by the fact that department staff are the ones operating the ticketing side. <span class="scroll-hint">On a narrow screen, swipe sideways within the diagram to see all of it.</span></figcaption>
+          <figcaption>Ticketing data (Event → Pass Type → Booking → Tent) and workforce data (User → Department → Attendance) are separate chains, joined by the fact that department staff are the ones operating the ticketing side. The map, workshop and hospitality records in the table below also belong to an event. <span class="scroll-hint">On a narrow screen, swipe sideways within the diagram to see all of it.</span></figcaption>
         </figure>
 
         <h3>5.2 Key entities</h3>
         <div class="table-wrap">
           <table>
             <tr><th>Entity</th><th>Represents</th></tr>
-            <tr><td>User</td><td>A person with platform access — has a role and one or more department memberships.</td></tr>
-            <tr><td>Department</td><td>An operational team (e.g. Finance, Operations) with its own Team Lead(s) and volunteers.</td></tr>
-            <tr><td>Event</td><td>A specific festival edition being run through the platform.</td></tr>
-            <tr><td>Pass Type</td><td>A category of ticket or add-on belonging to one event.</td></tr>
-            <tr><td>Booking</td><td>An order — one or more attendees, each holding a Pass Type, with check-in and allocation state.</td></tr>
-            <tr><td>Tent</td><td>A physical accommodation unit that a booked attendee can be allocated to.</td></tr>
-            <tr><td>Attendance</td><td>A record of one user's presence for one department, on one date and shift.</td></tr>
+            <tr><td>User</td><td>A person with platform access — has a role, a home department, any extra access, a food preference and a gender. Shared across events; deactivated rather than deleted once they have history.</td></tr>
+            <tr><td>Department</td><td>An operational team (e.g. Finance, Operations) with its own Team Lead(s) and volunteers. Shared across events.</td></tr>
+            <tr><td>Attendance</td><td>A record of one user's presence for one department, on one date and slot.</td></tr>
+            <tr><td>Event</td><td>A specific festival edition: Draft, Active or Archived.</td></tr>
+            <tr><td>Pass Type</td><td>A category of ticket belonging to one event: Festival, Tent or Add-on.</td></tr>
+            <tr><td>Booking</td><td>An order — one or more attendees, each holding a Pass Type, with admission, email and allocation state.</td></tr>
+            <tr><td>Wrist band</td><td>A band linked to one Festival Pass at Admit, or to one staff member for an event. Never reused; replaced bands are kept and flagged.</td></tr>
+            <tr><td>Tent</td><td>A physical accommodation unit that a tent-pass holder can be allocated to.</td></tr>
+            <tr><td>Location / Area</td><td>A place, zone or route on an event's Venue Map, including the festival boundary and the Mess Hall.</td></tr>
+            <tr><td>Workshop / Session</td><td>A workshop and each scheduled run of it at a venue, with its pre-registration list and attendance.</td></tr>
+            <tr><td>Mess plan / Meal</td><td>An event's meal times and settings, and each meal's saved count, kitchen figures and serving record.</td></tr>
+            <tr><td>Guest / Meal Pass</td><td>Someone without a platform account who eats with the staff, and the passes that cover their meals.</td></tr>
+            <tr><td>Stay unit / Stay</td><td>A staff or guest accommodation unit with beds, and one person's or group's nights in it. Separate from participant Tents.</td></tr>
+            <tr><td>Announcement</td><td>A message to chosen roles and departments, or a private note to one person, kept on each recipient's Billboard.</td></tr>
+            <tr><td>Email record</td><td>Every email sent, with its delivery result.</td></tr>
           </table>
         </div>
       </section>
@@ -712,33 +746,43 @@
         <div class="sec-head"><span class="sec-num">06</span><h2>Interfaces &amp; Integration</h2></div>
 
         <h3>6.1 Web application</h3>
-        <p class="prose">The platform is used entirely through a responsive web application — no separate mobile app is required. It works on desktop, tablet and phone, which matters directly for gate and box-office staff who operate from handheld devices.</p>
+        <p class="prose">The platform is used entirely through a responsive web application — no app-store app is required. It works on desktop, tablet and phone, and can be added to a home screen to open like an app, which matters directly for gate, workshop and mess staff working from handheld devices.</p>
 
         <h3>6.2 API layer</h3>
-        <p class="prose">All data operations go through a single REST API, which is the only component that talks to the database. This keeps business rules and access control enforced in one place, regardless of which screen a request comes from.</p>
+        <p class="prose">All data operations go through the application server, which is the only component that talks to the database. This keeps business rules and access control enforced in one place, regardless of which screen a request comes from.</p>
 
         <h3>6.3 Bulk data exchange (Excel import/export)</h3>
         <p class="prose">Pre-sold bookings can be imported in bulk from a spreadsheet — validated row-by-row, with duplicate orders rejected automatically. The current set of bookings can also be exported to a spreadsheet in the same shape, for offline records or as a working backup.</p>
 
-        <h3>6.4 QR-based check-in</h3>
-        <p class="prose">Each booking can be looked up by scanning a QR code, taking gate staff straight to that booking's check-in screen instead of a manual search.</p>
+        <h3>6.4 QR codes and wrist bands</h3>
+        <p class="prose">The phone's camera reads three kinds of code: the booking QR code in each ticket email (checked so altered or made-up codes are refused), the QR code on each wrist band (used at the gate, workshop doors and the mess desk), and each staff member's personal meal QR code or a guest's meal pass at the mess. Each kind is recognised for what it is, so one can never pass as another.</p>
+
+        <h3>6.5 Email</h3>
+        <p class="prose">Ticket and custom emails are sent to buyers through an external email delivery service, in the background, within a daily limit. Delivery results, including bounces, come back from the service and are recorded per email.</p>
+
+        <h3>6.6 Notifications</h3>
+        <p class="prose">Notifications are delivered to staff phones and computers through the standard notification services built into browsers and operating systems. No phone numbers are shared and no chat group is needed.</p>
+
+        <h3>6.7 Maps</h3>
+        <p class="prose">Street and satellite map imagery is loaded from online map services; Directions and Street View open Google Maps. Pins, areas and lines can be imported from Google Earth or My Maps files.</p>
+
+        <h3>6.8 Spreadsheet exports</h3>
+        <p class="prose">Bookings, the Email Report, workshop reports and the daily mess report can each be downloaded as an Excel file.</p>
       </section>
 
       <!-- 7. SECURITY -->
       <section id="security">
-        <div class="sec-head"><span class="sec-num">07</span><h2>Security &amp; Access Control</h2></div>
-        <p class="lede">Access is enforced by both role and department, on every request — not just hidden in the interface.</p>
+        <div class="sec-head"><span class="sec-num">07</span><h2>Access Control</h2></div>
+        <p class="lede">Each person sees and does only what their role, department and granted access allow.</p>
 
         <ul>
-          <li><strong>Authentication</strong> — sign-in issues a secure, httpOnly session cookie; it cannot be read by page scripts, which mitigates a common class of browser-based attack.</li>
-          <li><strong>Role-based access control</strong> — every user has a role (Administrator, Director, Team Lead, Volunteer) and, where relevant, department memberships with a permission tier (Read / Write / Manage).</li>
-          <li><strong>Enforcement at the API</strong> — access checks run on the server for every request, so the rules hold even if a user finds a way to alter what the browser displays.</li>
-          <li><strong>Transport security</strong> — all traffic is encrypted (HTTPS) in production.</li>
-          <li><strong>Account protection</strong> — passwords are stored using industry-standard one-way hashing (never in plain text), with policy requirements on password strength and automated protection against repeated login attempts.</li>
-          <li><strong>Audit trail</strong> — key security events (sign-ins, failed attempts, permission changes) are logged for review.</li>
+          <li><strong>Roles</strong> — Developers, Directors and Administrators have full access. Team Leads manage their own department(s). Volunteers work in their own department.</li>
+          <li><strong>Granted access</strong> — anyone can be given Read, Write or Manage access to another department, for example a volunteer helping at the gate.</li>
+          <li><strong>Area teams</strong> — Box Office, Workshops and Hospitality are run by their own department's team, plus anyone given access to them.</li>
+          <li><strong>Events</strong> — Team Leads and volunteers see active events only; draft and archived events are for administrators.</li>
         </ul>
         <div class="callout">
-          <p><b>Note —</b> this section deliberately stays at a policy level. Implementation-specific detail (algorithms, thresholds, key handling) is withheld from client-facing documents as standard practice, and is available separately under NDA if required for a formal security audit.</p>
+          <p><b>Note —</b> how the platform protects sign-in and data is deliberately not described in client-facing documents.</p>
         </div>
       </section>
 
@@ -747,26 +791,19 @@
         <div class="sec-head"><span class="sec-num">08</span><h2>Non-Functional Requirements</h2></div>
         <div class="card-grid">
           <div class="card"><span class="tag">Responsiveness</span><h4>Any device, any screen</h4><p>Every screen is designed to work on desktop, tablet and phone — critical for gate and box-office staff.</p></div>
-          <div class="card"><span class="tag">Availability</span><h4>Cloud-hosted, always on</h4><p>Frontend and backend are both hosted on managed cloud infrastructure rather than on-premise hardware.</p></div>
-          <div class="card"><span class="tag">Scalability</span><h4>Managed database</h4><p>MongoDB Atlas scales independently of the application tier as event data grows.</p></div>
+          <div class="card"><span class="tag">Availability</span><h4>Cloud-hosted, always on</h4><p>The platform runs on cloud services rather than on-site hardware.</p></div>
+          <div class="card"><span class="tag">Resilience</span><h4>Opens without signal</h4><p>The installed app opens and shows what's already loaded when the connection drops; actions that must be exact, such as Admit, wait for a connection.</p></div>
+          <div class="card"><span class="tag">Safe under pressure</span><h4>No double allocation</h4><p>When several staff act on the same booking, tent, bed or band at once, the platform settles it cleanly.</p></div>
           <div class="card"><span class="tag">Usability</span><h4>Role-appropriate screens</h4><p>Each role sees only what's relevant to it, reducing training time for seasonal/volunteer staff.</p></div>
           <div class="card"><span class="tag">Maintainability</span><h4>Modular by design</h4><p>Events, pass types and departments are configurable data, not hardcoded — new events don't require code changes.</p></div>
-          <div class="card"><span class="tag">Testability</span><h4>Automated test coverage</h4><p>Backend and frontend both carry automated test suites, run before changes are released.</p></div>
+          <div class="card"><span class="tag">Testability</span><h4>Automated test coverage</h4><p>More than 1,500 automated checks run before every release, which is then tried in a test environment first.</p></div>
         </div>
       </section>
 
       <!-- 9. DEPLOYMENT -->
       <section id="deployment">
-        <div class="sec-head"><span class="sec-num">09</span><h2>Deployment &amp; Hosting</h2></div>
-        <div class="table-wrap">
-          <table>
-            <tr><th>Component</th><th>Hosting model</th></tr>
-            <tr><td>Frontend (Angular)</td><td>Static build, served via a CDN-backed static host on a custom domain.</td></tr>
-            <tr><td>Backend (Node/Express)</td><td>Managed application hosting, running the API as a persistent service.</td></tr>
-            <tr><td>Database (MongoDB)</td><td>Managed cloud database service, with production and local-development environments kept separate.</td></tr>
-          </table>
-        </div>
-        <p class="prose">Releases follow a staged path — feature work, then a shared development branch, then a UAT/production release — so client-facing environments only ever receive changes that have already been reviewed and tested.</p>
+        <div class="sec-head"><span class="sec-num">09</span><h2>Releases</h2></div>
+        <p class="prose">Changes are released in stages and are reviewed and tested before they reach a shared environment. Each release is first tried in a test environment (UAT) before wider use. The installed app picks up a new release by itself and offers a <b>Reload</b>. The web app and the application server are versioned separately; the release history is in the <a href="guide/#appendix-releases">Product Guide</a>.</p>
       </section>
 
       <!-- 10. ASSUMPTIONS -->
@@ -775,22 +812,30 @@
         <ul>
           <li>One event is "active" at a time per the platform's event selector; historical events remain in the system as archived records.</li>
           <li>Departments are organisation-wide, not tied to a specific event — the same Finance or Operations team can operate across multiple events.</li>
-          <li>Internet connectivity is required at point of use (gate, box office) — there is currently no offline mode <em>(a planned Progressive Web App upgrade — see Roadmap — is aimed directly at this constraint)</em>.</li>
-          <li>User accounts are provisioned by an Administrator or Director; there is no public self-registration.</li>
+          <li>A connection is needed to make changes. The installed app opens without signal and shows what's already loaded; keeping recent information on the phone and saving some actions for later is the next planned step.</li>
+          <li>User accounts are provisioned by an Administrator, Director or Developer; there is no public self-registration.</li>
+          <li>Hospitality serves and houses staff and guests only; festival-goers use their passes and participant tents.</li>
+          <li>Wrist bands are QR bands read by phone cameras; one band belongs to one person, ever.</li>
         </ul>
       </section>
 
       <!-- 11. STATUS -->
       <section id="status">
         <div class="sec-head"><span class="sec-num">11</span><h2>Current Status</h2></div>
-        <p class="prose">The platform is live in production (V1) and has received a substantial V2 enhancement programme, delivered in stages:</p>
+        <p class="prose">The platform has received a substantial V2 enhancement programme, delivered in stages and each tried in acceptance testing:</p>
         <div class="card-grid">
           <div class="card"><span class="tag">Delivered</span><h4>Roles, Permissions &amp; Profile</h4><p>Tiered role/permission model; redesigned profile and admin user pages.</p></div>
           <div class="card"><span class="tag">Delivered</span><h4>Department Management</h4><p>Full department CRUD with Team Lead and volunteer assignment.</p></div>
           <div class="card"><span class="tag">Delivered</span><h4>UI Redesign</h4><p>Platform-wide responsive design system and page layout standard.</p></div>
           <div class="card"><span class="tag">Delivered</span><h4>Box Office Restructure</h4><p>Bookings, registration, admission, tent allocation and bulk import, unified.</p></div>
           <div class="card"><span class="tag">Delivered</span><h4>Volunteer Attendance</h4><p>Department-scoped attendance marking, history and calendar view.</p></div>
-          <div class="card"><span class="tag">Delivered</span><h4>Dashboard Revamp &amp; Events</h4><p>Live summary dashboard; Event/Pass Type model replacing hardcoded ticket lists.</p></div>
+          <div class="card"><span class="tag">Delivered</span><h4>Dashboard Revamp &amp; Events</h4><p>Summary dashboard; events and pass types configured per edition.</p></div>
+          <div class="card"><span class="tag">Delivered</span><h4>Accommodation Setup &amp; Inventory</h4><p>Numbered tent units per tent pass type, with live occupancy.</p></div>
+          <div class="card"><span class="tag">Delivered</span><h4>Users &amp; Emails</h4><p>Redesigned Users page with safe delete and profile photos; ticket and custom emails with delivery tracking.</p></div>
+          <div class="card"><span class="tag">Delivered</span><h4>Installable App &amp; Notifications</h4><p>Home-screen app, announcements, notification settings and the Billboard.</p></div>
+          <div class="card"><span class="tag">Delivered</span><h4>Venue Map</h4><p>Places, zones, routes, the festival boundary and map imports.</p></div>
+          <div class="card"><span class="tag">Delivered</span><h4>Wrist Bands &amp; Workshops</h4><p>Bands linked at Admit; workshop planning, lists, the door and reports.</p></div>
+          <div class="card"><span class="tag">Delivered</span><h4>Hospitality</h4><p>Kitchen counts, the serving desk, guest meal passes, the daily report, staff wrist bands and staff and guest beds.</p></div>
         </div>
       </section>
 
@@ -805,15 +850,15 @@
           </div>
           <div class="stage done">
             <div class="stage-label">Delivered — V2</div>
-            <ul><li>Roles, departments &amp; permissions</li><li>Box Office restructure</li><li>Volunteer attendance</li><li>Events &amp; pass types</li></ul>
+            <ul><li>Roles, departments &amp; permissions</li><li>Box Office restructure &amp; emails</li><li>Volunteer attendance</li><li>Events &amp; pass types</li><li>Accommodation inventory</li><li>Installable app, notifications &amp; Billboard</li><li>Venue Map</li><li>Wrist bands &amp; Workshops</li><li>Hospitality</li></ul>
           </div>
           <div class="stage planned">
-            <div class="stage-label">Planned — V2 (next)</div>
-            <ul><li>Progressive Web App (installable, works offline for core screens)</li><li>Audit logs</li><li>Reporting</li><li>Further scope to be defined with client input</li></ul>
+            <div class="stage-label">Planned — next</div>
+            <ul><li>Working without signal (recent information on the phone, attendance and scans saved for later)</li><li>Venue Map tags and live status for more places</li><li>Audit logs</li><li>Reporting</li><li>Further scope to be defined with client input</li></ul>
           </div>
         </div>
         <div class="callout">
-          <p><b>Progressive Web App —</b> the biggest planned upgrade to the platform's day-to-day usability. It would let staff "install" BiG on a phone or tablet home screen like a native app (no app-store listing needed), open it with one tap, and keep using core screens — such as gate check-in — for a short stretch even if connectivity drops at the venue. Particularly relevant for box office and gate staff on festival grounds, where signal can be unreliable.</p>
+          <p><b>Working without signal —</b> the next part of the installable app. Staff can already install BiG on a phone and open it without signal. Next, the most useful screens will keep recent information on the phone, and attendance marking and door and desk scans will be saved and sent when the connection returns. Actions that must be exact, such as Admit, will keep waiting for a connection.</p>
         </div>
       </section>
 
@@ -821,19 +866,24 @@
       <section id="glossary">
         <div class="sec-head"><span class="sec-num">13</span><h2>Glossary</h2></div>
         <dl class="glossary">
-          <div><dt>Admission</dt> <dd>— the gate check-in process for an attendee.</dd></div>
-          <div><dt>Allocation</dt> <dd>— assigning an attendee to a specific tent.</dd></div>
+          <div><dt>Admit</dt> <dd>— letting an attendee into the festival at the gate and linking their wrist band.</dd></div>
+          <div><dt>Allocation</dt> <dd>— assigning an attendee to a specific tent, or a staff member or guest to a bed.</dd></div>
+          <div><dt>Billboard</dt> <dd>— the page where each person finds every message sent to them.</dd></div>
           <div><dt>Box Office</dt> <dd>— the module covering bookings, registration and ticket sales.</dd></div>
           <div><dt>Department</dt> <dd>— an operational team, e.g. Finance or Operations.</dd></div>
-          <div><dt>PWA (Progressive Web App)</dt> <dd>— a web app that can be installed to a device's home screen and used like a native app, including limited offline use.</dd></div>
+          <div><dt>Installable app</dt> <dd>— BiG added to a device's home screen and opened like a regular app, without an app store.</dd></div>
+          <div><dt>Meal Pass</dt> <dd>— a guest's pass covering one meal, one day or a date range at the Mess Hall.</dd></div>
+          <div><dt>Session</dt> <dd>— one scheduled run of a workshop at a venue.</dd></div>
           <div><dt>Spot Registration</dt> <dd>— registering a walk-up attendee who was not pre-booked.</dd></div>
           <div><dt>Team Lead</dt> <dd>— the role that manages one or more departments day-to-day.</dd></div>
+          <div><dt>Venue Map</dt> <dd>— the map of an event's festival ground, with its places, zones and routes.</dd></div>
+          <div><dt>Wrist band</dt> <dd>— a QR band that identifies its wearer at the gate, workshop doors and the mess; never reused.</dd></div>
         </dl>
       </section>
 
       <footer>
         <span>BiG Event &amp; Ticketing Platform — High-Level Design</span>
-        <span>Prepared by [Your Name / Organisation] · v1.0 Draft · 19 Aug 2026</span>
+        <span>Prepared by [Your Name / Organisation] · v2.0 · 4 Nov 2026</span>
       </footer>
 
     </main>
