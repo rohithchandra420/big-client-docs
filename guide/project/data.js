@@ -374,7 +374,7 @@ window.GUIDE = {
     ["Tent unit", "One physical tent or accommodation unit, numbered with its pass type's code (e.g. SO1, SO2)."],
     ["Ticket Email", "The email a buyer receives with every pass on their booking and one QR code for the gate."],
     ["UAT", "User acceptance testing — the live environment where each release is checked before wider use."],
-    ["Vacate", "Freeing an attendee's place in a tent."]
+    ["Vacate", "Freeing an attendee's place in a tent."],
     ["Venue Map", "The page showing the festival ground for the active event, with its locations, areas and lines."],
     ["Waitlist", "People added to a workshop session after its list limit was reached. They move up automatically when someone leaves the list."],
     ["Walk-in", "Someone who comes to a workshop's door without being on its list. They're added at the end and can be let in now or kept waiting."],
