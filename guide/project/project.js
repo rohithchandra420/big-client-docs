@@ -11,8 +11,8 @@
 
   /* ---------- 3. Event lifecycle ---------- */
   var STAGES = {
-    draft: { t: "Draft", who: "Admins only", text: "The event is being prepared. Admins add pass types and build tents. Team Leads and volunteers can't see it yet, so nothing half-finished reaches the floor." },
-    active: { t: "Active", who: "Everyone with access", text: "The event is live. Team Leads and volunteers can select it in the sidebar, and Box Office, Accommodation and the Dashboard all work against it." },
+    draft: { t: "Draft", who: "Admins only", text: "The event is being prepared. Admins add pass types, build tents, draw the venue boundary and plan workshops. Team Leads and volunteers can't see it yet, so nothing half-finished reaches the floor." },
+    active: { t: "Active", who: "Everyone with access", text: "The event is live. Team Leads and volunteers can select it in the sidebar, and Box Office, Accommodation, the Venue Map, Workshops and the Dashboard all work against it." },
     archived: { t: "Archived", who: "Admins only", text: "The festival is over. All bookings, tents and records are kept, but the event leaves everyday lists. Events with bookings are archived, never deleted." }
   };
   function showStage(k) { var s = STAGES[k]; $("#stageDetail").innerHTML = "<h4 style='margin:0 0 4px'>" + s.t + "</h4><div class='demo-msg' style='margin-bottom:6px'>Visible to: " + s.who + "</div><p style='margin:0'>" + s.text + "</p>"; }
@@ -33,7 +33,7 @@
       { n: "n-scan", e: ["e-scan"], t: "Scan the QR code", x: "Staff scan it on the Registration page. The platform confirms the code is genuine and the booking opens immediately, with no typing and no spelling mistakes.", s: '<div class="row"><span>Scanning…</span><span class="badge ok">Match</span></div>' },
       { n: "n-found", e: ["e-scan-found"], t: "Booking Found", x: "Everyone on the booking is listed, with what's done and what's outstanding.", s: bookingScreen({}) },
       { n: "n-details", e: ["e-found-details"], t: "Complete missing details", x: "Her friend Rahul's details were never filled in. Staff complete them on the Counter Form while he's at the desk.", s: bookingScreen({ rn: "Rahul Verma", b: '<span class="badge muted">Not admitted</span>' }) },
-      { n: "n-checkin", e: ["e-details-checkin"], t: "Admit", x: "Staff verify ID and give wrist bands in person, then tap Admit for each person. The gate numbers update live.", s: bookingScreen({ rn: "Rahul Verma", a: '<span class="badge ok">Admitted</span>', b: '<span class="badge ok">Admitted</span>' }) },
+      { n: "n-checkin", e: ["e-details-checkin"], t: "Admit", x: "Staff check ID, then tap Admit for each person and scan the wrist band they're given. That admits them and links the band in one step. The gate numbers update live.", s: bookingScreen({ rn: "Rahul Verma", a: '<span class="badge ok">Admitted</span>', b: '<span class="badge ok">Admitted</span>' }) },
       { n: "n-tent", e: ["e-checkin-tent"], t: "Allocate Tent", x: "The tent pass is linked to Asha, the suggested match. Only two-person tents with space are offered, and they get TW3.", s: bookingScreen({ rn: "Rahul Verma", a: '<span class="badge ok">Admitted</span>', b: '<span class="badge ok">Admitted</span>', t: '<span class="badge ok">TW3</span>' }) },
       { n: "n-done", e: ["e-tent-done"], t: "Admitted", x: "Done in about a minute. Bookings, Inventory and the Dashboard all reflect it straight away.", s: '<div class="row"><span>Admitted</span><b>+2</b></div><div class="row"><span>Pending Admits</span><b>−2</b></div><div class="row"><span>Tent TW3</span><b>2 / 2</b></div>' }
     ],
@@ -43,7 +43,7 @@
       { n: "n-search", e: ["e-search"], t: "Search for the booking", x: "Staff search by name, phone, email or order number. Search only covers the active event, so last year's bookings never get in the way.", s: '<div class="row"><span>Search: “karan”</span><span>1 result</span></div><div class="row"><b>#1043 · Karan Shah</b><span>1 pass</span></div>' },
       { n: "n-found", e: ["e-search-found"], t: "Booking Found", x: "His booking opens with one festival pass. His details are already complete.", s: '<div class="row"><b>Booking #1043</b><span>Karan Shah</span></div><div class="row"><span>Festival Pass — Karan Shah</span><span class="badge muted">Not admitted</span></div>' },
       { n: "n-details", e: ["e-found-details"], t: "Details already complete", x: "Nothing to fill in, so this step is skipped in practice.", s: '<div class="row"><span>Details</span><span class="badge ok">Complete</span></div>' },
-      { n: "n-checkin", e: ["e-details-checkin"], t: "Admit", x: "One tap after the ID check. He has no tent pass, so there's no tent step.", s: '<div class="row"><span>Festival Pass — Karan Shah</span><span class="badge ok">Admitted</span></div>' },
+      { n: "n-checkin", e: ["e-details-checkin"], t: "Admit", x: "After the ID check, staff tap Admit and scan his wrist band. He has no tent pass, so there's no tent step.", s: '<div class="row"><span>Festival Pass — Karan Shah</span><span class="badge ok">Admitted</span></div>' },
       { n: "n-done", e: ["e-checkin-tent", "e-tent-done"], t: "Admitted", x: "Karan is in. The lookup took seconds.", s: '<div class="row"><span>Admitted</span><b>+1</b></div>' }
     ],
     walkup: [
@@ -52,7 +52,7 @@
       { n: "n-spot", e: ["e-spot"], t: "Spot Registration", x: "Staff pick items from the event's pass types and enter Sana's details. The platform assigns an order number automatically.", s: '<div class="row"><span>Festival Pass</span><span>× 1</span></div><div class="row"><span>Buyer</span><span>Sana Khan</span></div><div class="row"><span>Order no.</span><b>#1046 (auto)</b></div>' },
       { n: "n-found", e: ["e-spot-found"], t: "Booking Found", x: "The new booking opens like any other and is counted as a spot registration.", s: '<div class="row"><b>Booking #1046</b><span class="badge info">Spot</span></div><div class="row"><span>Festival Pass — Sana Khan</span><span class="badge muted">Not admitted</span></div>' },
       { n: "n-details", e: ["e-found-details"], t: "Details captured", x: "Her details were entered during Spot Registration, so nothing is missing.", s: '<div class="row"><span>Details</span><span class="badge ok">Complete</span></div>' },
-      { n: "n-checkin", e: ["e-details-checkin"], t: "Admit", x: "Admitted after the ID check, like everyone else.", s: '<div class="row"><span>Festival Pass — Sana Khan</span><span class="badge ok">Admitted</span></div>' },
+      { n: "n-checkin", e: ["e-details-checkin"], t: "Admit", x: "After the ID check, staff tap Admit and scan her wrist band, like everyone else.", s: '<div class="row"><span>Festival Pass — Sana Khan</span><span class="badge ok">Admitted</span></div>' },
       { n: "n-done", e: ["e-checkin-tent", "e-tent-done"], t: "Admitted", x: "Walk-up to admitted in one flow. Spot Registrations rises by one.", s: '<div class="row"><span>Spot Registrations</span><b>+1</b></div><div class="row"><span>Admitted</span><b>+1</b></div>' }
     ]
   };
@@ -131,10 +131,9 @@
     $("#attendeeDemo").innerHTML = '<div class="demo-msg" style="margin-bottom:8px"><b>Booking #1042</b> · Asha Menon · <a href="#" id="attResetLink">reset demo</a></div>' + att.map(function (a) {
       var meta, acts;
       if (a.kind === "Festival Pass") {
-        meta = '<span class="badge ok">Festival</span>' + (a.complete ? "" : '<span class="badge warn">Incomplete details</span>') + (a.admitted ? '<span class="badge ok">Admitted</span>' : '<span class="badge muted">Not admitted</span>');
+        meta = '<span class="badge ok">Festival</span>' + (a.complete ? "" : '<span class="badge warn">Incomplete details</span>') + (a.admitted ? '<span class="badge ok">Admitted</span>' : '<span class="badge muted">Not admitted</span>') + (a.band ? '<span class="badge ok">Band ' + a.band + "</span>" : "");
         acts = a.complete
-          ? (a.admitted ? "" : '<button class="btn small primary" data-act="admit" data-id="' + a.id + '">Admit</button>') +
-            '<button class="btn small" data-act="band" data-id="' + a.id + '">Link Band</button>' +
+          ? (a.admitted ? '<button class="btn small" data-act="replace" data-id="' + a.id + '">Replace Band</button>' : '<button class="btn small primary" data-act="admit" data-id="' + a.id + '">Admit</button>') +
             '<button class="btn small" data-act="edit" data-id="' + a.id + '">Edit</button>'
           : '<button class="btn small" data-act="counter" data-id="' + a.id + '">Fill at Counter</button>';
       } else {
@@ -150,8 +149,8 @@
     var b = e.target.closest("button[data-act]"); if (!b) return;
     var a = att.filter(function (x) { return x.id === +b.dataset.id; })[0];
     var act = b.dataset.act;
-    if (act === "admit") { a.admitted = true; aLog.textContent = "✓ " + (a.name || "Attendee") + " admitted. Gate numbers update everywhere."; attRender(); }
-    if (act === "band") ask("Link Wrist Band", "Scan the wrist band for <b>" + esc(a.name) + "</b>.<br><br>Wrist band scanned: <b>SAMPLE-0042</b><br><i>Demo only — the band is not saved yet.</i>", "Done").then(function (ok) { if (ok) aLog.textContent = "Not saved: Band Linking is still in development."; });
+    if (act === "admit") ask("Admit: Scan Wrist Band", "Scan the wrist band for <b>" + esc(a.name) + "</b>.<br><br>Wrist band scanned: <b>SAMPLE-0042</b>", "Admit and link band").then(function (ok) { if (ok) { a.admitted = true; a.band = "SAMPLE-0042"; aLog.textContent = "✓ " + (a.name || "Attendee") + " admitted with band SAMPLE-0042. Gate numbers update everywhere."; attRender(); } });
+    if (act === "replace") ask("Replace Wrist Band", "Scan the new band for <b>" + esc(a.name) + "</b> and give a reason.<br><br>New band scanned: <b>SAMPLE-0057</b><br>Reason: <i>Band strap broke</i>", "Replace band").then(function (ok) { if (ok) { aLog.textContent = "Band " + a.band + " replaced by SAMPLE-0057. The old band is now flagged wherever it's scanned."; a.band = "SAMPLE-0057"; attRender(); } });
     if (act === "counter") ask("Complete attendee details", "Sample details:<br><b>Rahul Verma</b> · Male · 98xxxxxx10 · rahul@example.com", "Save details").then(function (ok) { if (ok) { a.name = "Rahul Verma"; a.complete = true; aLog.textContent = "Details completed on the Counter Form."; attRender(); } });
     if (act === "edit") ask("Edit attendee details", "Correct a typo, phone number or email for <b>" + esc(a.name) + "</b>. The same form is used, labelled for editing.", "Save changes").then(function (ok) { if (ok) aLog.textContent = "Details updated for " + a.name + "."; });
     if (act === "allocate") ask("Allocate Tent", "Linked festival pass: <b>Asha Menon</b> (suggested match).<br>Vacant two-person tents: <b>TW3</b> (2 places).<br><br>Allocate TW3?", "Allocate TW3").then(function (ok) { if (ok) { a.tent = "TW3"; aLog.textContent = "Tent pass allocated to TW3 and linked to Asha Menon."; attRender(); } });

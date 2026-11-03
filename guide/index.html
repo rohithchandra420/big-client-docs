@@ -41,7 +41,7 @@
     <div class="cover">
       <div class="kicker">Product Guide</div>
       <h1>The BiG festival platform</h1>
-      <p>One place to sell and admit passes, house attendees, organise departments and track volunteers, built for the people who run the festival.</p>
+      <p>One place to sell and admit passes, house attendees, map the site, run workshops, organise departments and track volunteers, built for the people who run the festival.</p>
       <div class="cover-meta">
         <span class="pill">Frontend <b data-meta="lastUpdatedThrough.ui"></b></span>
         <span class="pill">Backend <b data-meta="lastUpdatedThrough.api"></b></span>
@@ -66,7 +66,7 @@
       <h3>How to read it</h3>
       <div class="grid c3">
         <div class="card"><h4>Skim</h4><p>Read <a href="#at-a-glance">Platform at a glance</a> and <a href="#strengths">Platform strengths</a>. It takes about five minutes.</p></div>
-        <div class="card"><h4>Explore</h4><p>Chapters 2–7 include hands-on demos. Click, tick and step through them. They use sample data and change nothing real.</p></div>
+        <div class="card"><h4>Explore</h4><p>Chapters 2–9 include hands-on demos. Click, tick and step through them. They use sample data and change nothing real.</p></div>
         <div class="card"><h4>Plan</h4><p><a href="#limitations">Current limitations</a> and the <a href="#roadmap">Roadmap</a> show what's missing and what's next.</p></div>
       </div>
 
@@ -89,13 +89,13 @@
     <!-- ================= 1. AT A GLANCE ================= -->
     <section class="chapter" id="at-a-glance" data-toc="Platform at a glance" data-no="1">
       <div class="chapter-head"><span class="chapter-no">1</span><h2>Platform at a glance</h2></div>
-      <p class="lead">Eleven areas cover the festival end to end, in the same order as the app's sidebar. Every one works on desktop and phone, and access to each is controlled by role and department.</p>
+      <p class="lead">Thirteen areas cover the festival end to end, in the same order as the app's sidebar. Every one works on desktop and phone, and access to each is controlled by role and department.</p>
 
       <div class="figures">
-        <div class="figure reveal"><div class="v" data-count="11">11</div><div class="l">Areas of the platform</div></div>
+        <div class="figure reveal"><div class="v" data-count="13">13</div><div class="l">Areas of the platform</div></div>
         <div class="figure reveal"><div class="v" data-count="5">5</div><div class="l">Roles with distinct access</div></div>
         <div class="figure reveal"><div class="v" data-count-from="releases" data-count="0">—</div><div class="l">Releases shipped since launch</div></div>
-        <div class="figure reveal"><div class="v" data-count="1141">1141</div><div class="l">Automated checks run before every release</div></div>
+        <div class="figure reveal"><div class="v" data-count="1408">1408</div><div class="l">Automated checks run before every release</div></div>
       </div>
 
       <h3>Explore the platform <span class="sample-tag">Click a tile</span></h3>
@@ -215,7 +215,7 @@
         <div class="card"><h4>Dashboard</h4><p>Passes sold, admitted, pending admission and accommodation bookings, plus volunteers by department for admins. Charts below show admitted vs. yet-to-admit across festival passes, tents and vehicles.</p></div>
       </div>
       <figure class="shot" data-shot="signin" data-caption="The sign-in screen"></figure>
-      <p>Confirmations for deletes, vacates and overwrites appear as branded in-app dialogs. The sidebar footer always shows the current version.</p>
+      <p>Confirmations for deletes, vacates and overwrites appear as branded in-app dialogs. In every side panel and dialog, <b>Close</b> or <b>Cancel</b> sits on the left and the main action on the right, on phones too. The sidebar footer always shows the current version.</p>
 
       <h3 id="billboard">Billboard <span class="badge muted">Everyone</span></h3>
       <p><b>Billboard</b>, under <b>Main</b> in the sidebar, keeps every announcement sent to you, pinned up as post-it notes with the newest first. It's the place to catch up on anything you missed, even if you never turned notifications on or have muted them.</p>
@@ -240,9 +240,67 @@
       <figure class="shot" data-shot="billboard-menu" data-views="phone" data-caption="On a phone, the menu shows the unread count next to Billboard (sample volunteer)"></figure>
     </section>
 
-    <!-- ================= 4. MY DEPARTMENT ================= -->
-    <section class="chapter" id="my-department" data-toc="My Department and attendance" data-no="4">
-      <div class="chapter-head"><span class="chapter-no">4</span><h2>My Department and volunteer attendance</h2></div>
+    <!-- ================= 4. VENUE MAP ================= -->
+    <section class="chapter" id="venue-map" data-toc="Venue Map" data-no="4">
+      <div class="chapter-head"><span class="chapter-no">4</span><h2>Venue Map</h2></div>
+      <p class="lead">The Venue Map shows the festival ground for the active event: the places that matter, the zones and routes between them, and what's happening in each workshop area right now.</p>
+      <p><b>Venue Map</b>, under <b>Main</b> in the sidebar, is open to everyone signed in. It shows a <b>Street</b> map or a <b>Satellite</b> view. Each event has its own map, so a new venue starts clean. On a desktop the map stays in place and the side panel scrolls. On phones the lists sit below the map, and picking an item scrolls back up to it.</p>
+      <figure class="shot" data-shot="venue-map" data-caption="Venue Map: the festival boundary, zones, routes and pins for the active event (sample venue)"></figure>
+
+      <h3 id="locations">Locations</h3>
+      <p>A location is a single place on the ground, shown as a coloured pin. Each has a name, a type (<b>Water station</b>, <b>Toilets</b>, <b>Stage</b>, <b>Gate / Box Office</b>, <b>Entry point</b>, <b>Tent field</b> or <b>Other</b>), an optional responsible department and notes.</p>
+      <ul>
+        <li><b>Add location</b>, then tap the map, or tap <b>Use my location</b> to drop a pin where you're standing. BiG shows how accurate the phone's position is.</li>
+        <li>Drag a pin to fine-tune it. Edit or delete it from its card.</li>
+        <li>Type filters with counts, and a list beside the map, help find a place quickly.</li>
+        <li><b>Directions</b> and <b>Street View</b> open Google Maps at that spot. <b>Go to</b> jumps to pasted coordinates.</li>
+        <li>Each location shows which zone it's in, with a warning if it's outside the festival boundary.</li>
+      </ul>
+
+      <h3 id="areas">Areas and lines</h3>
+      <p>Areas mark zones on the ground and lines mark routes and edges. Each has a name, a kind, a responsible department and notes, and shows its kind's colour and icon on the map.</p>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Group</th><th>Kinds</th></tr></thead>
+        <tbody>
+          <tr><td><b>Boundary</b></td><td>Festival boundary: one per event, a dashed light-green outline</td></tr>
+          <tr><td><b>Zones</b></td><td>Workshop area · Camping zone · Washroom area · Parking · Stage area · Medical camp · Office · Crew area · No-go zone · Other area</td></tr>
+          <tr><td><b>Lines</b></td><td>Fence · Road · Path (walkable only) · Entry / exit · Emergency exit route · Other line</td></tr>
+        </tbody>
+      </table></div>
+      <ol class="steps">
+        <li>Tap <b>Draw area</b> or <b>Draw line</b>. Admins see <b>Draw boundary</b> until the event has one.</li>
+        <li>Tap the map at each corner or bend. <b>Undo point</b>, or Ctrl+Z on a computer, removes the last one.</li>
+        <li>When the shape is complete, give it a name, kind, department and notes. Corner handles let you adjust the shape later.</li>
+      </ol>
+      <ul>
+        <li>Areas show their size. <b>Directions</b> and <b>Street View</b> go to the middle of an area, or halfway along a line.</li>
+        <li>The <b>Areas &amp; lines</b> list has a <b>Shown</b> / <b>Hidden</b> switch. The festival boundary always stays visible.</li>
+        <li>The <b>Locations</b> and <b>Areas &amp; lines</b> lists can be folded away with an arrow button. BiG remembers this in that browser.</li>
+        <li>Admin › Events shows whether each event's venue boundary is drawn, with a button to draw or view it on the Venue Map.</li>
+      </ul>
+
+      <h3>Importing from Google Earth or My Maps <span class="badge muted">Admins</span></h3>
+      <p><b>Import KML</b> reads pins, areas and lines exported from Google My Maps or Google Earth. BiG guesses each item's type or kind from its name and shows a review list first, so staff can correct it or leave it out. Clear messages explain files it can't read, such as compressed KMZ files or online-only exports.</p>
+
+      <h3>Who can change what</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Role</th><th>Locations</th><th>Areas and lines</th><th>Boundary and KML import</th></tr></thead>
+        <tbody>
+          <tr><td><b>DEV / DIR / ADMIN</b></td><td>Any</td><td>Any</td><td>Yes</td></tr>
+          <tr><td><b>TL</b></td><td>Their own department's</td><td>Their own department's, only inside the festival boundary, once it's drawn</td><td>No</td></tr>
+          <tr><td><b>VOL</b></td><td>View</td><td>View</td><td>No</td></tr>
+        </tbody>
+      </table></div>
+      <p>As everywhere, Team Leads and volunteers see the map of active events only.</p>
+
+      <h3 id="map-workshops">Workshops on the map</h3>
+      <p>While a session is running, a Workshop area with a workshop venue shows live numbers on its icon, such as "28/40". Selecting the area shows a timeline of its sessions: on now, then upcoming ones with their list and registration status, then past ones, dimmed, with how many attended. The timeline keeps itself up to date. See <a href="#workshops">Workshops</a>.</p>
+      <figure class="shot" data-shot="venue-map-area" data-caption="A Workshop area selected: live numbers and the timeline of its sessions"></figure>
+    </section>
+
+    <!-- ================= 5. MY DEPARTMENT ================= -->
+    <section class="chapter" id="my-department" data-toc="My Department and attendance" data-no="5">
+      <div class="chapter-head"><span class="chapter-no">5</span><h2>My Department and volunteer attendance</h2></div>
       <p class="lead">Every role has a My Department page, scoped to what they should see. Team Leads mark attendance by <b>slot</b> (Morning, Afternoon, Night), so the record shows who worked, where and when.</p>
 
       <div class="table-wrap"><table>
@@ -277,9 +335,9 @@
       <p>The <b>History</b> tab summarises each member's attendance over a date range. The <b>Calendar</b> tab shows everyone against every date, with each cell marked, unmarked or not applicable (for example before someone's date of joining). It opens scrolled to today.</p>
     </section>
 
-    <!-- ================= 5. BOX OFFICE ================= -->
-    <section class="chapter" id="box-office" data-toc="Box Office" data-no="5">
-      <div class="chapter-head"><span class="chapter-no">5</span><h2>Box Office</h2></div>
+    <!-- ================= 6. BOX OFFICE ================= -->
+    <section class="chapter" id="box-office" data-toc="Box Office" data-no="6">
+      <div class="chapter-head"><span class="chapter-no">6</span><h2>Box Office</h2></div>
       <p class="lead">Box Office handles a booking from the day it's imported to the moment the attendee walks through the gate. It has two halves: <b>Bookings</b> for the back office and <b>Registration</b> for the gate.</p>
 
       <h3 id="gate-sim">The gate, step by step <span class="sample-tag">Simulator</span></h3>
@@ -389,7 +447,7 @@
       <p>Each booking's <b>Ticket Email</b> status reads <b>Not sent</b>, <b>Sending…</b>, <b>Sent</b>, <b>Bounced</b>, <b>Failed</b> or <b>No email</b>. Hover a failed or bounced status to see why. A bounced booking is picked up again the next time you send to those not sent yet. The <b>Email history</b> on each booking shows every email it has received and whether it was delivered. Every email sent is also listed in <a href="#email-report">Admin › Email Report</a>.</p>
 
       <h3>Registration: the gate</h3>
-      <p>The Registration page opens with live numbers: <b>Admitted</b>, <b>Pending Admits</b>, <b>Incomplete Details</b> and <b>Spot Registrations</b>. Staff find a booking by scanning the QR code from its ticket email or by searching by name, phone, email or order number. Every scanned code is checked first: one that has been altered or made up is rejected with a message, and the scanner keeps running. Either way staff land on <b>Booking Found</b>, which lists every attendee on the booking and offers the same email buttons and history as the detail panel.</p>
+      <p>The Registration page opens with live numbers: <b>Admitted</b>, <b>Pending Admits</b>, <b>Incomplete Details</b> and <b>Spot Registrations</b>. Staff find a booking by scanning the QR code from its ticket email or the person's wrist band, or by searching by name, phone, email or order number. Every scanned ticket code is checked first: one that has been altered or made up is rejected with a message, and the scanner keeps running. Either way staff land on <b>Booking Found</b>, which lists every attendee on the booking and offers the same email buttons and history as the detail panel.</p>
       <div class="callout note"><strong>Admit, not Check In</strong><p>At the gate the step is called <b>Admit</b>. "Check In" is kept for a planned online step, where each participant fills in their forms before arriving through a secure one-time link.</p></div>
 
       <figure class="shot" data-shot="registration" data-caption="Registration: live gate numbers, search, QR scan and Spot Registration"></figure>
@@ -399,23 +457,25 @@
       <div id="attendeeDemo"></div>
       <div class="log" id="attendeeLog" aria-live="polite"></div>
 
-      <h3 id="link-band">Link Band <span class="badge info">In development</span></h3>
-      <div class="callout warn"><strong>Not complete: in progress</strong><p>Band Linking is still being built. Today <b>Link Band</b> is a demo: it scans the wrist band and shows what was read, but nothing is saved to the pass yet. Saving starts once the band ID format is decided.</p></div>
-      <p><b>Link Band</b> appears on Festival Pass rows on Booking Found and in the Bookings detail panel, next to <b>Admit</b>. It shows once the attendee's details are complete, both before and after admission, because a band may be handed out later.</p>
+      <h3 id="link-band">Wrist bands</h3>
+      <p>Every Festival Pass holder gets a wrist band when they're admitted. From then on, the band's QR code identifies them at Registration and at the workshop door.</p>
       <ol class="steps">
-        <li><b>Tap Link Band</b> on the attendee's Festival Pass. The scanner opens as <b>Link Wrist Band</b>, with the attendee's name.</li>
-        <li><b>Scan the wrist band.</b> The camera stops after the first read.</li>
-        <li><b>Check what was read.</b> Tap <b>Scan again</b> to retry, or <b>Done</b> to close.</li>
+        <li><b>Tap Admit</b> on the attendee's Festival Pass. The scanner opens as <b>Admit: Scan Wrist Band</b>, with the attendee's name.</li>
+        <li><b>Scan the band</b> being handed over.</li>
+        <li><b>Tap Admit and link band.</b> The person is admitted and the band becomes theirs, in one step.</li>
       </ol>
-      <h4>What comes next</h4>
       <ul>
-        <li><b>Next:</b> decide the band ID format, then save each band against its Festival Pass. Participants don't have profiles yet, so the band attaches to their ticket for now.</li>
-        <li><b>Later:</b> once the Workshop pages exist, staff scan the band at each workshop venue to mark workshop attendance.</li>
+        <li><b>One band, one person, ever.</b> A band already linked to someone else is refused, naming who has it. Ticket QR codes are refused as bands.</li>
+        <li><b>Replace Band</b>, with a reason, for a lost or broken band. The old band is flagged as replaced. Wherever it's scanned, a red <b>Replaced band</b> card shows whose it was, why it was replaced, and the person's band now.</li>
+        <li><b>Link Band</b> appears only for people admitted before bands were in use.</li>
+        <li>A <b>Band</b> badge on each admitted Festival Pass opens its band history: the current band and any replaced ones, who linked or replaced them, and when.</li>
       </ul>
+      <p>Anyone who can use Box Office can admit people and link bands. Replacing a band is for admins, Directors, Developers, members of the Box Office department, and anyone with Write or Manage access to Box Office.</p>
+      <figure class="shot" data-shot="booking-band" data-caption="An admitted pass's band history: the current band and one replaced after its strap broke (sample data)"></figure>
       <h4>Where band scanning is used</h4>
       <ul>
-        <li><b>Today:</b> Box Office, through Link Band (demo).</li>
-        <li><b>Planned:</b> Workshops, for attendance at each session.</li>
+        <li><b>Box Office:</b> Admit, Link Band, Replace Band, and the Registration scanner.</li>
+        <li><b>Workshops:</b> adding people to session lists, and the door. See <a href="#workshops">Workshops</a>.</li>
       </ul>
 
       <details class="more"><summary>How tent allocation keeps things right</summary><div class="body">
@@ -431,9 +491,9 @@
       <p>For walk-ups with no booking, staff create one on the spot. They choose items from the active event's pass types, enter the buyer's details, and the platform assigns an order number automatically. With <b>Email ticket to buyer</b> ticked (the default, for staff who can send ticket emails), the buyer gets their ticket email straight away. The new booking goes straight to Booking Found and is admitted like any other. Spot registrations are counted separately, so walk-up demand is visible at a glance.</p>
     </section>
 
-    <!-- ================= 6. ACCOMMODATION ================= -->
-    <section class="chapter" id="accommodation" data-toc="Accommodation" data-no="6">
-      <div class="chapter-head"><span class="chapter-no">6</span><h2>Accommodation</h2></div>
+    <!-- ================= 7. ACCOMMODATION ================= -->
+    <section class="chapter" id="accommodation" data-toc="Accommodation" data-no="7">
+      <div class="chapter-head"><span class="chapter-no">7</span><h2>Accommodation</h2></div>
       <p class="lead">Accommodation is where the physical tents are built and kept accurate. Putting people into tents happens at the gate in Box Office. Both work on the same live tent records.</p>
 
       <h3>Inventory <span class="badge muted">Box Office team &amp; admins</span></h3>
@@ -463,9 +523,84 @@
       <figure class="shot" data-shot="accommodation-setup" data-caption="Accommodation › Setup: create units and watch occupancy per tent type"></figure>
     </section>
 
-    <!-- ================= 7. ADMIN ================= -->
-    <section class="chapter" id="admin" data-toc="Admin" data-no="7">
-      <div class="chapter-head"><span class="chapter-no">7</span><h2>Admin</h2></div>
+    <!-- ================= 8. WORKSHOPS ================= -->
+    <section class="chapter" id="workshops" data-toc="Workshops" data-no="8">
+      <div class="chapter-head"><span class="chapter-no">8</span><h2>Workshops</h2></div>
+      <p class="lead">Workshops takes a festival's workshops from planning to the door: venues and workshops, a schedule on a calendar, pre-registration lists, letting people in by wrist band, and reports of who came.</p>
+
+      <div class="table-wrap"><table>
+        <thead><tr><th>Page</th><th>What it's for</th><th>Who</th></tr></thead>
+        <tbody>
+          <tr><td><b>Planner</b></td><td>The schedule on a calendar, and live numbers for sessions running now</td><td>Everyone signed in</td></tr>
+          <tr><td><b>Lists &amp; door</b> (opened from a session)</td><td>Pre-registration, and letting people in</td><td>The Workshop team</td></tr>
+          <tr><td><b>Reports</b></td><td>Who came to which session, with Excel export</td><td>The Workshop team, and anyone with access to Workshop</td></tr>
+          <tr><td><b>Setup</b></td><td>Venues, workshops and categories</td><td>The Workshop Team Lead, Directors, Admins and Developers</td></tr>
+        </tbody>
+      </table></div>
+      <div class="callout note"><strong>Who the Workshop team is</strong><p>Every member of the Workshop department, plus anyone given Write access to Workshop. Its Team Lead also plans the schedule. Directors, Admins and Developers can do everything.</p></div>
+
+      <h3 id="workshop-setup">Setup <span class="badge muted">Workshop Team Lead &amp; admins</span></h3>
+      <p><b>Workshops › Setup</b> has three tappable cards, <b>Venues</b>, <b>Workshops</b> and <b>Categories</b>, that switch the list below. Each item opens in a side panel to view, edit or add.</p>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Item</th><th>What it holds</th></tr></thead>
+        <tbody>
+          <tr><td><b>Venue</b></td><td>Name, capacity (a soft limit: staff are warned, never blocked), amenities, notes, and the Workshop area on the Venue Map it belongs to.</td></tr>
+          <tr><td><b>Workshop</b></td><td>Title, category, description, facilitators (outside artists, by name), items required, age limit, language, what to bring and notes.</td></tr>
+          <tr><td><b>Category</b></td><td>Name, colour and icon, picked from swatches and tiles. Shared by every event; Art, Music and Movement are there to start with.</td></tr>
+        </tbody>
+      </table></div>
+      <p>A venue's form can <b>Draw a new Workshop area</b> or <b>Change this area on the map</b>. The Venue Map opens for Workshop areas only, and the form comes back filled in with the area selected.</p>
+      <p>A venue or workshop with sessions can't be deleted, and neither can a category that's in use. A Workshop area that a venue uses can't be deleted from the map until the venue is unlinked. People with Manage access to Workshop can also edit and delete venues.</p>
+      <figure class="shot" data-shot="workshop-setup" data-caption="Workshops › Setup: venues with their capacity and Workshop area"></figure>
+
+      <h3 id="workshop-planner">Planner <span class="badge muted">Everyone</span></h3>
+      <p><b>Workshops › Planner</b> shows the event's sessions on a calendar: one tab per event day, with the workshop venues as columns. Sessions take their category's colour, and each one shows how many people are on its list and waitlist. On phones the venue columns scroll sideways.</p>
+      <p>A <b>session</b> is one run of a workshop at a venue. It has a start and end, when pre-registration opens and closes, a cut-off, a soft list limit, and optional substitute facilitators for that session only. A workshop can run several times, in the same venue or in different ones.</p>
+      <ul>
+        <li><b>Planning</b> (the Workshop Team Lead and admins): tap <b>+ New session</b> or select empty time to add one. Drag a session to another venue or time, or drag its bottom edge to change its length.</li>
+        <li><b>Warnings never block:</b> two sessions in one venue at once, the same workshop twice in a day, a list limit above the venue's capacity, or a session outside the event's dates. The Workshop Team Lead decides.</li>
+        <li><b>Tapping a session</b> opens a panel with its numbers (on the list, waitlist, walk-ins, attended), venue, facilitators, registration window, cut-off and list limit.</li>
+        <li><b>Pre-registration switch</b> (the Workshop team): <b>Follow times</b>, <b>Open now</b> or <b>Close now</b>. Next to it is <b>Open lists &amp; door</b>.</li>
+        <li><b>Now</b> shows sessions running right now, each with a capacity meter and places left. It refreshes by itself, shows numbers only, and opens the session when tapped.</li>
+      </ul>
+      <figure class="shot" data-shot="workshop-planner" data-caption="Workshops › Planner: venues as columns, one tab per day, and the Now strip (sample workshops)"></figure>
+      <figure class="shot" data-shot="workshop-session" data-caption="A session's panel: numbers, the pre-registration switch and Open lists &amp; door"></figure>
+
+      <h3 id="workshop-door">Lists and the door <span class="badge muted">Workshop team</span></h3>
+      <p>Each session has its own page, with its numbers at the top and two modes: <b>List</b> for pre-registration and <b>Door</b> to let people in. In both, staff find a person with <b>Scan wrist band</b>, or by searching their name, email, phone or order number. Searching is the way in if scanning isn't working. Each result shows as a large colour-coded card.</p>
+      <h4>Building the list</h4>
+      <ul>
+        <li>Only Festival Pass holders already admitted at the gate can be added, and only while pre-registration is open.</li>
+        <li>Once the list limit is reached, people go on the <b>waitlist</b>. When someone leaves the list before the session, the first person waiting moves up automatically, and BiG says who.</li>
+        <li>BiG warns, without blocking, when someone is already on another session of the same workshop or on a session at an overlapping time.</li>
+      </ul>
+      <figure class="shot" data-shot="workshop-lists" data-caption="A session's page: its numbers, the pre-registration list, waitlist and walk-ins (sample people)"></figure>
+      <h4>At the door</h4>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Who arrives</th><th>What happens</th></tr></thead>
+        <tbody>
+          <tr><td>On the list</td><td>Let in, and their attendance is marked.</td></tr>
+          <tr><td>On the waitlist, before the cut-off</td><td>Waits. Staff can <b>Let in anyway</b>.</td></tr>
+          <tr><td>Not on any list</td><td>Added at the end as a walk-in: <b>Let in now</b> or <b>Keep waiting</b>.</td></tr>
+          <tr><td>On the list, but after the cut-off</td><td>Has lost their place and becomes a walk-in: <b>Let in now</b> or <b>Keep waiting</b>.</td></tr>
+          <tr><td>Already in</td><td>Shown with the time they came.</td></tr>
+          <tr><td>With a replaced band</td><td>A red card shows whose band it was. After checking, staff can continue with its owner.</td></tr>
+          <tr><td>Not admitted at the gate, or an unknown band</td><td>Not let in, with a message saying why.</td></tr>
+        </tbody>
+      </table></div>
+      <p>After the cut-off, the waitlist and walk-ins go in, in order. Going over the venue's capacity shows a warning but stops nobody. Only arrivals are recorded: nobody is marked as leaving. Removed names are kept for the record, people who attended can't be removed, and a session with people on its lists can't be deleted.</p>
+      <figure class="shot" data-shot="workshop-door" data-caption="Door mode: the result card for someone already let in"></figure>
+
+      <h3 id="workshop-reports">Reports <span class="badge muted">Workshop team</span></h3>
+      <p><b>Workshops › Reports</b> opens with totals: <b>Sessions</b>, <b>On the lists</b> (and how many are waitlisted), <b>Attended</b> (and how many came as walk-ins) and <b>No-shows</b>. Switch between <b>By session</b> and <b>By workshop</b>, with a turnout bar on each row, and search by workshop, venue or day. Tapping a row lists everyone on its lists, and whether and when they came. <b>Export to Excel</b> downloads Sessions, Workshops and People sheets.</p>
+      <p>A no-show is someone who was on the list and hadn't come by the end of the session. They're counted once the session has ended.</p>
+      <figure class="shot" data-shot="workshop-reports" data-caption="Workshops › Reports: totals and turnout per session"></figure>
+      <figure class="shot" data-shot="workshop-reports-panel" data-caption="Tapping a session shows who came and who didn't"></figure>
+    </section>
+
+    <!-- ================= 9. ADMIN ================= -->
+    <section class="chapter" id="admin" data-toc="Admin" data-no="9">
+      <div class="chapter-head"><span class="chapter-no">9</span><h2>Admin</h2></div>
       <p class="lead">The Admin pages set up the organisation: its people, its departments, each festival edition, a record of every email sent, and announcements to staff phones. Each page is open only to the roles shown next to it.</p>
 
       <h3 id="users">Users <span class="badge muted">Admins; Team Leads for their own department</span></h3>
@@ -494,13 +629,15 @@
       <p>Directors and Developers have an extra <b>Deactivated</b> card and status filter, and can <b>Reactivate</b> an account with the same role, department and access as before. Nobody can remove their own account, and admins can't remove Directors or Developers.</p>
 
       <h3 id="departments">Departments <span class="badge muted">Admins</span></h3>
+      <p><b>Admin › Departments</b> shows each department as a card with its Team Lead(s) and volunteer count. Tapping a card opens a side panel with its description, Team Leaders and Volunteers, and an <b>Edit</b> button. <b>+ Create Department</b> opens the same panel, ready for a new one.</p>
       <div class="grid c2">
-        <div class="card"><h4>Create &amp; describe</h4><p>Each department has a name and a description, and its card shows the Team Lead(s) and volunteer count.</p></div>
-        <div class="card"><h4>Assign people</h4><p>Add Team Leads and volunteers by typing their names. A volunteer belongs to one department, so moving one shows a warning first. Leads and admins can belong to several.</p></div>
+        <div class="card"><h4>Name, description and key</h4><p>Each department has a name and a description. When it's created it also gets a key, filled in from the name as you type. Access is tied to the key, which can't change later, so renaming a department never changes anyone's access.</p></div>
+        <div class="card"><h4>Assign people</h4><p>Add Team Leads and volunteers by typing their names; the suggestions show their photos. A volunteer belongs to one department, so moving one shows a warning first. Leads and admins can belong to several.</p></div>
         <div class="card"><h4>Remove people</h4><p>Taking someone out of a department also removes the access that came with it.</p></div>
         <div class="card"><h4>Delete safely</h4><p>Deleting a department that still has people shows who's affected. Confirming unassigns everyone, then deletes it.</p></div>
       </div>
       <figure class="shot" data-shot="departments" data-caption="Admin › Departments: each team with its Team Leads and volunteer count"></figure>
+      <figure class="shot" data-shot="departments-panel" data-caption="Tapping a department opens its side panel: description, key, Team Leaders and Volunteers"></figure>
 
       <h3 id="events">Events and pass types <span class="badge muted">Admins</span></h3>
       <p>Each festival edition is its own <b>event</b>, with its own passes, bookings and tents. Staff choose which event they're working on from the selector in the sidebar.</p>
@@ -529,6 +666,8 @@
         <li><b>Add its pass types</b> and give each a category.</li>
         <li><b>Check the ticket email wording.</b> Under <b>Ticket email</b>, set the <b>Subject</b> and <b>Intro paragraph</b> buyers will see, or leave them empty to use a default built from the event's name.</li>
         <li><b>Build the tents</b> for each tent pass type in Accommodation › Setup.</li>
+        <li><b>Draw the venue boundary.</b> The event's page shows whether it's drawn, with a button that opens the Venue Map.</li>
+        <li><b>Plan the workshops</b> in Workshops › Setup and the Planner, if the edition has any.</li>
         <li><b>Set it to Active.</b> Team Leads and volunteers can now select it and start work.</li>
         <li>After the festival, <b>archive</b> it. Everything is kept, and it disappears from day-to-day lists.</li>
       </ol>
@@ -589,9 +728,9 @@
       <div class="callout warn"><strong>Keep it discreet</strong><p>Notifications can appear on locked phones. The page reminds senders not to include personal or sensitive details.</p></div>
     </section>
 
-    <!-- ================= 8. MY PROFILE ================= -->
-    <section class="chapter" id="profile" data-toc="My Profile" data-no="8">
-      <div class="chapter-head"><span class="chapter-no">8</span><h2>My Profile</h2></div>
+    <!-- ================= 10. MY PROFILE ================= -->
+    <section class="chapter" id="profile" data-toc="My Profile" data-no="10">
+      <div class="chapter-head"><span class="chapter-no">10</span><h2>My Profile</h2></div>
       <p class="lead">My Profile shows each person exactly what they can access, and is where they manage their own photo and notifications. It opens from their name at the bottom of the sidebar.</p>
       <p>It shows your photo, which you can add, change or remove. It also shows your role, departments, a colour-coded table of your access in each department, and your own attendance since your date of joining.</p>
       <figure class="shot" data-shot="profile" data-caption="My Profile: photo, role and access per department"></figure>
@@ -613,9 +752,9 @@
       <p>Whoever starts a ticket or custom email send gets an <b>Emails sent</b> notification when it has gone out, with how many were sent and how many failed. The same message is kept as a private note on their <a href="#billboard">Billboard</a>, and tapping the notification opens it there.</p>
     </section>
 
-    <!-- ================= 9. STRENGTHS ================= -->
-    <section class="chapter" id="strengths" data-toc="Platform strengths" data-no="9">
-      <div class="chapter-head"><span class="chapter-no">9</span><h2>Platform strengths</h2></div>
+    <!-- ================= 11. STRENGTHS ================= -->
+    <section class="chapter" id="strengths" data-toc="Platform strengths" data-no="11">
+      <div class="chapter-head"><span class="chapter-no">11</span><h2>Platform strengths</h2></div>
       <p class="lead">These qualities make the platform dependable on festival day.</p>
       <div class="grid c2">
         <div class="card strength reveal"><div class="ic">🛡</div><div><h4>Built to protect real data</h4><p>Bookings, events and occupied tents can't be deleted by accident. Removing a person who has records deactivates them instead of erasing their history. Overwrites ask first, and destructive actions need confirmation.</p></div></div>
@@ -623,23 +762,23 @@
         <div class="card strength reveal"><div class="ic">🎯</div><div><h4>Right access for every person</h4><p>Five roles, three access tiers and department membership combine, so a volunteer sees only their work and a director sees everything.</p></div></div>
         <div class="card strength reveal"><div class="ic">📱</div><div><h4>Works on any screen</h4><p>Every page is designed for phones as well as desktops, so gate staff can work from a handheld device. BiG can also be installed on the home screen and opened like an app.</p></div></div>
         <div class="card strength reveal"><div class="ic">🔁</div><div><h4>Ready for every edition</h4><p>Events and pass types are configured, not hard-coded. A new festival year needs setup, not development.</p></div></div>
-        <div class="card strength reveal"><div class="ic">✅</div><div><h4>Tested and staged releases</h4><p>Hundreds of automated checks run before every release. Each release is tried in a test environment before wider use.</p></div></div>
+        <div class="card strength reveal"><div class="ic">✅</div><div><h4>Tested and staged releases</h4><p>Well over a thousand automated checks run before every release. Each release is tried in a test environment before wider use.</p></div></div>
         <div class="card strength reveal"><div class="ic">🔗</div><div><h4>Fits existing sales channels</h4><p>Bookings sold elsewhere come in through Bulk Upload. Export gives a re-importable backup at any time.</p></div></div>
-        <div class="card strength reveal"><div class="ic">🧭</div><div><h4>Honest records</h4><p>Attendance by slot, admissions per person, tents linked to the right festival pass, and a record of every email sent and whether it arrived. The numbers can be trusted.</p></div></div>
+        <div class="card strength reveal"><div class="ic">🧭</div><div><h4>Honest records</h4><p>Attendance by slot, admissions per person with one wrist band each, tents linked to the right festival pass, workshop attendance by session, and a record of every email sent and whether it arrived. The numbers can be trusted.</p></div></div>
       </div>
     </section>
 
-    <!-- ================= 10. LIMITATIONS ================= -->
-    <section class="chapter" id="limitations" data-toc="Current limitations" data-no="10">
-      <div class="chapter-head"><span class="chapter-no">10</span><h2>Current limitations</h2></div>
+    <!-- ================= 12. LIMITATIONS ================= -->
+    <section class="chapter" id="limitations" data-toc="Current limitations" data-no="12">
+      <div class="chapter-head"><span class="chapter-no">12</span><h2>Current limitations</h2></div>
       <p class="lead">This is what the platform doesn't do yet, and what it deliberately doesn't do. Each item is marked as <span class="badge info">By design</span>, <span class="badge warn">Planned</span> or <span class="badge muted">Not yet planned</span>.</p>
       <div class="filters no-print" id="limFilters"></div>
       <div class="lim-list" id="limList"></div>
     </section>
 
-    <!-- ================= 11. ROADMAP ================= -->
-    <section class="chapter" id="roadmap" data-toc="Roadmap and future possibilities" data-no="11">
-      <div class="chapter-head"><span class="chapter-no">11</span><h2>Roadmap and future possibilities</h2></div>
+    <!-- ================= 13. ROADMAP ================= -->
+    <section class="chapter" id="roadmap" data-toc="Roadmap and future possibilities" data-no="13">
+      <div class="chapter-head"><span class="chapter-no">13</span><h2>Roadmap and future possibilities</h2></div>
       <p class="lead">What's been delivered, what's being built now, what's planned next, and ideas worth exploring. Priorities (P1–P3) are set by the festival team and can change.</p>
       <div class="filters no-print" id="rmFilters"></div>
       <div class="timeline" id="timeline"></div>
@@ -647,9 +786,9 @@
       <div class="callout note"><strong>Ideas are not commitments</strong><p>Items marked <span class="badge idea">Idea</span> are possibilities the platform's design makes easy. None has been scoped or scheduled.</p></div>
     </section>
 
-    <!-- ================= 12. INSTALLABLE APP ================= -->
-    <section class="chapter" id="installable-app" data-toc="The installable app" data-no="12">
-      <div class="chapter-head"><span class="chapter-no">12</span><h2>BiG as an installable app</h2></div>
+    <!-- ================= 14. INSTALLABLE APP ================= -->
+    <section class="chapter" id="installable-app" data-toc="The installable app" data-no="14">
+      <div class="chapter-head"><span class="chapter-no">14</span><h2>BiG as an installable app</h2></div>
       <p class="lead">BiG is an app staff can keep on their phone's home screen: quick to open, still there when the signal drops, and able to send notifications.</p>
       <div class="callout note"><strong>Available now, with more to come</strong><p>BiG can be installed on phones and computers, and it sends notifications. Next, the most useful screens will keep working without signal; see <a href="#offline-rules">When the signal drops</a>.</p></div>
 
@@ -686,6 +825,7 @@
       <ul>
         <li><b>Booking details kept on phones:</b> only on Box Office staff's phones, for finding bookings offline. They're removed when the person signs out, and three days after the event ends.</li>
         <li><b>Hospitality:</b> the planned mess-hall scanning will be designed to work without signal from the start.</li>
+        <li><b>Workshop door:</b> planned to save scans on the phone and send them when back online. Today the lists and the door need a connection.</li>
       </ul>
 
       <h3>Why an installable app, not app-store apps</h3>
