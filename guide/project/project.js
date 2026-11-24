@@ -34,7 +34,7 @@
       { n: "n-found", e: ["e-scan-found"], t: "Booking Found", x: "Everyone on the booking is listed, with what's done and what's outstanding.", s: bookingScreen({}) },
       { n: "n-details", e: ["e-found-details"], t: "Complete missing details", x: "Her friend Rahul's details were never filled in. Staff complete them on the Counter Form while he's at the desk.", s: bookingScreen({ rn: "Rahul Verma", b: '<span class="badge muted">Not admitted</span>' }) },
       { n: "n-checkin", e: ["e-details-checkin"], t: "Admit", x: "Staff check ID, then tap Admit for each person and scan the wrist band they're given. That admits them and links the band in one step. The gate numbers update live.", s: bookingScreen({ rn: "Rahul Verma", a: '<span class="badge ok">Admitted</span>', b: '<span class="badge ok">Admitted</span>' }) },
-      { n: "n-tent", e: ["e-checkin-tent"], t: "Allocate Tent", x: "The tent pass is linked to Asha, the suggested match. Only two-person tents with space are offered, and they get TW3.", s: bookingScreen({ rn: "Rahul Verma", a: '<span class="badge ok">Admitted</span>', b: '<span class="badge ok">Admitted</span>', t: '<span class="badge ok">TW3</span>' }) },
+      { n: "n-tent", e: ["e-checkin-tent"], t: "Allocate Tent", x: "The Stay Pass is linked to Asha, the suggested match. Only two-person tents with space are offered, and they get TW3.", s: bookingScreen({ rn: "Rahul Verma", a: '<span class="badge ok">Admitted</span>', b: '<span class="badge ok">Admitted</span>', t: '<span class="badge ok">TW3</span>' }) },
       { n: "n-done", e: ["e-tent-done"], t: "Admitted", x: "Done in about a minute. Bookings, Inventory and the Dashboard all reflect it straight away.", s: '<div class="row"><span>Admitted</span><b>+2</b></div><div class="row"><span>Pending Admits</span><b>−2</b></div><div class="row"><span>Tent TW3</span><b>2 / 2</b></div>' }
     ],
     search: [
@@ -43,7 +43,7 @@
       { n: "n-search", e: ["e-search"], t: "Search for the booking", x: "Staff search by name, phone, email or order number. Search only covers the active event, so last year's bookings never get in the way.", s: '<div class="row"><span>Search: “karan”</span><span>1 result</span></div><div class="row"><b>#1043 · Karan Shah</b><span>1 pass</span></div>' },
       { n: "n-found", e: ["e-search-found"], t: "Booking Found", x: "His booking opens with one festival pass. His details are already complete.", s: '<div class="row"><b>Booking #1043</b><span>Karan Shah</span></div><div class="row"><span>Festival Pass — Karan Shah</span><span class="badge muted">Not admitted</span></div>' },
       { n: "n-details", e: ["e-found-details"], t: "Details already complete", x: "Nothing to fill in, so this step is skipped in practice.", s: '<div class="row"><span>Details</span><span class="badge ok">Complete</span></div>' },
-      { n: "n-checkin", e: ["e-details-checkin"], t: "Admit", x: "After the ID check, staff tap Admit and scan his wrist band. He has no tent pass, so there's no tent step.", s: '<div class="row"><span>Festival Pass — Karan Shah</span><span class="badge ok">Admitted</span></div>' },
+      { n: "n-checkin", e: ["e-details-checkin"], t: "Admit", x: "After the ID check, staff tap Admit and scan his wrist band. He has no Stay Pass, so there's no tent step.", s: '<div class="row"><span>Festival Pass — Karan Shah</span><span class="badge ok">Admitted</span></div>' },
       { n: "n-done", e: ["e-checkin-tent", "e-tent-done"], t: "Admitted", x: "Karan is in. The lookup took seconds.", s: '<div class="row"><span>Admitted</span><b>+1</b></div>' }
     ],
     walkup: [
@@ -165,7 +165,7 @@
     if (act === "replace") ask("Replace Wrist Band", "Scan the new band for <b>" + esc(a.name) + "</b> and give a reason.<br><br>New band scanned: <b>SAMPLE-0057</b><br>Reason: <i>Band strap broke</i>", "Replace band").then(function (ok) { if (ok) { aLog.textContent = "Band " + a.band + " replaced by SAMPLE-0057. The old band is now flagged wherever it's scanned."; a.band = "SAMPLE-0057"; attRender(); } });
     if (act === "counter") ask("Complete attendee details", "Sample details:<br><b>Rahul Verma</b> · Male · 98xxxxxx10 · rahul@example.com", "Save details").then(function (ok) { if (ok) { a.name = "Rahul Verma"; a.complete = true; aLog.textContent = "Details completed on the Counter Form."; attRender(); } });
     if (act === "edit") ask("Edit attendee details", "Correct a typo, phone number or email for <b>" + esc(a.name) + "</b>. The same form is used, labelled for editing.", "Save changes").then(function (ok) { if (ok) aLog.textContent = "Details updated for " + a.name + "."; });
-    if (act === "allocate") ask("Allocate Tent", "Linked festival pass: <b>Asha Menon</b> (suggested match).<br>Vacant two-person tents: <b>TW3</b> (2 places).<br><br>Allocate TW3?", "Allocate TW3").then(function (ok) { if (ok) { a.tent = "TW3"; aLog.textContent = "Tent pass allocated to TW3 and linked to Asha Menon."; attRender(); } });
+    if (act === "allocate") ask("Allocate Tent", "Linked festival pass: <b>Asha Menon</b> (suggested match).<br>Vacant two-person tents: <b>TW3</b> (2 places).<br><br>Allocate TW3?", "Allocate TW3").then(function (ok) { if (ok) { a.tent = "TW3"; aLog.textContent = "Stay Pass allocated to TW3 and linked to Asha Menon."; attRender(); } });
     if (act === "bed") {
       var n = a.people.length + 1, who = BED_GUESTS.filter(function (g) { return a.people.indexOf(g) < 0; })[0];
       ask("Allocate Tent", "<b>Bed " + n + " of " + a.beds + "</b>" + (a.people.length ? " · already in: " + a.people.map(esc).join(", ") : "") +
@@ -185,7 +185,7 @@
         aLog.textContent = pn + "'s bed in " + u + " vacated."; attRender();
       });
     }
-    if (act === "vacate") ask("Vacate tent place", "Free <b>" + a.tent + "</b> for this tent pass? The place becomes available straight away.", "Vacate").then(function (ok) { if (ok) { aLog.textContent = a.tent + " vacated."; a.tent = null; attRender(); } });
+    if (act === "vacate") ask("Vacate tent place", "Free <b>" + a.tent + "</b> for this Stay Pass? The place becomes available straight away.", "Vacate").then(function (ok) { if (ok) { aLog.textContent = a.tent + " vacated."; a.tent = null; attRender(); } });
   });
   attReset(); attRender();
 
@@ -202,7 +202,7 @@
       { no: "TB1", type: "TB", cap: 3, occ: [] },
       { no: "TB2", type: "TB", cap: 3, occ: [] }
     ];
-    /* Ritika, Simran and Bhavna share one 3-bed tent pass (invented sample names) */
+    /* Ritika, Simran and Bhavna share one 3-bed Stay Pass (invented sample names) */
     queue = [{ n: "Rahul", g: "M", type: "TW" }, { n: "Priya", g: "F", type: "TW" }, { n: "Neha", g: "F", type: "FA" }, { n: "Arun", g: "M", type: "FA" },
       { n: "Ritika", g: "F", type: "TB", pass: "#1043" }, { n: "Simran", g: "F", type: "TB", pass: "#1043" }, { n: "Bhavna", g: "F", type: "TB", pass: "#1043" }];
     pick = null;
@@ -217,7 +217,7 @@
       '<div class="occ-card"><div class="v">' + vac + "/" + slots + '</div><div class="l">Places vacant</div></div>' +
       '<div class="occ-card"><div class="v">' + empty + '</div><div class="l">Wholly vacant</div></div>' +
       '<div class="occ-card"><div class="v">' + full + '</div><div class="l">Full</div></div>';
-    $("#queue").innerHTML = '<span class="demo-msg" style="align-self:center">Waiting with a tent pass:</span>' + (queue.length ? queue.map(function (p, i) {
+    $("#queue").innerHTML = '<span class="demo-msg" style="align-self:center">Waiting with a Stay Pass:</span>' + (queue.length ? queue.map(function (p, i) {
       return '<button class="person" data-i="' + i + '" aria-pressed="' + (pick === i) + '">' + esc(p.n) + " · " + (p.g === "M" ? "M" : "F") + " · " + TYPES[p.type] + (p.pass ? " · 3-bed pass " + p.pass : "") + "</button>";
     }).join("") : '<span class="badge ok">Everyone housed</span>') + ' <button class="btn small" id="tentReset">Reset</button>';
     var sel = pick !== null ? queue[pick] : null;
@@ -313,18 +313,18 @@
       r: "Offers pass types · receives bookings · has tent units" },
     passtype: { t: "Pass Type", ch: "events", ch_t: "Admin › Events and pass types",
       x: "A kind of pass sold for one event, such as Festival Pass or Two-Person Tent. Its category (Festival, Tent or Add-on) decides how the platform treats it. Tent types get a short code that numbers their units.",
-      r: "Belongs to one event · every pass is one of these · tent types have tent units" },
+      r: "Belongs to one event · every pass is one of these · Stay Pass types have tent units" },
     tent: { t: "Tent unit", ch: "accommodation", ch_t: "Accommodation",
-      x: "One physical tent, numbered with its type's code (SO1, SO2…) and with a fixed capacity. It belongs to one event and one tent pass type. Its places are beds, each taken by one festival pass holder from a tent pass.",
-      r: "Built in Accommodation Setup · beds filled from tent passes · can't shrink below its occupants" },
+      x: "One physical tent, numbered with its type's code (SO1, SO2…) and with a fixed capacity. It belongs to one event and one Stay Pass type. Its places are beds, each taken by one festival pass holder from a Stay Pass.",
+      r: "Built in Accommodation Setup · beds filled from Stay Passes · can't shrink below its occupants" },
     booking: { t: "Booking", ch: "box-office", ch_t: "Box Office",
       x: "One order: the buyer's name and contact details, the order number and total, and every pass bought. Bookings arrive through Bulk Upload or are created at the gate with Spot Registration.",
-      r: "Belongs to one event · contains festival passes, tent passes and add-ons" },
+      r: "Belongs to one event · contains Festival Passes, Stay Passes and add-ons" },
     festival: { t: "Festival Pass", ch: "box-office", ch_t: "Box Office",
       x: "Admission for one person on a booking: their name, contact details and gender, and whether they've been admitted. Admit at the gate marks it admitted. Each festival pass counts as one attendee.",
-      r: "Part of a booking · a kind of pass type · a tent pass can link to it" },
-    tentpass: { t: "Tent Pass", ch: "accommodation", ch_t: "Accommodation",
-      x: "A stay in a tent, bought on a booking, with as many beds as its pass type gives. Each bed holds the festival pass of one person staying there, even if they bought on a different booking. The beds normally share one unit. Vacating frees one bed.",
+      r: "Part of a booking · a kind of pass type · a Stay Pass can link to it" },
+    tentpass: { t: "Stay Pass", ch: "accommodation", ch_t: "Accommodation",
+      x: "A stay in a tent (called Tent Pass before), bought on a booking, with as many beds as its pass type gives. Each bed holds the festival pass of one person staying there, even if they bought on a different booking. The beds normally share one unit. Vacating frees one bed.",
       r: "Part of a booking · one festival pass per bed · beds in a tent unit" },
     role: { t: "Role", ch: "people-access", ch_t: "People, roles and access",
       x: "Each user has one role: Developer, Director, Admin, Team Lead or Volunteer. The role sets the baseline of what they can see and do.",
@@ -359,7 +359,7 @@
     selling: { n: ["event", "passtype", "booking", "festival", "tentpass"], e: [1, 2, 4, 5, 6, 9],
       x: "<b>Selling & admission:</b> an event offers pass types. Bookings come in through Bulk Upload or Spot Registration, and each contains passes of those types. At the gate, each festival pass is admitted." },
     accommodation: { n: ["passtype", "tent", "tentpass", "festival"], e: [3, 5, 7, 8],
-      x: "<b>Accommodation:</b> each tent pass type gets numbered tent units in Setup. At the gate, each bed on a tent pass is given to one festival pass holder in a unit of the matching type." },
+      x: "<b>Accommodation:</b> each Stay Pass type gets numbered tent units in Setup. At the gate, each bed on a Stay Pass is given to one festival pass holder in a unit of the matching type." },
     workforce: { n: ["user", "department", "attendance", "deposit"], e: [13, 14, 15, 18],
       x: "<b>Volunteers & attendance:</b> people belong to departments. Team Leads mark attendance per person, day and slot, credited to the department they worked for, so mid-day moves count correctly. Each volunteer can hold one deposit per event." },
     access: { n: ["user", "role", "grant", "department"], e: [10, 11, 12, 15],

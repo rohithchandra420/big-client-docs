@@ -70,14 +70,53 @@
         <div class="card"><h4>Plan</h4><p><a href="#limitations">Current limitations</a> and the <a href="#roadmap">Roadmap</a> show what's missing and what's next.</p></div>
       </div>
 
-      <div class="callout note"><strong>About the demos</strong><p>Every interactive example runs entirely in this page with made-up names and numbers. Nothing you do here touches the real platform or its data.</p></div>
+      <div class="callout note"><strong>About the demos and screenshots</strong><p>Every interactive example runs entirely in this page with made-up names and numbers. Nothing you do here touches the real platform or its data. The screenshots come from a test copy of BiG filled with invented people and bookings.</p></div>
+
+      <h3 id="start-here">Start here: find your job</h3>
+      <p>You don't need to read everything. Find your job below and start with those parts.</p>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Your job</th><th>Read first</th><th>Then try</th></tr></thead>
+        <tbody>
+          <tr><td><b>Gate volunteer</b> (letting people in)</td><td><a href="#box-office">Box Office</a>: Registration, Admit and Wrist bands</td><td><a href="#dry-box-office">Dry run: admit a participant</a></td></tr>
+          <tr><td><b>Box Office Team Lead</b></td><td><a href="#box-office">Box Office</a> in full: where bookings come from, checking them, Early Check-In and emails</td><td><a href="#dry-box-office">Admit a participant</a> and <a href="#dry-checkin">Early Check-In</a></td></tr>
+          <tr><td><b>Accommodation team</b></td><td><a href="#accommodation">Accommodation</a></td><td><a href="#tent-demo">Try it: allocate and vacate</a></td></tr>
+          <tr><td><b>Workshop team</b></td><td><a href="#workshops">Workshops</a></td><td><a href="#dry-workshops">Dry run: Workshops</a></td></tr>
+          <tr><td><b>Music team</b></td><td><a href="#music">Music</a></td><td><a href="#dry-music">Dry run: Music</a></td></tr>
+          <tr><td><b>Hospitality team</b></td><td><a href="#hospitality">Hospitality</a></td><td><a href="#dry-hospitality">Dry run: Hospitality</a></td></tr>
+          <tr><td><b>Medical team</b></td><td><a href="#medical">Medical Desk</a></td><td><a href="#dry-medical">Dry run: Medical Desk</a></td></tr>
+          <tr><td><b>WASH team</b></td><td><a href="#wash">WASH</a></td><td><a href="#dry-wash">Dry run: WASH</a></td></tr>
+          <tr><td><b>Volunteer Team Lead</b></td><td><a href="#volunteers">Volunteers</a> and <a href="#my-department">My Department</a></td><td><a href="#dry-volunteers">Dry run: Volunteers</a></td></tr>
+          <tr><td><b>Helpdesk</b></td><td><a href="#announcements">Announcements</a>, <a href="#billboard">Billboard</a> and <a href="#sos">SOS</a></td><td><a href="#dry-tasks">Dry run: Tasks</a></td></tr>
+          <tr><td><b>Any Team Lead or volunteer</b></td><td><a href="#signin-dashboard">Sign-in and the Dashboard</a>, <a href="#my-department">My Department</a> and <a href="#profile">My Profile</a></td><td><a href="#dry-billboard">Dry run: Billboard</a></td></tr>
+          <tr><td><b>Organisers</b> (Directors and Admins)</td><td><a href="#at-a-glance">Platform at a glance</a>, <a href="#people-access">People, roles and access</a> and <a href="#admin">Admin</a></td><td><a href="#dry-setup">Dry run: people and the event</a></td></tr>
+        </tbody>
+      </table></div>
+
+      <h3 id="words">Words you'll see</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Word</th><th>What it means</th></tr></thead>
+        <tbody>
+          <tr><td><b>Event</b></td><td>One festival edition, such as BiG 7.0. Staff pick the event they're working on at the bottom of the sidebar.</td></tr>
+          <tr><td><b>Booking</b></td><td>One purchase: the buyer and every pass they bought together.</td></tr>
+          <tr><td><b>Booking ID</b></td><td>The number that identifies a booking, such as the online sales system's number (BLM-24031 in the samples) or an order number for bookings made in BiG.</td></tr>
+          <tr><td><b>Festival Pass</b></td><td>Entry to the festival for one person.</td></tr>
+          <tr><td><b>Stay Pass</b></td><td>A place to sleep: one or more beds in a tent or other unit. It used to be called Tent Pass.</td></tr>
+          <tr><td><b>Add-on</b></td><td>Anything else bought with a pass, such as parking.</td></tr>
+          <tr><td><b>Admit</b></td><td>Letting a person in at the gate. It also gives them their wrist band.</td></tr>
+          <tr><td><b>Early Check-In</b></td><td>An online form, sent by email before the festival, where the buyer fills in everyone's details.</td></tr>
+          <tr><td><b>Wrist band</b></td><td>The band each person wears. Its code identifies them at the gate, the workshop door and the meal desk.</td></tr>
+          <tr><td><b>Team Lead</b></td><td>The person in charge of a department, such as the Box Office Team Lead.</td></tr>
+        </tbody>
+      </table></div>
+      <p>Every other term is in <a href="#appendix-glossary">Appendix A — Glossary</a>.</p>
 
       <h3>Conventions</h3>
       <ul>
         <li><b>Bold names</b> are what you see on screen in the app, e.g. <b>Bookings</b>, <b>Booking Found</b>, <b>Inventory</b>.</li>
-        <li>Roles are written as short codes: DEV (Developer), DIR (Director), ADMIN, TL (Team Lead) and VOL (Volunteer).</li>
+        <li>Roles are written as short codes: DEV (Developer), DIR (Director), ADMIN, TL (Team Lead) and VOL (Volunteer). Developers, Directors and Admins are the organisers with the widest access; the guide names them together as "Directors, Admins and Developers".</li>
         <li>Terms are defined in <a href="#appendix-glossary">Appendix A — Glossary</a>.</li>
       </ul>
+      <div class="callout note"><strong>Three newest changes still being tested</strong><p>The <b>pass type filter</b> and <b>Selected only</b> on Bookings, and <b>All their stays</b> in Hospitality › Stay, are finished and described here, but are still being tested before they reach the festival's live system.</p></div>
     </section>
 
     <!-- ================= CONTENTS ================= -->
@@ -95,7 +134,6 @@
         <div class="figure reveal"><div class="v" data-count="20">20</div><div class="l">Areas of the platform</div></div>
         <div class="figure reveal"><div class="v" data-count="5">5</div><div class="l">Roles with distinct access</div></div>
         <div class="figure reveal"><div class="v" data-count-from="releases" data-count="0">—</div><div class="l">Releases shipped since launch</div></div>
-        <div class="figure reveal"><div class="v" data-count="2515">2515</div><div class="l">Automated checks run before every release</div></div>
       </div>
 
       <h3>Explore the platform <span class="sample-tag">Click a tile</span></h3>
@@ -147,7 +185,7 @@
           <text class="dm-lbl" id="dml6" x="232" y="222" text-anchor="middle">contains</text>
           <text class="dm-lbl" id="dml7" x="467" y="222" text-anchor="middle">linked</text>
           <text class="dm-lbl" id="dml8" x="593" y="180">allocated to</text>
-          <text class="dm-lbl" id="dml9" x="232" y="276" text-anchor="middle">contains (tent passes, add-ons)</text>
+          <text class="dm-lbl" id="dml9" x="232" y="276" text-anchor="middle">contains (stay passes, add-ons)</text>
           <text class="dm-lbl" id="dml10" x="232" y="512" text-anchor="middle">has a</text>
           <text class="dm-lbl" id="dml11" x="467" y="512" text-anchor="middle">is given</text>
           <text class="dm-lbl" id="dml12" x="593" y="584">tier on its key</text>
@@ -164,7 +202,7 @@
           <g class="dm-node" data-id="tent" tabindex="0" role="button" aria-label="Tent unit"><rect x="500" y="92" width="170" height="56" rx="10"/><text class="t" x="585" y="116">Tent unit</text><text class="s" x="585" y="135">numbered, fixed capacity</text></g>
           <g class="dm-node" data-id="booking" tabindex="0" role="button" aria-label="Booking"><rect x="30" y="202" width="170" height="56" rx="10"/><text class="t" x="115" y="226">Booking</text><text class="s" x="115" y="245">buyer · order number</text></g>
           <g class="dm-node" data-id="festival" tabindex="0" role="button" aria-label="Festival Pass"><rect x="265" y="202" width="170" height="56" rx="10"/><text class="t" x="350" y="226">Festival Pass</text><text class="s" x="350" y="245">one person · admitted?</text></g>
-          <g class="dm-node" data-id="tentpass" tabindex="0" role="button" aria-label="Tent Pass"><rect x="500" y="202" width="170" height="56" rx="10"/><text class="t" x="585" y="226">Tent Pass</text><text class="s" x="585" y="245">beds · one person each</text></g>
+          <g class="dm-node" data-id="tentpass" tabindex="0" role="button" aria-label="Stay Pass"><rect x="500" y="202" width="170" height="56" rx="10"/><text class="t" x="585" y="226">Stay Pass</text><text class="s" x="585" y="245">beds · one person each</text></g>
           <g class="dm-node" data-id="wash" tabindex="0" role="button" aria-label="WASH facility"><rect x="30" y="312" width="170" height="56" rx="10"/><text class="t" x="115" y="336">WASH facility</text><text class="s" x="115" y="355">a pin or area on the map</text></g>
           <g class="dm-node" data-id="patient" tabindex="0" role="button" aria-label="Patient report"><rect x="265" y="312" width="170" height="56" rx="10"/><text class="t" x="350" y="336">Patient report</text><text class="s" x="350" y="355">one per person · per event</text></g>
           <g class="dm-node" data-id="deposit" tabindex="0" role="button" aria-label="Deposit"><rect x="500" y="312" width="170" height="56" rx="10"/><text class="t" x="585" y="336">Deposit</text><text class="s" x="585" y="355">one per volunteer · per event</text></g>
@@ -242,13 +280,17 @@
       <p class="lead">Signing in takes people to a dashboard of the active event, the Billboard keeps every announcement and task sent to them, and the SOS page brings participants' calls for help to the right staff.</p>
 
       <div class="grid c2">
-        <div class="card"><h4>Sign in</h4><p>Email and password. Repeated failed attempts pause sign-in for a while. Sessions last up to 7 days. If one expires mid-task, the next action returns you to sign-in with a notice, so nobody keeps working on a page that has silently stopped saving.</p></div>
+        <div class="card"><h4>Sign in</h4><p>Email and password. Capital letters in the email don't matter, and the eye button shows or hides the password as you type. Repeated failed attempts pause sign-in for a while. Sessions last up to 7 days. If one expires mid-task, the next action returns you to sign-in with a notice, so nobody keeps working on a page that has silently stopped saving.</p></div>
         <div class="card" id="dashboard"><h4>Dashboard</h4><p>Developers, Directors, Admins and the Helpdesk get a festival overview of the event picked in the sidebar. It has a <b>Needs attention now</b> strip, headline tiles and a section each for the Gate, Accommodation, People, Hospitality, Workshops, WASH, the Medical Desk (numbers only) and Comms &amp; safety. Every panel links to its page, revenue shows for Directors only, and it refreshes every minute. Team Leads and volunteers get a simple view: their team's (or own) attendance today, the next meal, their latest Billboard notes and their bed tonight.</p></div>
       </div>
-      <figure class="shot" data-shot="signin" data-caption="The sign-in screen"></figure>
+      <figure class="shot" data-shot="signin" data-views="desktop" data-caption="The sign-in screen"></figure>
       <figure class="shot" data-shot="dashboard" data-caption="Dashboard: Needs attention now, headline tiles and the Gate section (sample event; the Revenue tile is shown to Directors only)"></figure>
-      <p>Confirmations for deletes, vacates and overwrites appear as branded in-app dialogs. In every side panel and dialog, <b>Close</b> or <b>Cancel</b> sits on the left and the main action on the right, on phones too. The sidebar footer always shows the current version.</p>
-      <p id="section-tabs">The sidebar has <b>Main</b> (Dashboard, Billboard, SOS, Venue Map and My Department) and one item per section: <b>Box Office</b>, <b>Accommodation</b>, <b>Workshops</b>, <b>Hospitality</b>, <b>Medical Desk</b>, <b>WASH</b>, <b>Volunteers</b> and <b>Admin</b>. A section's pages are tabs in the page header, under the page title. Clicking a section opens the tab you used last there, in that browser.</p>
+      <p>Confirmations for deletes, vacates and overwrites appear as branded in-app dialogs. In every side panel and dialog, <b>Close</b> or <b>Cancel</b> sits on the left and the main action on the right, on phones too. The top of the sidebar shows the name and dates of the event you're working on, and the sidebar footer always shows the current version.</p>
+      <ul>
+        <li><b>Messages:</b> a success message closes by itself after 4 seconds (a thin bar shows the time left, and pointing at it pauses it). An error stays until you close it, so it can't be missed.</li>
+        <li><b>Forms say what's wrong:</b> a field with a problem gets a red outline and a short message underneath, and <b>Save</b> lists every problem instead of doing nothing. The Users and Volunteers forms work this way first; other forms follow.</li>
+      </ul>
+      <p id="section-tabs">The sidebar has <b>Main</b> (Dashboard, Billboard, SOS, Venue Map and My Department) and one item per section: <b>Box Office</b>, <b>Accommodation</b>, <b>Workshops</b>, <b>Music</b>, <b>Hospitality</b>, <b>Medical Desk</b>, <b>WASH</b>, <b>Volunteers</b> and <b>Admin</b>. A section's pages are tabs in the page header, under the page title. Clicking a section opens the tab you used last there, in that browser.</p>
       <ul>
         <li>Every tab has its own address, so refreshing, the browser's <b>Back</b> button, bookmarks and notification links stay on the same page.</li>
         <li>A thin <b>Back</b> strip on the left of the tab row goes up from a page opened from a tab, such as a booking, a workshop session or an event, and otherwise to the previous page.</li>
@@ -308,7 +350,7 @@
       <figure class="shot" data-shot="venue-map" data-views="desktop" data-caption="Venue Map: the festival boundary, zones, routes and pins for the active event on the street map"></figure>
 
       <h3 id="locations">Locations</h3>
-      <p>A location is a single place on the ground, shown as a coloured pin. Each has a name, a type (<b>Water station</b>, <b>Toilets</b>, <b>Stage</b>, <b>Gate</b>, <b>Entry point</b>, <b>Box Office</b>, <b>Tent field</b> or <b>Other</b>), an optional responsible department and notes. Each event has at most one <b>Box Office</b> pin.</p>
+      <p>A location is a single place on the ground, shown as a coloured pin. Each has a name, a type (<b>Water station</b>, <b>Toilets</b>, <b>Stage</b>, <b>Gate</b>, <b>Entry point</b>, <b>Box Office</b>, <b>Tent field</b>, <b>Helpdesk</b> or <b>Other</b>), an optional responsible department and notes. Each event has at most one <b>Box Office</b> pin. Helpdesk pins also show on the public map, so participants can find help.</p>
       <ul>
         <li><b>Add location</b>, then tap the map, or tap <b>Use my location</b> to drop a pin where you're standing. BiG shows how accurate the phone's position is.</li>
         <li id="pin-lock">Pins are locked every time the map opens, so scrolling on a phone can't move one by accident. People who can edit pins see a lock button next to <b>Street</b> / <b>Satellite</b>. Tap it to unlock, then drag a pin to fine-tune it. A pin open in its form can always be moved. Edit or delete a pin from its card.</li>
@@ -340,7 +382,7 @@
       </ul>
 
       <h3>Importing from Google Earth or My Maps <span class="badge muted">Admins</span></h3>
-      <p><b>Import KML</b> reads pins, areas and lines exported from Google My Maps or Google Earth. BiG guesses each item's type or kind from its name and shows a review list first, so staff can correct it or leave it out. Clear messages explain files it can't read, such as compressed KMZ files or online-only exports.</p>
+      <p><b>Import KML</b> reads pins, areas and lines exported from Google My Maps or Google Earth. BiG guesses each item's type or kind from its name (a place named "Help desk" or "Information desk" becomes a Helpdesk pin) and shows a review list first, so staff can correct it or leave it out. Clear messages explain files it can't read, such as compressed KMZ files or online-only exports.</p>
 
       <h3>Who can change what</h3>
       <div class="table-wrap"><table>
@@ -451,14 +493,25 @@
     <!-- ================= 6. BOX OFFICE ================= -->
     <section class="chapter" id="box-office" data-toc="Box Office" data-no="6">
       <div class="chapter-head"><span class="chapter-no">6</span><h2>Box Office</h2></div>
-      <p class="lead">Box Office handles a booking from the day it's imported to the moment the attendee walks through the gate. It has two halves: <b>Bookings</b> for the back office and <b>Registration</b> for the gate.</p>
+      <p class="lead">Box Office handles a booking from the day it's bought to the moment the attendee walks through the gate. It has three tabs: <b>Bookings</b> for the back office, <b>Registration</b> for the gate, and the <b>Sales Sync Report</b>.</p>
+
+      <h3 id="booking-life">A booking's journey</h3>
+      <p>Every booking goes through the same five steps. The sections below follow them in order.</p>
+      <ol class="steps">
+        <li><b>It arrives.</b> Most bookings come from the online sales system by themselves. Others come from a file, or are made at the gate for walk-ups. See <a href="#booking-sources">Where bookings come from</a>.</li>
+        <li><b>Staff check it.</b> Bookings shows which ones still miss people's details and which don't have the right number of beds. See <a href="#booking-checks">Checking bookings</a>.</li>
+        <li><b>The buyer fills in everyone's details</b> from the <b>Early Check-In</b> email, before the festival. See <a href="#early-checkin">Early Check-In</a>.</li>
+        <li><b>The buyer gets their ticket</b> by email, with one QR code for the booking. See <a href="#emails">Emailing buyers</a>.</li>
+        <li><b>At the gate</b>, staff find the booking, admit each person with a wrist band, and give Stay Pass holders their bed. See <a href="#gate-sim">The gate, step by step</a>.</li>
+      </ol>
 
       <div class="table-wrap" id="box-office-access"><table>
         <thead><tr><th>What</th><th>Who</th></tr></thead>
         <tbody>
           <tr><td><b>Look up</b> bookings, Registration and a booking's page</td><td>Box Office department members, anyone with Box Office access, the Helpdesk, and Directors, Admins and Developers</td></tr>
           <tr><td><b>Desk work:</b> Admit, Spot Registration, Edit, bands and tents</td><td>Box Office department members (Team Lead and volunteers), anyone with Write or Manage access to Box Office, and Directors, Admins and Developers. Read access and the Helpdesk only look things up.</td></tr>
-          <tr><td><b>Bulk Upload</b></td><td>The Box Office Team Lead, Manage access to Box Office, and Directors, Admins and Developers</td></tr>
+          <tr><td><b>Import</b> (Bulk Upload, Import from sales system, Pull from sales system), <b>Check &amp; repair</b> and the <b>Sales Sync Report</b></td><td>The Box Office Team Lead, Manage access to Box Office, and Directors, Admins and Developers. Only Directors, Admins and Developers create a missing pass type on the spot.</td></tr>
+          <tr><td><b>Send Early Check-In emails</b></td><td>The Box Office Team Lead, and Directors, Admins and Developers. Manage access to Box Office alone is not enough.</td></tr>
           <tr><td><b>Delete a booking</b></td><td>Directors, Admins and Developers</td></tr>
         </tbody>
       </table></div>
@@ -499,7 +552,7 @@
           <text class="flow-label" x="314" y="50">yes</text>
           <text class="flow-label" x="258" y="176">no (walk-up)</text>
           <text class="flow-label" x="645" y="230">if details missing</text>
-          <text class="flow-label" x="200" y="356">tent step only for tent-pass holders</text>
+          <text class="flow-label" x="200" y="356">bed step only for Stay Pass holders</text>
         </svg></div>
         <div class="sim-panel">
           <div class="sim-step" id="simStep"></div>
@@ -516,14 +569,64 @@
 
       <h3>Bookings: the back office</h3>
       <div class="grid c2">
-        <div class="card"><h4>Overview</h4><p>A searchable, paged list of every booking for the active event, with each booking's <b>Ticket Email</b> status. Headline numbers (<b>Ticket Emails Sent</b>, <b>Admitted</b>, <b>Spot Registrations</b>) double as one-tap filters, and a status filter finds bookings not sent, bounced or failed.</p></div>
-        <div class="card"><h4>Detail panel</h4><p>Selecting a booking slides in a panel with its summary, the number of attendees and passes, an <b>Edit Ticket</b> form, live attendee actions, email buttons and <b>Email history</b>, and <b>Open in Registration</b>.</p></div>
-        <div class="card"><h4>Bulk Upload</h4><p>Bring in bookings sold elsewhere from an Excel file. Drag it in, pick the sheet, and every row is checked before anything is saved. For the Box Office Team Lead, anyone with Manage access to Box Office, and Directors, Admins and Developers.</p></div>
+        <div class="card"><h4>Overview</h4><p>A searchable, paged list of every booking for the active event. Each row shows the buyer, <b>Booking ID</b>, passes, amount, <b>Payment method</b> (Online, Offline or Guest list), <b>Paid at</b>, <b>Source</b> (Sales system, Spot registration or Bulk Upload), <b>Ticket Email</b> status, <b>Festival details</b>, <b>Beds</b> and <b>Early Check-In</b> status. Headline tiles (<b>Ticket Emails Sent</b>, <b>Admitted</b>, <b>Spot Registrations</b>, <b>Details missing</b>, <b>Beds don't match</b>) double as one-tap filters.</p></div>
+        <div class="card"><h4>Search and filters</h4><p>Search by name, email, phone, Booking ID, ticket, payment reference, payment method, source or the date paid (for example "10 nov"). Filters for Ticket Email status, Early Check-In status and pass type combine with the search and the tiles. Tap a column header to sort.</p></div>
+        <div class="card"><h4>Detail panel</h4><p>Selecting a booking slides in a panel with its Booking ID and payment references, the total, Ticket Email, <b>Source</b>, <b>Festival details</b>, <b>Beds</b> and <b>Early Check-In</b> boxes, its linked bookings, an <b>Edit Ticket</b> form, every attendee action, email buttons, <b>Email history</b> and <b>Open in Registration</b>.</p></div>
         <div class="card"><h4>Export</h4><p>Download every loaded booking as an Excel file, one row per pass, in the same layout Bulk Upload accepts, so it can be re-imported.</p></div>
       </div>
 
-      <figure class="shot" data-shot="bookings" data-caption="Bookings: headline numbers, search and every booking for the active event"></figure>
-      <figure class="shot" data-shot="booking-panel" data-views="desktop" data-caption="The detail panel: booking summary and every attendee action"></figure>
+      <figure class="shot" data-shot="bookings" data-views="desktop" data-caption="Bookings: headline tiles, search, filters and every booking for the active event, with where each came from (sample bookings)"></figure>
+      <figure class="shot" data-shot="booking-panel" data-views="desktop" data-caption="A booking from the sales system: Booking ID, source, details filled, beds with its linked booking, and its Early Check-In status (sample booking)"></figure>
+
+      <h4>Pass type filter and Selected only</h4>
+      <ul>
+        <li>The <b>pass type</b> dropdown lists every pass type of the event under Festival Passes, Stay Passes and Add-ons, each with how many bookings it shows. Tick several at once. A booking shows when it, or a booking linked to it, holds any ticked type.</li>
+        <li><b>Selected only</b>, next to the selection count, shows just the bookings you've ticked. It's greyed out until you tick one, and switches itself off when the last tick is removed.</li>
+      </ul>
+      <figure class="shot" data-shot="bookings-pass-filter" data-views="desktop" data-caption="The pass type filter with two pass types ticked (sample bookings)"></figure>
+
+      <h3 id="booking-sources">Where bookings come from</h3>
+      <p>The <b>Import</b> button on Bookings has three choices. Spot Registration at the gate is a fourth way in (see <a href="#spot-registration">Spot Registration</a>).</p>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Choice</th><th>What it's for</th></tr></thead>
+        <tbody>
+          <tr><td><b>Pull from sales system</b></td><td>The normal way. Bookings from the online sales system arrive by themselves; Pull brings in anything missed.</td></tr>
+          <tr><td><b>Import from sales system</b></td><td>Upload the sales system's own export file (.csv or Excel), for example before the live link was set up.</td></tr>
+          <tr><td><b>Bulk Upload</b></td><td>Bookings sold anywhere else, from BiG's own Excel layout.</td></tr>
+        </tbody>
+      </table></div>
+
+      <h4 id="sales-sync">Bookings from the online sales system</h4>
+      <p>One event at a time takes the online sales system's bookings: the one with <b>Sales system</b> switched on in Admin › Events. The sales system tells BiG straight away when a booking is made, changed or cancelled.</p>
+      <ul>
+        <li><b>New bookings</b> appear on Bookings with their Booking ID, payment method, time paid and payment references. One pass is made per person, bed or add-on bought.</li>
+        <li><b>Changed bookings</b> are updated in place. An upgraded pass (for example Day Pass to Weekend Pass) keeps the person's details, admission, wrist band and bed. Anything already in use that a change can't touch safely is kept and listed on the booking under <b>To check</b>.</li>
+        <li><b>Cancelled bookings</b> get a red <b>Cancelled</b> badge. Passes not in use are switched off; passes already in use are kept and flagged. A cancelled booking gets no Ticket Email or Early Check-In email.</li>
+        <li><b>Waiting to be stored:</b> a booking that can't be stored yet, usually because the event doesn't have its pass type, waits with its reason and is tried again on the next pull. Directors, Admins and Developers can create the missing pass type right there, filled in from the sales system. Others see the list and are asked to contact an admin.</li>
+        <li><b>Pull from sales system</b> opens a panel with the link's status, <b>Pull now</b> and a report: new, changed, cancelled, up to date, problems and pass types missing.</li>
+        <li><b>Check &amp; repair</b>, in the same panel: <b>Check all bookings</b> compares every paid booking in the sales system with BiG, stores any missing ones and lists bookings BiG holds that the sales system doesn't show as paid. <b>Fetch one booking</b> brings in a single booking by its Booking ID.</li>
+        <li><b>Alerts:</b> when an update can't be stored, the Directors, Admins, Developers and Box Office Team Lead on the event's staff list get a phone notification, at most one an hour.</li>
+      </ul>
+
+      <h4 id="external-import">Importing the sales system's file</h4>
+      <ol class="steps">
+        <li>Choose <b>Import › Import from sales system</b> and drop in the export file.</li>
+        <li>Check the preview: new bookings, passes, bookings already in BiG (skipped), bookings changed in the sales system since they were imported, and rows with errors. Nothing is saved yet.</li>
+        <li>Pass types the event doesn't have yet are listed. Directors, Admins and Developers can create them on the spot.</li>
+        <li>Tap <b>Import</b>. A report shows what was done. Rows with errors are not imported: fix them and upload the whole file again.</li>
+      </ol>
+      <figure class="shot" data-shot="external-import" data-views="desktop" data-caption="Import from sales system: the preview before anything is saved, with one unknown pass type and one booking changed since it was imported (sample file)"></figure>
+
+      <h4 id="sales-sync-report">The Sales Sync Report</h4>
+      <p>The <b>Sales Sync Report</b> tab lists every live update, pull, check and fetch: when, what happened, how many bookings were new, changed, cancelled, unchanged or not stored, the reason for any problem, whether an alert was sent, and who ran it. Filter by source, <b>Only with problems</b> and dates; tap a row for every reason. Entries are kept for 90 days.</p>
+      <figure class="shot" data-shot="sales-sync-report" data-views="desktop" data-caption="Sales Sync Report: live updates and pulls, with one booking waiting for a missing pass type (sample entries)"></figure>
+
+      <h4 id="linked-bookings">Booking ID and linked bookings</h4>
+      <ul>
+        <li>Every booking has a <b>Booking ID</b>: the sales system's number, or the order number for bookings made in BiG. Every pass carries it too.</li>
+        <li>A group often buys Festival Passes in one booking and their stay in another. The sales system links them. The booking panel shows <b>Linked bookings</b> and <b>Linked from</b> with each buyer's name; tap one to open it. A linked booking not in BiG yet is shown but can't be opened.</li>
+        <li>When allocating a bed, the Festival Passes of linked bookings are suggested right after the booking's own, tagged with their Booking ID.</li>
+      </ul>
       <h3 id="bulk-demo">Try Bulk Upload's checks <span class="sample-tag">Demo</span></h3>
       <p>Below is a sample file. Press <b>Check file</b> to see what the platform catches before saving, then fix the issue it allows you to fix on the spot.</p>
       <div class="table-wrap upload-demo"><table>
@@ -540,11 +643,34 @@
         <ul>
           <li><b>Required details</b> on every row: order, item, quantity, buyer name, phone and email.</li>
           <li><b>Duplicates:</b> an order number that already exists for the event is rejected, so re-uploading a file never doubles bookings.</li>
-          <li><b>Unknown items:</b> an item name that doesn't match the event's pass types is flagged. Directors, Admins and Developers can create it as a new pass type right there, with a category and, for a tent pass, <b>Beds per pass</b>, taken from the name where it says so ("(3 guests)", "2 beds"), otherwise 1. Anyone else is asked to have an admin add it in Admin › Events first, and Upload waits until then.</li>
+          <li><b>Unknown items:</b> an item name that doesn't match the event's pass types is flagged. Directors, Admins and Developers can create it as a new pass type right there, with a category and, for a Stay Pass, <b>Beds per pass</b>, taken from the name where it says so ("(3 guests)", "2 beds"), otherwise 1. Anyone else is asked to have an admin add it in Admin › Events first, and Upload waits until then.</li>
           <li><b>Grouping:</b> rows with the same order number become one booking with several passes.</li>
           <li><b>Workbooks with several sheets:</b> staff pick which sheet to import.</li>
         </ul>
       </div></details>
+
+      <h3 id="booking-checks">Checking bookings before the festival</h3>
+      <p>Two columns on Bookings show what still needs attention, each with a headline tile that lists those bookings with one tap.</p>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Column</th><th>What it shows</th><th>Tile</th></tr></thead>
+        <tbody>
+          <tr><td><b>Festival details</b></td><td>How many of the booking's Festival Passes have a name, phone, email and gender filled in, for example <b>1 / 2</b>. Green when all are filled, amber when not, "—" with no Festival Pass.</td><td><b>Details missing</b> (search "details missing" finds them too)</td></tr>
+          <tr><td><b>Beds</b></td><td>People (active Festival Passes) against beds (active Stay Pass beds), counted over the booking and every booking linked to it, so a group's bookings all show the same totals. A link icon marks a group, and the hint names the linked bookings.</td><td><b>Beds don't match</b> (search "beds" finds them too)</td></tr>
+        </tbody>
+      </table></div>
+      <p>A booking is flagged when people and beds differ either way. A booking with only Festival Passes and no linked stay is flagged too, which is expected for people who don't stay overnight.</p>
+
+      <h3 id="early-checkin">Early Check-In <span class="badge muted">Box Office Team Lead, Directors, Admins, Developers</span></h3>
+      <p>Early Check-In asks each buyer, before the festival, to fill in the name, phone, email and gender of everyone on their booking. This makes the gate quicker, because staff don't have to type details in the queue.</p>
+      <ol class="steps">
+        <li>On Bookings, tick the bookings (or tap <b>Details missing</b> first) and choose <b>Email ▾ › Send Early Check-In</b>.</li>
+        <li>The dialog counts bookings with details missing, with all details filled, and those skipped (cancelled, or with no Festival Pass). Choose to send only to those with details missing (the default) or to all.</li>
+        <li>Pick how long the link works: 7, 14 or 30 days, or your own number up to 60. The default is 14.</li>
+        <li><b>Preview</b> or <b>Send test to me</b>, then send. Each buyer gets one email with a personal link for their booking. A new send replaces the old link.</li>
+      </ol>
+      <figure class="shot" data-shot="early-checkin-dialog" data-views="desktop" data-caption="Send Early Check-In: how many bookings have details missing, who to send to and how long the link works (sample bookings)"></figure>
+      <p>The <b>Early Check-In</b> column and filter show each booking's status: <b>Not sent</b>, <b>Sending</b>, <b>Sent</b>, <b>Submitted</b>, <b>Expired</b>, <b>Failed</b> or <b>No email</b> (hover for the reason). The booking panel shows when it was sent and until when the link works. The email's subject and intro are set per event in Admin › Events. What the buyer sees is described in <a href="#public-checkin">The Early Check-In form</a>.</p>
+      <div class="callout note"><strong>Check In and Admit</strong><p><b>Early Check-In</b> is the online form before arrival. At the gate the step is called <b>Admit</b>.</p></div>
 
       <h3 id="emails">Emailing buyers</h3>
       <p>Staff can email buyers straight from the platform. Select bookings on <b>Bookings</b> and open the <b>Email ▾</b> menu, or use the email buttons on a single booking in the detail panel or on Booking Found.</p>
@@ -552,7 +678,7 @@
         <thead><tr><th></th><th>Ticket Email</th><th>Custom Email</th></tr></thead>
         <tbody>
           <tr><td><b>What it is</b></td><td>The buyer's ticket: every pass on the booking and one QR code for the gate.</td><td>A message you write, with bold, italics, lists and links.</td></tr>
-          <tr><td><b>Wording</b></td><td>Subject and intro set per event in Admin › Events.</td><td>Your own, with placeholders such as <b>{first_name}</b>, <b>{order_id}</b> and <b>{event}</b> filled in for each buyer.</td></tr>
+          <tr><td><b>Wording</b></td><td>Subject and intro set per event in Admin › Events.</td><td>Your own, with placeholders such as <b>{first_name}</b>, <b>{order_id}</b>, <b>{booking_id}</b> and <b>{event}</b> filled in for each buyer.</td></tr>
           <tr><td><b>Ticket details</b></td><td>Always included.</td><td>Optional: tick to add the ticket details and QR code.</td></tr>
           <tr><td><b>Changes the booking's Ticket Email status</b></td><td>Yes</td><td>No</td></tr>
           <tr><td><b>Who can send</b></td><td>Admins, Directors, Developers, Box Office Team Leads and anyone with Manage access to Box Office</td><td>Admins, Directors and Developers</td></tr>
@@ -570,14 +696,14 @@
       <p>Each booking's <b>Ticket Email</b> status reads <b>Not sent</b>, <b>Sending…</b>, <b>Sent</b>, <b>Bounced</b>, <b>Failed</b> or <b>No email</b>. Hover a failed or bounced status to see why. A bounced booking is picked up again the next time you send to those not sent yet. The <b>Email history</b> on each booking shows every email it has received and whether it was delivered. Every email sent is also listed in <a href="#email-report">Admin › Email Report</a>.</p>
 
       <h3>Registration: the gate</h3>
-      <p>The Registration page opens with live numbers: <b>Admitted</b>, <b>Pending Admits</b>, <b>Incomplete Details</b> and <b>Spot Registrations</b>. Staff find a booking by scanning the QR code from its ticket email or the person's wrist band, or by searching by name, phone, email or order number. Every scanned ticket code is checked first: one that has been altered or made up is rejected with a message, and the scanner keeps running. Either way staff land on <b>Booking Found</b>, which lists every attendee on the booking and offers the same email buttons and history as the detail panel.</p>
-      <div class="callout note"><strong>Admit, not Check In</strong><p>At the gate the step is called <b>Admit</b>. "Check In" is kept for a planned online step, where each participant fills in their forms before arriving through a secure one-time link.</p></div>
+      <p>The Registration page opens with live numbers: <b>Admitted</b>, <b>Pending Admits</b>, <b>Incomplete Details</b> and <b>Spot Registrations</b>. Staff find a booking by scanning the QR code from its ticket email or the person's wrist band, or by searching by name, phone, email, order number or Booking ID. Every scanned ticket code is checked first: one that has been altered or made up is rejected with a message, and the scanner keeps running. Either way staff land on <b>Booking Found</b>, which lists every attendee on the booking and offers the same email buttons and history as the detail panel.</p>
+      <div class="callout note"><strong>Admit, not Check In</strong><p>At the gate the step is called <b>Admit</b>. "Check In" means the online <a href="#early-checkin">Early Check-In</a> form buyers fill in before arriving.</p></div>
       <p>At the top of Registration, a card shows whether the Box Office is <b>open</b> or <b>closed</b> on the Venue Map, and who set it and when. The Box Office Team Lead, Directors, Admins and Developers switch it with <b>Open</b> / <b>Closed</b> and can add a short note, such as the queue time. If the event has no Box Office pin yet, the card says so and links to the Venue Map.</p>
 
-      <figure class="shot" data-shot="registration" data-caption="Registration: the Box Office open / closed card, QR scan or search, and live gate numbers"></figure>
+      <figure class="shot" data-shot="registration" data-views="desktop" data-caption="Registration: the Box Office open / closed card, QR scan or search, and live gate numbers"></figure>
       <figure class="shot" data-shot="booking-found" data-views="desktop" data-caption="Booking Found: everyone on the booking, ready to admit"></figure>
       <h3 id="attendee-demo">Attendee actions <span class="sample-tag">Demo</span></h3>
-      <p>The same actions are available on Booking Found and in the Bookings detail panel. Each pass shows an icon for its type (festival, tent or add-on) and its name. Try them on this sample booking. Its Family Tent pass has 3 beds and is filled bed by bed.</p>
+      <p>The same actions are available on Booking Found and in the Bookings detail panel. Each pass shows an icon for its type (Festival Pass, Stay Pass or add-on) and its name. Try them on this sample booking. Its Family Tent Stay Pass has 3 beds and is filled bed by bed.</p>
       <div id="attendeeDemo"></div>
       <div class="log" id="attendeeLog" aria-live="polite"></div>
 
@@ -606,18 +732,18 @@
 
       <details class="more"><summary>How tent allocation keeps things right</summary><div class="body">
         <ul>
-          <li><b>Beds on a tent pass:</b> a tent pass holds as many people as its pass type's <b>Beds per pass</b>, one bed each. Its row shows, for example, <b>Beds 2 / 3</b>, its unit and the people in its beds. <b>Allocate bed</b> or <b>Allocate next bed</b> shows while a bed is free; a one-bed pass keeps <b>Allocate Tent</b>.</li>
+          <li><b>Beds on a Stay Pass:</b> a Stay Pass holds as many people as its pass type's <b>Beds per pass</b>, one bed each. Its row shows, for example, <b>Beds 2 / 3</b>, its unit and the people in its beds. <b>Allocate bed</b> or <b>Allocate next bed</b> shows while a bed is free; a one-bed pass keeps <b>Allocate Tent</b>.</li>
           <li><b>Linked to a person:</b> each bed is tied to one festival pass holder. The platform suggests the likely match, even when they bought on a different booking.</li>
           <li><b>Same unit by default:</b> Allocate shows <b>Bed 2 of 3</b> and who is already in, and picks the same unit as the other beds. Choosing another unit asks first, with <b>Cancel</b> / <b>Allocate anyway</b>.</li>
           <li><b>Vacate one bed:</b> with one bed taken, <b>Vacate</b> frees it. With several, each person has their own × to free only their bed.</li>
-          <li><b>Right tent type:</b> only tents of the matching tent pass type are offered.</li>
+          <li><b>Right tent type:</b> only tents of the matching Stay Pass type are offered.</li>
           <li><b>Pick on field:</b> next to the tent list, open the field's layout and tap the tent. Only tents of this pass's type with a free place are bright, tents with someone of another gender inside get an amber dot, and tapping one shows who is in it. Allocate then works as before. See <a href="#accommodation-fields">Fields</a>.</li>
           <li><b>Never overfilled:</b> two staff members can't both take the last place in a tent. The platform settles that safely.</li>
           <li><b>Gender-aware:</b> mixing genders in a tent needs a deliberate staff confirmation.</li>
         </ul>
       </div></details>
 
-      <h3>Spot Registration</h3>
+      <h3 id="spot-registration">Spot Registration</h3>
       <p>For walk-ups with no booking, staff create one on the spot. They choose items from the active event's pass types, enter the buyer's details, and the platform assigns an order number automatically. With <b>Email ticket to buyer</b> ticked (the default, for staff who can send ticket emails), the buyer gets their ticket email straight away. The new booking goes straight to Booking Found and is admitted like any other. Spot registrations are counted separately, so walk-up demand is visible at a glance.</p>
     </section>
 
@@ -625,6 +751,7 @@
     <section class="chapter" id="accommodation" data-toc="Accommodation" data-no="7">
       <div class="chapter-head"><span class="chapter-no">7</span><h2>Accommodation</h2></div>
       <p class="lead">Accommodation is where the physical tents are built, laid out on their fields and kept accurate. Putting people into tents happens at the gate in Box Office. Both work on the same live tent records.</p>
+      <p>A <b>Stay Pass</b> (called Tent Pass before) is what a participant buys to sleep at the festival. Each Stay Pass type, such as Two-Person Tent or Family Tent, has its own numbered units here, and each bed in a unit is taken by one Festival Pass holder.</p>
 
       <div class="table-wrap"><table>
         <thead><tr><th>Who</th><th>What they can do</th></tr></thead>
@@ -650,7 +777,7 @@
 
       <figure class="shot" data-shot="inventory" data-views="desktop" data-caption="Accommodation › Inventory: every unit with its type, capacity and occupants, sortable by column"></figure>
       <h3 id="tent-demo">Try it: allocate and vacate <span class="sample-tag">Demo</span></h3>
-      <p>Pick an attendee, then click <b>Allocate</b> on a tent. Click an occupied place to vacate it. Watch the occupancy cards update. Ritika, Simran and Bhavna share one 3-bed tent pass, so their beds belong in the same unit: putting one in another unit asks first.</p>
+      <p>Pick an attendee, then click <b>Allocate</b> on a tent. Click an occupied place to vacate it. Watch the occupancy cards update. Ritika, Simran and Bhavna share one 3-bed Stay Pass, so their beds belong in the same unit: putting one in another unit asks first.</p>
       <div class="occ-cards" id="occCards"></div>
       <div class="queue no-print" id="queue"></div>
       <div class="tents" id="tents"></div>
@@ -658,12 +785,13 @@
 
       <h3>Setup <span class="badge muted">Accommodation team</span></h3>
       <ol class="steps">
-        <li><b>Pick a tent pass type</b> of the active event. If it has no short code yet, you're asked for one once (e.g. <b>SO</b> for Solo Tent).</li>
+        <li><b>Pick a Stay Pass type</b> of the active event. If it has no short code yet, you're asked for one once (e.g. <b>SO</b> for Solo Tent).</li>
         <li><b>Enter a capacity and a quantity.</b> The platform creates that many numbered units (SO1, SO2, …), continuing from any that already exist.</li>
         <li><b>Check the occupancy cards</b> for each tent type: units open, places vacant, wholly vacant and full tents, split by Male, Female and Mixed.</li>
+        <li><b>Check beds needed against beds set up.</b> A line above the cards says whether there are enough beds for every Stay Pass sold, with the number of Stay Passes, beds needed and beds set up. Each card's <b>Needed from passes</b> row shows the same for its type and, when beds are short, about how many more units to create. Passes switched off by a cancellation are not counted.</li>
       </ol>
 
-      <figure class="shot" data-shot="accommodation-setup" data-caption="Accommodation › Setup: create units and watch occupancy per tent type"></figure>
+      <figure class="shot" data-shot="accommodation-setup" data-views="desktop" data-caption="Accommodation › Setup: create units, check that enough beds are set up for the Stay Passes sold, and watch occupancy per tent type (sample event)"></figure>
 
       <h3 id="accommodation-fields">Fields <span class="badge muted">Accommodation and Box Office teams</span></h3>
       <p><b>Accommodation › Fields</b> shows each camping field square by square, like a map.</p>
@@ -780,6 +908,7 @@
         <li><b>Acts:</b> the artist or band, genre, a contact name and phone, and notes. One act can play more than once.</li>
         <li>Stages and Acts are tables that sort by any column. <b>Add stage</b>, <b>Add act</b> and editing open in a side panel (a bottom sheet on phones). A stage or act that still has slots can't be deleted.</li>
       </ul>
+      <figure class="shot" data-shot="music-setup" data-views="desktop" data-caption="Music › Setup: stages with their amenities, and the acts with their contacts (sample acts)"></figure>
 
       <h3 id="music-planner">Planner</h3>
       <ul>
@@ -790,6 +919,7 @@
         <li>A red line marks the current time. A slot running past midnight shows on both days, and its times are changed from the panel. The calendar starts at 10:00, or earlier on a day with early-hours slots.</li>
         <li>People who may only view tap a slot for its details: act, stage, times, sound check, genre, contact and notes.</li>
       </ul>
+      <figure class="shot" data-shot="music-planner" data-views="desktop" data-caption="Music › Planner: one column per stage for the picked day, each slot with its sound check (sample acts)"></figure>
 
       <h3 id="music-elsewhere">Music elsewhere</h3>
       <ul>
@@ -942,6 +1072,7 @@
         <li><b>Guest groups:</b> one guest stay can take several beds (<b>How many people (same gender)</b>). A mixed group is booked as one stay per gender.</li>
         <li>Units and dates can't be changed in a way that breaks existing stays. A unit can be deleted only when it's empty.</li>
         <li>On Calendar and Units, a search next to the tabs finds units by name, type, area or who sleeps there. Filters: Type, and Empty, Has room, Full or Not available on the picked night.</li>
+        <li><b>All their stays:</b> a person's stay panel lists every stay they have, newest first, as cards on a small timeline. Each card shows the unit, first night to leaving morning with weekdays, the number of nights, Moved in or Moved out when known, and <b>This night</b>, <b>Upcoming</b> or <b>Past</b> against the night being viewed. The heading counts their stays and nights.</li>
         <li>Everyone sees <b>My stay</b> on My Profile: their unit, dates and a link to its area on the Venue Map.</li>
       </ul>
 
@@ -1163,7 +1294,7 @@
       <figure class="shot" data-shot="users-panel" data-caption="Selecting a person opens their details and allowed actions"></figure>
       <h4>Adding a person</h4>
       <ol class="steps">
-        <li>An admin taps <b>+ New User</b>, which opens the same side panel ready for a new account, and fills in name, email, role, <b>Phone</b> (optional), <b>Expected Join Time</b> (one date and time field; a day picked alone means 11:00), <b>Food preference</b> (Veg or Non-veg) and <b>Gender</b>. The new person is also put on the staff list of the event picked in the sidebar.</li>
+        <li>An admin taps <b>+ New User</b>, which opens the same side panel ready for a new account, and fills in name, email, role, <b>Phone</b> (optional), <b>Expected Join Time</b> (one date and time field; a day picked alone means 11:00), <b>Food preference</b> (Veg or Non-veg) and <b>Gender</b>. The new person is also put on the staff list of the event picked in the sidebar. A name must be 2 to 60 characters, and the email can be typed in any mix of capital and small letters.</li>
         <li>They choose the person's <b>home department</b>. This picks <b>Read</b> on that department's key by default, when the key has a Read level. Changing the department moves that default.</li>
         <li>They set any <b>Extra access</b>: one row per access key, always shown, with only the levels that key really has (for example Hospitality: Manage only; Medical Desk: Use). The picked level says what it gives. General has no row, since it gives nothing.</li>
         <li>The person signs in with a password that must mix upper- and lower-case letters, a number and a symbol. The form checks that the password is typed the same way twice.</li>
@@ -1196,7 +1327,7 @@
       <h4 id="bulk-add">Adding many people at once <span class="badge muted">Admins</span></h4>
       <ol class="steps">
         <li>Tap <b>Bulk Add</b>, then <b>Download template</b>. It has the columns and a "How to fill" sheet.</li>
-        <li>Fill one person per row: name, email, password, role and home department (needed for Team Leads and volunteers). Phone, food preference, gender and expected join time (a date, or a date and a time) are optional.</li>
+        <li>Fill one person per row: name, email, password, role and home department (needed for Team Leads and volunteers). Phone, food preference, gender and expected join time are optional. In the template, role, home department, food preference and gender are dropdowns filled from BiG's own lists. A joining time must be written as YYYY-MM-DD, or YYYY-MM-DD HH:mm, within a year of today.</li>
         <li>Drop the file in, and pick the sheet if there are several. Every row is checked first and marked <b>Ready</b>, <b>Problem</b> with the reason, or <b>Duplicate</b> when the email is already used (deactivated accounts included) or appears earlier in the file.</li>
         <li>Leave <b>Also add them to</b> the event's <b>staff list</b> ticked, or untick it.</li>
         <li>Tap <b>Add</b>. Only the ready rows are added and the rest are skipped. <b>Download result</b> gives the outcome of every row, without passwords.</li>
@@ -1241,29 +1372,30 @@
       <h4>Pass types</h4>
       <p>Admins define the passes sold for each event. Every pass type belongs to one of three categories, and the category decides how the rest of the platform treats it.</p>
       <div class="grid c3">
-        <div class="cat festival"><span class="tag">Festival</span><p>Admission to the festival. Each festival pass is one person, which is how the platform counts attendees and admissions.</p></div>
-        <div class="cat tent"><span class="tag">Tent</span><p>A place to stay. Tent pass types get a short code (e.g. <b>SO</b>), <b>Beds per pass</b> (1 to start with, shown as "3 beds") and their own numbered tent units in Accommodation. Each bed holds one festival pass holder.</p></div>
+        <div class="cat festival"><span class="tag">Festival Pass</span><p>Admission to the festival. Each festival pass is one person, which is how the platform counts attendees and admissions.</p></div>
+        <div class="cat tent"><span class="tag">Stay Pass</span><p>A place to stay (called Tent Pass before). Stay Pass types get a short code (e.g. <b>SO</b>), <b>Beds per pass</b> (1 to start with, shown as "3 beds") and their own numbered tent units in Accommodation. Each bed holds one festival pass holder.</p></div>
         <div class="cat addon"><span class="tag">Add-on</span><p>Anything sold alongside a pass. It's tracked on the booking but doesn't need a person or a tent.</p></div>
       </div>
-      <p><b>Add</b> and <b>Edit</b> open in a side panel (a bottom sheet on phones), with a label on every field. Code and Beds per pass show only for tent pass types.</p>
+      <p><b>Add</b> and <b>Edit</b> open in a side panel (a bottom sheet on phones), with a label on every field. Code and Beds per pass show only for Stay Pass types. <b>Sales system code</b> matches a pass type to the online sales system's item. Names are limited to 60 characters and descriptions of events to 500.</p>
 
       <h4>Setting up a new edition</h4>
       <ol class="steps">
         <li><b>Create the event</b> in Admin › Events. It starts as a Draft, visible to admins only.</li>
-        <li><b>Add its pass types</b> and give each a category. Give tent pass types their beds per pass.</li>
-        <li><b>Check the ticket email wording.</b> Under <b>Ticket email</b>, set the <b>Subject</b> and <b>Intro paragraph</b> buyers will see, or leave them empty to use a default built from the event's name.</li>
-        <li><b>Build the tents</b> for each tent pass type in Accommodation › Setup.</li>
+        <li><b>Add its pass types</b> and give each a category. Give Stay Pass types their beds per pass, and give each the code the online sales system uses for it.</li>
+        <li><b>Check the ticket email wording.</b> Under <b>Ticket email</b>, set the <b>Subject</b> and <b>Intro paragraph</b> buyers will see, or leave them empty to use a default built from the event's name. Under <b>Early Check-In email</b>, do the same for the <a href="#early-checkin">Early Check-In</a> email.</li>
+        <li><b>Switch on Sales system</b> on the event's details if this event takes the online sales system's bookings. Only one event can have it on; switching it on asks first and names the event that loses it.</li>
+        <li><b>Build the tents</b> for each Stay Pass type in Accommodation › Setup, until Setup says there are enough beds.</li>
         <li><b>Draw the venue boundary.</b> The event's page shows whether it's drawn, with a button that opens the Venue Map.</li>
         <li><b>Plan the workshops</b> in Workshops › Setup and the Planner, if the edition has any.</li>
         <li><b>Plan the music:</b> draw Stage areas on the Venue Map, then add stages, acts and slots in <a href="#music">Music</a>.</li>
         <li><b>Set up Hospitality:</b> the mess calendar and meal times in Hospitality › Setup, the Mess Hall area on the Venue Map, and the staff and guest units in Hospitality › Stay.</li>
         <li><b>Fill the staff list.</b> With the event picked in the sidebar, tick its Team Leads and volunteers on the Users page and tap <b>Add to</b> the event. The event's page shows how many people work it, with <b>Manage on Users page</b>.</li>
-        <li><b>Set it to Active.</b> Team Leads and volunteers on its staff list can now select it and start work.</li>
+        <li><b>Set it to Active.</b> Team Leads and volunteers on its staff list can now select it and start work. Setting an active event back to Draft or Archived asks first.</li>
         <li><b>Switch on the public page</b> in <a href="#public-settings">Admin › Public Page</a>, if participants should see it.</li>
         <li>After the festival, <b>archive</b> it. Everything is kept, and it disappears from day-to-day lists.</li>
       </ol>
       <figure class="shot" data-shot="events" data-views="desktop" data-caption="Admin › Events: every edition with its status"></figure>
-      <figure class="shot" data-shot="event-detail" data-views="desktop" data-caption="Event details: dates, venue boundary, staff count and the pass types with their beds per pass"></figure>
+      <figure class="shot" data-shot="event-detail" data-views="desktop" data-caption="Event details: dates, status, and the wording of the Ticket and Early Check-In emails (sample event)"></figure>
       <div class="callout warn"><strong>Real bookings are protected</strong><p>An event or pass type that already has bookings or tents can't be deleted. Archiving is the safe way to retire it.</p></div>
 
       <h3 id="email-report">Email Report <span class="badge muted">Admins</span></h3>
@@ -1338,7 +1470,7 @@
       </ul>
 
       <h3 id="public-page">Public Page <span class="badge muted">Admins</span></h3>
-      <p>The public festival page is a separate page for participants at <b>rchomeproject.in/live</b>. Nobody signs in. It shows festival information only, never the names or contact details of staff or participants. Workshop facilitators are the one exception: they're named, as on a poster. It works on any phone, can be added to the home screen as its own app, <b>BiG Festival</b>, and opens without signal with the last information it had.</p>
+      <p>The public festival page is a separate page for participants at the festival's public page address. Nobody signs in. It shows festival information only, never the names or contact details of staff or participants. Workshop facilitators are the one exception: they're named, as on a poster. It works on any phone, can be added to the home screen as its own app, <b>BiG Festival</b>, and opens without signal with the last information it had.</p>
 
       <h4 id="public-participants">What participants see</h4>
       <div class="table-wrap"><table>
@@ -1346,21 +1478,23 @@
         <tbody>
           <tr><td><b>Home</b></td><td>The festival's name and days over the chosen hero photo, with today highlighted. A countdown shows before the festival and a thank-you after it. Below are a rotating news strip, a banner when a session you starred has changed (it opens My plan), <b>Live now</b> with the workshops running and the act on stage, <b>Up next</b> with category filters, <b>On stage today</b>, <b>Find your way</b>, a small live map card, a <b>Get festival alerts</b> card, photo highlights, <b>BiG through the years</b> and <b>Need a hand?</b>. On a desktop it's two columns: sessions and music on the left, Find your way and the map card on the right, which stays in view while scrolling.</td></tr>
           <tr><td><b>Schedule</b></td><td>Any festival day, by category, with the day's music under <b>Music</b>. Finished sessions are greyed and cancelled ones marked.</td></tr>
-          <tr><td><b>Map</b></td><td>The festival's public places and areas on a street map, each area with its icon, with a legend and <b>Show my location</b>. Everything outside the festival boundary is greyed out, and the map opens fitted to the ground. Places with a live status carry a coloured label: Workshop areas the session's state (such as Walk in, Reg open, Waitlist, Reg closed), stages who is playing, the Medical Bay Open or Closed, toilets and washrooms Cleaned, Open or Closed, water stations Filled or Empty, and the Box Office Open or Closed. Tapping a place gives its full line and <b>Directions</b>.</td></tr>
+          <tr><td><b>Map</b></td><td>The festival's public places and areas on a street map, each area with its icon, with a legend and <b>Show my location</b>. Everything outside the festival boundary is greyed out, and the map opens fitted to the ground. Places with a live status carry a coloured label: Workshop areas the session's state (such as Walk in, Reg open, Waitlist, Reg closed), stages who is playing, the Medical Bay Open or Closed, toilets and washrooms Cleaned, Open or Closed, water stations Filled or Empty, and the Box Office Open or Closed. Roads show as thick grey lines and fences as thin dashed lines, each with its legend chip. Tapping a place gives its full line and <b>Directions</b>.</td></tr>
           <tr><td><b>My plan</b></td><td>The sessions starred on this phone, with any change of time, place or status marked.</td></tr>
           <tr><td><b>News</b></td><td>Every public post from the organisers, newest first, urgent ones in red.</td></tr>
         </tbody>
       </table></div>
       <ul>
         <li><b>Sessions</b> are the event's workshops. Each shows its status in plain words, such as "Registration open at the venue", "Entry opens 10:45", "Walk in", "Full", "Entry closed" or "Cancelled". Places left show only once everyone can walk in, and only when staff have switched on <b>Show places left on the map</b> for that session. Tapping a session shows who leads it, the description, age, language and what to bring.</li>
-        <li><b>Find your way</b> leads to the nearest water, first aid, toilets and Box Office, with walking minutes once the phone shares its location. Each opens the map there. It's always shown.</li>
+        <li><b>Find your way</b> leads to the nearest water, first aid, toilets and Helpdesk, with walking minutes once the phone shares its location. Each opens the map there. It's always shown.</li>
         <li><b>Music</b> shows only the artist or band, genre, stage and times.</li>
         <li>The small map card on Home loads the map only when it scrolls into view, to save mobile data.</li>
-        <li><b>The map</b> shows public places only. Staff-only places, such as offices, crew areas and the Mess Hall, never appear, and neither do notes. No-go zones are in red.</li>
+        <li><b>The map</b> shows public places only, including roads, fences and Helpdesk pins. Staff-only places, such as offices, crew areas, the Mess Hall and "other" lines, never appear, and neither do notes. No-go zones are in red.</li>
         <li><b>Need a hand?</b> tiles are written by staff, for example the Helpdesk or Lost &amp; Found.</li>
         <li>The page refreshes every 30 seconds while it's on screen, so staff changes in Workshops, the Venue Map, Events or here show up quickly.</li>
       </ul>
       <figure class="shot" data-shot="public-home" data-views="phone,desktop" data-caption="The public festival page during the festival: today, news, Up next, Find your way, the live map card and the Emergency button (sample event)"></figure>
+
+      <figure class="shot" data-shot="public-map" data-views="desktop" data-caption="The public map: festival places with live labels, a road and the fence around the ground (sample event)"></figure>
 
       <h4 id="public-emergency">The Emergency button</h4>
       <p>During the festival, a red <b>Emergency</b> button stays on screen. It opens <b>Emergency help</b>:</p>
@@ -1379,6 +1513,17 @@
         <li>On iPhone, alerts work once the page has been added to the Home Screen.</li>
         <li>A phone's alerts and starred list are deleted automatically 7 days after the event.</li>
       </ul>
+
+      <h4 id="public-checkin">The Early Check-In form</h4>
+      <p>The link in the <a href="#early-checkin">Early Check-In</a> email opens a form on the public page, for that booking only. It works even while the public page is switched off, and shows nothing else of the page.</p>
+      <ul>
+        <li>One card per Festival Pass on the booking, already filled with what the booking has, and editable: <b>Full name</b>, <b>Phone</b>, <b>Email</b> and <b>Gender</b> (picked from tiles).</li>
+        <li>A progress bar shows how many passes are ready. Each field says what's wrong with it: a name of 2 to 60 characters, a phone of 7 to 15 digits, a real email address.</li>
+        <li>Passes already admitted at the gate are shown with a lock and can't be changed.</li>
+        <li><b>Check and send</b> shows a summary first, because the form can be sent only once. Then a thank-you screen appears, and the booking shows <b>Submitted</b> on Bookings.</li>
+        <li>A link that has expired, was already used, belongs to a cancelled booking or doesn't work opens a clear page saying so. A new send from Bookings gives a new link.</li>
+      </ul>
+      <figure class="shot" data-shot="early-checkin-form" data-views="desktop" data-caption="The Early Check-In form: one card per Festival Pass, the first ready and the second still to fill (sample booking)"></figure>
 
       <h4 id="public-settings">Settings</h4>
       <p><b>Admin › Public Page</b> shows whether the page is on and which event it shows, with <b>Open page</b>. Its settings are:</p>
@@ -1436,7 +1581,7 @@
         <div class="card strength reveal"><div class="ic">🎯</div><div><h4>Right access for every person</h4><p>Five roles, three access tiers, department keys and a staff list per event combine, so a volunteer sees only their work and a director sees everything.</p></div></div>
         <div class="card strength reveal"><div class="ic">📱</div><div><h4>Works on any screen</h4><p>Every page is designed for phones as well as desktops, so gate staff can work from a handheld device. BiG can also be installed on the home screen and opened like an app.</p></div></div>
         <div class="card strength reveal"><div class="ic">🔁</div><div><h4>Ready for every edition</h4><p>Events and pass types are configured, not hard-coded. A new festival year needs setup, not development.</p></div></div>
-        <div class="card strength reveal"><div class="ic">✅</div><div><h4>Tested and staged releases</h4><p>Well over a thousand automated checks run before every release. Each release is tried in a test environment before wider use.</p></div></div>
+        <div class="card strength reveal"><div class="ic">✅</div><div><h4>Tested and staged releases</h4><p>Automated checks run before every release, and each release is tried in a test environment before wider use.</p></div></div>
         <div class="card strength reveal"><div class="ic">🔗</div><div><h4>Fits existing sales channels</h4><p>Bookings sold elsewhere come in through Bulk Upload. Export gives a re-importable backup at any time.</p></div></div>
         <div class="card strength reveal"><div class="ic">🌐</div><div><h4>Open to participants, safely</h4><p>The public festival page gives anyone the schedule, news, a map and emergency help with no sign-in. It never shows staff or participants' names or contact details, and photos lose their hidden location data before upload.</p></div></div>
         <div class="card strength reveal"><div class="ic">🧭</div><div><h4>Honest records</h4><p>Attendance by slot, admissions per person with one wrist band each, tents linked to the right festival pass, workshop attendance by session, every meal served or refused, and a record of every email sent and whether it arrived. The numbers can be trusted.</p></div></div>
@@ -1594,7 +1739,7 @@
     <section class="chapter" id="dry-run" data-toc="Dry run: one happy path per area" data-no="20">
       <div class="chapter-head"><span class="chapter-no">20</span><h2>Dry run: one happy path per area</h2></div>
       <p class="lead">Before the festival, each team walks through its area once on a phone, so the first real gate, door or meal isn't the first try.</p>
-      <p>Each part below says who does it, what must be ready first, the steps in order, and a few checks worth trying on purpose. The screenshots are phone views with invented sample people; your own pages show your own event's data.</p>
+      <p>Each part below says who does it, what must be ready first, the steps in order, and a few checks worth trying on purpose. The screenshots use invented sample people; your own pages show your own event's data.</p>
       <div class="callout tip"><strong>Report what you find</strong><p>If anything behaves unexpectedly, note the area, the step number and take a screenshot.</p></div>
 
       <h3 id="dry-setup">Before anything: people and the event <span class="badge muted">Directors, Admins, Developers</span></h3>
@@ -1624,9 +1769,9 @@
       <h3 id="dry-box-office">Box Office: admit a participant <span class="badge muted">Box Office team, Directors, Admins</span></h3>
       <h4>Before you start</h4>
       <ul>
-        <li>The event has its <b>pass types</b>, a Festival Pass and any tent passes with their beds per pass, in Admin › Events.</li>
+        <li>The event has its <b>pass types</b>, a Festival Pass and any Stay Passes with their beds per pass, in Admin › Events.</li>
         <li>Tents are created in <a href="#accommodation">Accommodation › Setup</a> if you'll allocate tents.</li>
-        <li>Bookings are in, either imported with <b>Bulk Upload</b> on Bookings or made at the gate with <b>Spot Registration</b>.</li>
+        <li>Bookings are in: from the online sales system, from <b>Import</b> on Bookings, or made at the gate with <b>Spot Registration</b>. Check the <b>Details missing</b> and <b>Beds don't match</b> tiles first (see <a href="#booking-checks">Checking bookings</a>).</li>
         <li>You're on the event's staff list and have wrist bands and a phone with a camera.</li>
       </ul>
       <h4>Steps</h4>
@@ -1634,7 +1779,7 @@
         <li>On <b>Registration</b>, tap <b>Scan QR</b> for the participant's ticket email, or search by name, phone or email.</li>
         <li>On <b>Booking Found</b>, fill in any missing attendee details with the counter form.</li>
         <li>Tap <b>Admit</b> on the Festival Pass and scan a wrist band. The pass shows Admitted with its band.</li>
-        <li>For a tent pass, tap <b>Allocate Tent</b> (<b>Allocate bed</b> for a pass with several beds) and pick a tent of that type. Fill each bed the same way; the next bed goes into the same unit unless you choose another.</li>
+        <li>For a Stay Pass, tap <b>Allocate Tent</b> (<b>Allocate bed</b> for a pass with several beds) and pick a tent of that type. Fill each bed the same way; the next bed goes into the same unit unless you choose another.</li>
         <li>On <b>Bookings</b>, send or resend the <b>Ticket Email</b> if needed and check its status.</li>
       </ol>
       <div class="callout note"><strong>Checks to try</strong><ul>
@@ -1644,9 +1789,34 @@
         <li><b>Lost band:</b> <b>Replace Band</b> asks for a reason and keeps the history (see <a href="#link-band">Wrist bands</a>).</li>
       </ul></div>
       <div class="dry-shots">
-        <figure class="shot" data-shot="bookings" data-views="phone" data-caption="Bookings"></figure>
+        <figure class="shot" data-shot="bookings" data-views="desktop" data-caption="Bookings"></figure>
         <figure class="shot" data-shot="booking-found" data-views="desktop" data-caption="Booking Found: Admit"></figure>
         <figure class="shot" data-shot="booking-band" data-views="phone" data-caption="Band history"></figure>
+      </div>
+
+      <h3 id="dry-checkin">Early Check-In: get everyone's details before the festival <span class="badge muted">Box Office Team Lead, Directors, Admins, Developers</span></h3>
+      <h4>Before you start</h4>
+      <ul>
+        <li>Bookings are in, and the buyers have real email addresses.</li>
+        <li>The Early Check-In email wording is set, or left empty for the default, in Admin › Events.</li>
+      </ul>
+      <h4>Steps</h4>
+      <ol class="steps">
+        <li>On <b>Bookings</b>, tap the <b>Details missing</b> tile and tick the bookings.</li>
+        <li>Choose <b>Email ▾ › Send Early Check-In</b>, keep <b>Send only to</b> the bookings with details missing and 14 days, and tap <b>Send test to me</b> first.</li>
+        <li>Open the test email, then send for real. The <b>Early Check-In</b> column shows <b>Sent</b>.</li>
+        <li>As a buyer, open the link, fill in each Festival Pass and tap <b>Check and send</b>.</li>
+        <li>Back on Bookings, the booking shows <b>Submitted</b> and its <b>Festival details</b> are complete.</li>
+      </ol>
+      <div class="callout note"><strong>Checks to try</strong><ul>
+        <li><b>Open the link again</b> after sending: it says the form was already sent.</li>
+        <li><b>Send a new link</b> to the same booking: the old link stops working.</li>
+        <li><b>An admitted pass</b> shows a lock on the form and can't be changed.</li>
+        <li><b>A wrong phone or email</b> is pointed out under the field before the form can be sent.</li>
+      </ul></div>
+      <div class="dry-shots">
+        <figure class="shot" data-shot="early-checkin-dialog" data-views="desktop" data-caption="Send Early Check-In"></figure>
+        <figure class="shot" data-shot="early-checkin-form" data-views="desktop" data-caption="The buyer's form"></figure>
       </div>
 
       <h3 id="dry-workshops">Workshops: plan a session and run the door <span class="badge muted">Workshop team</span></h3>
@@ -1831,7 +2001,7 @@
       </div>
 
       <h3 id="dry-public">Public Page: the festival page for participants <span class="badge muted">Directors, Admins, Developers</span></h3>
-      <p>Participants open the page at <b>rchomeproject.in/live</b>, without signing in. See <a href="#public-page">Public Page</a> for everything it does.</p>
+      <p>Participants open the page at the festival's public page address, without signing in. See <a href="#public-page">Public Page</a> for everything it does.</p>
       <h4>Before you start</h4>
       <ul>
         <li>The event is <b>active</b> and has its start and end dates. Only events like this can be shown.</li>
@@ -1867,7 +2037,7 @@
       </ul>
       <h4>Steps</h4>
       <ol class="steps">
-        <li>On a second phone, open <b>rchomeproject.in/live</b> and tap <b>Emergency › Send SOS</b>. Allow location and add a short message.</li>
+        <li>On a second phone, open the festival's public page and tap <b>Emergency › Send SOS</b>. Allow location and add a short message.</li>
         <li>Responders get an urgent notification and a note on their <a href="#billboard">Billboard</a>.</li>
         <li>Open the <a href="#sos">SOS</a> page. See the location on the map, then tap <b>Directions</b> or <b>Call</b>.</li>
         <li>When it's dealt with, add a short note and mark it handled.</li>
